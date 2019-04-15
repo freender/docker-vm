@@ -3,6 +3,7 @@ services:
   plex:
     image: linuxserver/plex
     container_name: plex
+    network_mode: host
     environment:
       - PUID=1000
       - PGID=1000
@@ -13,13 +14,6 @@ services:
       - /media/plex/sport:/sport
       - /media/plex/tv:/tv
       - /media/ssd/transcode:/transcode
-    ports:
-    - 32400:32400
-    - 32400:32400/udp
-    - 32469:32469
-    - 32469:32469/udp
-    - 5353:5353/udp
-    - 1900:1900/udp   
     restart: unless-stopped
     
   sonarr:
