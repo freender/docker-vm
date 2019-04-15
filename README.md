@@ -1,3 +1,7 @@
+# Docker_VM (Plex, Sonarr, Radarr, Lidarr, Jacket, NZBGet, Deluge, Tautulli, Ombi, Proxy(docker-compose + letsencrypt + nginx-proxy-companion))
+
+Web Proxy using Docker, NGINX and Let's Encrypt
+
 ## How to use it
 
 1. Clone this repository - docker-compose + letsencrypt + nginx-proxy-companion
