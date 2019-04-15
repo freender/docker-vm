@@ -8,7 +8,7 @@ cp .env.sample .env
 git clone https://https://github.com/freender/docker-vm.git
 4. Run start script 
 sudo ./start.sh
-4. Create Users for each service
+5. Create Users for each service
 sudo sh -c "echo -n 'freender:' >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/sonarr.freender.pw"
 sudo sh -c "openssl passwd -apr1 >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/sonarr.freender.pw"
 
