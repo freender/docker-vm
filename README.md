@@ -21,7 +21,7 @@ cp .env.sample .env
 3. Clone this repository
 
 ```
-git clone https://https://github.com/freender/docker-vm.git
+git clone https://freender@github.com/freender/docker-vm.git
 ```
 
 4. Run start script 
