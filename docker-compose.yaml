@@ -30,14 +30,13 @@ services:
       - LETSENCRYPT_EMAIL=freender.mail@gmail.com
     volumes:
       - /home/freender/config/sonarr/config:/config
-      - /media/plex/tv:/tv
-      - /media/plex/downloads:/downloads
+      - /media/plex:/plex
     ports:
       - 8989:8989
     restart: unless-stopped
     
   radarr:
-    image: linuxserver/radarr
+    image: linuxserver/radarr:nightly
     container_name: radarr
     environment:
       - PUID=1000
@@ -49,9 +48,7 @@ services:
       - LETSENCRYPT_EMAIL=freender.mail@gmail.com
     volumes:
       - /home/freender/config/radarr/config:/config
-      - /media/plex/movies:/movies
-      - /media/plex/sport:/sport
-      - /media/plex/downloads:/downloads
+      - /media/plex:/plex
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -69,7 +66,7 @@ services:
       - LETSENCRYPT_EMAIL=freender.mail@gmail.com
     volumes:
       - /home/freender/config/nzbget/config:/config
-      - /media/plex/downloads:/downloads
+      - /media/plex:/plex
       - /media/ssd/incomplete:/intermediate
     ports:
       - 6789:6789
@@ -89,7 +86,7 @@ services:
       - LETSENCRYPT_EMAIL=freender.mail@gmail.com
     volumes:
       - /home/freender/config/jackett/config:/config
-      - /media/plex/downloads:/downloads
+      - /media/plex:/plex
     ports:
       - 9117:9117
     restart: unless-stopped
@@ -108,7 +105,7 @@ services:
       - LETSENCRYPT_EMAIL=freender.mail@gmail.com
     volumes:
       - /home/freender/config/deluge/config:/config
-      - /media/plex/downloads:/downloads
+      - /media/plex:/plex
     ports:
       - 8112:8112      
     restart: unless-stopped
@@ -161,8 +158,7 @@ services:
       - LETSENCRYPT_EMAIL=freender.mail@gmail.com
     volumes:
       - /home/freender/config/lidarr/config:/config
-      - /media/plex/music:/music
-      - /media/plex/downloads:/downloads
+      - /media/plex:/plex
     ports:
       - 8686:8686
     restart: unless-stopped
