@@ -52,26 +52,27 @@ services:
     ports:
       - 7878:7878
     restart: unless-stopped
-    
-  nzbget:
-    image: linuxserver/nzbget
-    container_name: nzbget
+
+  sabnzbd:
+    image: linuxserver/sabnzbd
+    container_name: sabnzbd
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=America/Indiana/Indianapolis
-      - VIRTUAL_PORT=6789
-      - VIRTUAL_HOST=nzbget.freender.pw
-      - LETSENCRYPT_HOST=nzbget.freender.pw
+      - VIRTUAL_PORT=8080
+      - VIRTUAL_HOST=sabnzbd.freender.pw
+      - LETSENCRYPT_HOST=sabnzbd.freender.pw
       - LETSENCRYPT_EMAIL=freender.mail@gmail.com
     volumes:
-      - /home/freender/config/nzbget/config:/config
+      - /home/freender/config/sabnzbd/config:/config
       - /media/plex:/plex
-      - /media/ssd/incomplete:/intermediate
+      - /media/ssd/incomplete:/incomplete-downloads
     ports:
-      - 6789:6789
+      - 8080:8080
+      - 9090:9090
     restart: unless-stopped
-    
+      
   jackett:
     image: linuxserver/jackett
     container_name: jackett
@@ -162,7 +163,25 @@ services:
     ports:
       - 8686:8686
     restart: unless-stopped
-  
+ 
+  hydra2:
+    image: linuxserver/hydra2
+    container_name: hydra2
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Indiana/Indianapolis
+      - VIRTUAL_PORT=5076
+      - VIRTUAL_HOST=hydra.freender.pw
+      - LETSENCRYPT_HOST=hydra.freender.pw
+      - LETSENCRYPT_EMAIL=freender.mail@gmail.com
+    volumes:
+      - /home/freender/config/hydra2/config:/config
+      - /media/plex:/plex
+    ports:
+      - 5076:5076
+    restart: unless-stopped
+ 
   ddns-updater:
     build: https://github.com/qdm12/ddns-updater.git
     image: qmcgaw/ddns-updater
@@ -176,7 +195,7 @@ services:
       - RECORD1=freender.pw,deluge,namecheap,provider,6f541807e6d146d29a424a82c7b0c873
       - RECORD2=freender.pw,jackett,namecheap,provider,6f541807e6d146d29a424a82c7b0c873
       - RECORD3=freender.pw,lidarr,namecheap,provider,6f541807e6d146d29a424a82c7b0c873
-      - RECORD4=freender.pw,nzbget,namecheap,provider,6f541807e6d146d29a424a82c7b0c873   
+      - RECORD4=freender.pw,sabnzbd,namecheap,provider,6f541807e6d146d29a424a82c7b0c873   
       - RECORD5=freender.pw,ombi,namecheap,provider,6f541807e6d146d29a424a82c7b0c873
       - RECORD6=freender.pw,radarr,namecheap,provider,6f541807e6d146d29a424a82c7b0c873
       - RECORD7=freender.pw,sonarr,namecheap,provider,6f541807e6d146d29a424a82c7b0c873
