@@ -110,6 +110,24 @@ services:
     ports:
       - 8112:8112      
     restart: unless-stopped
+    
+  qbittorrent:
+    image: linuxserver/qbittorrent
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Indiana/Indianapolis
+      - UMASK_SET=022
+      - WEBUI_PORT=8180
+    volumes:
+      - /home/freender/config/qbittorrent/config:/config
+      - /media/plex:/plex
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+      - 8180:8180
+    restart: unless-stopped
        
   ombi:
     image: linuxserver/ombi
