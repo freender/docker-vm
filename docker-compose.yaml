@@ -91,26 +91,7 @@ services:
     ports:
       - 9117:9117
     restart: unless-stopped
-    
-  deluge:
-    image: linuxserver/deluge
-    container_name: deluge
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - UMASK_SET=022
-      - TZ=America/Indiana/Indianapolis
-      - VIRTUAL_PORT=8112
-      - VIRTUAL_HOST=deluge.freender.pw
-      - LETSENCRYPT_HOST=deluge.freender.pw
-      - LETSENCRYPT_EMAIL=freender.mail@gmail.com
-    volumes:
-      - /home/freender/config/deluge/config:/config
-      - /media/plex:/plex
-    ports:
-      - 8112:8112      
-    restart: unless-stopped
-    
+     
   qbittorrent:
     image: linuxserver/qbittorrent
     container_name: qbittorrent
@@ -120,6 +101,10 @@ services:
       - TZ=America/Indiana/Indianapolis
       - UMASK_SET=022
       - WEBUI_PORT=8180
+      - VIRTUAL_PORT=8180
+      - VIRTUAL_HOST=qbittorrent.freender.pw
+      - LETSENCRYPT_HOST=qbittorrent.freender.pw
+      - LETSENCRYPT_EMAIL=freender.mail@gmail.com      
     volumes:
       - /home/freender/config/qbittorrent/config:/config
       - /media/plex:/plex
@@ -210,7 +195,7 @@ services:
       - DELAY=300
       - ROOTURL=/
       - LISTENINGPORT=8000
-      - RECORD1=freender.pw,deluge,namecheap,provider,6f541807e6d146d29a424a82c7b0c873
+      - RECORD1=freender.pw,qbittorrent,namecheap,provider,6f541807e6d146d29a424a82c7b0c873
       - RECORD2=freender.pw,jackett,namecheap,provider,6f541807e6d146d29a424a82c7b0c873
       - RECORD3=freender.pw,lidarr,namecheap,provider,6f541807e6d146d29a424a82c7b0c873
       - RECORD4=freender.pw,sabnzbd,namecheap,provider,6f541807e6d146d29a424a82c7b0c873   
