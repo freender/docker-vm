@@ -53,26 +53,25 @@ services:
       - 7878:7878
     restart: unless-stopped
 
-  sabnzbd:
-    image: linuxserver/sabnzbd
-    container_name: sabnzbd
+  nzbget:
+    image: linuxserver/nzbget
+    container_name: nzbget
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=America/Indiana/Indianapolis
-      - VIRTUAL_PORT=8080
-      - VIRTUAL_HOST=sabnzbd.freender.pw
-      - LETSENCRYPT_HOST=sabnzbd.freender.pw
+      - VIRTUAL_PORT=6789
+      - VIRTUAL_HOST=nzbget.freender.pw
+      - LETSENCRYPT_HOST=nzbget.freender.pw
       - LETSENCRYPT_EMAIL=freender.mail@gmail.com
     volumes:
-      - /home/freender/config/sabnzbd/config:/config
+      - /home/freender/config/nzbget/config:/config
       - /media/plex:/plex
       - /media/ssd/incomplete:/incomplete-downloads
     ports:
-      - 8080:8080
-      - 9090:9090
+     - 6789:6789
     restart: unless-stopped
-      
+     
   jackett:
     image: linuxserver/jackett
     container_name: jackett
@@ -204,6 +203,7 @@ services:
       - RECORD7=freender.pw,sonarr,namecheap,provider,6f541807e6d146d29a424a82c7b0c873
       - RECORD8=freender.pw,tautulli,namecheap,provider,6f541807e6d146d29a424a82c7b0c873
       - RECORD9=freender.pw,ddns,namecheap,provider,6f541807e6d146d29a424a82c7b0c873
+      - RECORD10=freender.pw,nzbget,namecheap,provider,6f541807e6d146d29a424a82c7b0c873
       - VIRTUAL_PORT=8000
       - VIRTUAL_HOST=ddns.freender.pw
       - LETSENCRYPT_HOST=ddns.freender.pw
