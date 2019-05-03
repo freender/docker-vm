@@ -107,6 +107,7 @@ services:
     volumes:
       - /home/freender/config/qbittorrent/config:/config
       - /media/plex:/plex
+      - /media/ssd/incomplete:/incomplete-downloads
     ports:
       - 6881:6881
       - 6881:6881/udp
@@ -197,7 +198,7 @@ services:
       - RECORD1=freender.pw,qbittorrent,namecheap,provider,6f541807e6d146d29a424a82c7b0c873
       - RECORD2=freender.pw,jackett,namecheap,provider,6f541807e6d146d29a424a82c7b0c873
       - RECORD3=freender.pw,lidarr,namecheap,provider,6f541807e6d146d29a424a82c7b0c873
-      - RECORD4=freender.pw,sabnzbd,namecheap,provider,6f541807e6d146d29a424a82c7b0c873   
+      - RECORD4=freender.pw,hydra,namecheap,provider,6f541807e6d146d29a424a82c7b0c873   
       - RECORD5=freender.pw,ombi,namecheap,provider,6f541807e6d146d29a424a82c7b0c873
       - RECORD6=freender.pw,radarr,namecheap,provider,6f541807e6d146d29a424a82c7b0c873
       - RECORD7=freender.pw,sonarr,namecheap,provider,6f541807e6d146d29a424a82c7b0c873
