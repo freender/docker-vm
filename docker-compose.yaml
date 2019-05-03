@@ -79,7 +79,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=America/Indiana/Indianapolis
-      - RUN_OPTS='--ProxyConnection=us2611.nordvpn.com:1080' `#optional` \
       - VIRTUAL_PORT=9117
       - VIRTUAL_HOST=jackett.freender.pw
       - LETSENCRYPT_HOST=jackett.freender.pw
