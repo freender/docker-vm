@@ -1,4 +1,5 @@
 #!/bin/bash
+
 cd ~/docker-vm
 rm docker-compose.yaml
 rm update.sh
