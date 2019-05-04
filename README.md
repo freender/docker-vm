@@ -7,30 +7,52 @@ Plex Media Server + Web Proxy using Docker, NGINX and Let's Encrypt
 1. Clone this repository - docker-compose + letsencrypt + nginx-proxy-companion
 
 ```
-cd /home/freender/
+cd ~
 git clone https://github.com/evertramos/docker-compose-letsencrypt-nginx-proxy-companion.git
 ```
 
 2. Make a copy of our .env.sample and rename it to .env:
 
 ```
-cd /home/freender/docker/docker-compose-letsencrypt-nginx-proxy-companion
+cd ~/docker-compose-letsencrypt-nginx-proxy-companion
 cp .env.sample .env
 ```
 
-3. Clone this repository
+3. Add and fill following constants to .env
+
+```
+vim .env
+```
+
+Insert 3 variables:
+```
+#DDNS Password
+
+DDNS_PASSWORD=somepassword
+
+#Root domain URL
+
+HOST_URL=somedomain.com
+
+#Email for LE
+
+EMAIL=someemail@gmail.com
+```
+
+
+4. Clone this repository
 
 ```
 git clone https://freender@github.com/freender/docker-vm.git
 ```
 
-4. Run start script 
+5. Run start script 
 
 ```
 sudo ./start.sh
 ```
 
-5. Create Users for each service
+6. Create Users for each service
 
 ```
 sudo sh -c "echo -n 'freender:' >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/sonarr.freender.pw"

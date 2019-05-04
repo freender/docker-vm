@@ -25,9 +25,9 @@ services:
       - PGID=1000
       - TZ=America/Indiana/Indianapolis
       - VIRTUAL_PORT=8989
-      - VIRTUAL_HOST=sonarr.freender.pw
-      - LETSENCRYPT_HOST=sonarr.freender.pw
-      - LETSENCRYPT_EMAIL=freender.mail@gmail.com
+      - VIRTUAL_HOST=sonarr.${HOST_URL}
+      - LETSENCRYPT_HOST=sonarr.${HOST_URL}
+      - LETSENCRYPT_EMAIL=${EMAIL}
     volumes:
       - /home/freender/config/sonarr/config:/config
       - /media/plex:/plex
@@ -43,9 +43,9 @@ services:
       - PGID=1000
       - TZ=America/Indiana/Indianapolis
       - VIRTUAL_PORT=7878
-      - VIRTUAL_HOST=radarr.freender.pw
-      - LETSENCRYPT_HOST=radarr.freender.pw
-      - LETSENCRYPT_EMAIL=freender.mail@gmail.com
+      - VIRTUAL_HOST=radarr.${HOST_URL}
+      - LETSENCRYPT_HOST=radarr.${HOST_URL}
+      - LETSENCRYPT_EMAIL=${EMAIL}
     volumes:
       - /home/freender/config/radarr/config:/config
       - /media/plex:/plex
@@ -61,9 +61,9 @@ services:
       - PGID=1000
       - TZ=America/Indiana/Indianapolis
       - VIRTUAL_PORT=6789
-      - VIRTUAL_HOST=nzbget.freender.pw
-      - LETSENCRYPT_HOST=nzbget.freender.pw
-      - LETSENCRYPT_EMAIL=freender.mail@gmail.com
+      - VIRTUAL_HOST=nzbget.${HOST_URL}
+      - LETSENCRYPT_HOST=nzbget.${HOST_URL}
+      - LETSENCRYPT_EMAIL=${EMAIL}
     volumes:
       - /home/freender/config/nzbget/config:/config
       - /media/plex:/plex
@@ -80,9 +80,9 @@ services:
       - PGID=1000
       - TZ=America/Indiana/Indianapolis
       - VIRTUAL_PORT=9117
-      - VIRTUAL_HOST=jackett.freender.pw
-      - LETSENCRYPT_HOST=jackett.freender.pw
-      - LETSENCRYPT_EMAIL=freender.mail@gmail.com
+      - VIRTUAL_HOST=jackett.${HOST_URL}
+      - LETSENCRYPT_HOST=jackett.${HOST_URL}
+      - LETSENCRYPT_EMAIL=${EMAIL}
     volumes:
       - /home/freender/config/jackett/config:/config
       - /media/plex:/plex
@@ -100,9 +100,9 @@ services:
       - UMASK_SET=022
       - WEBUI_PORT=8180
       - VIRTUAL_PORT=8180
-      - VIRTUAL_HOST=qbittorrent.freender.pw
-      - LETSENCRYPT_HOST=qbittorrent.freender.pw
-      - LETSENCRYPT_EMAIL=freender.mail@gmail.com      
+      - VIRTUAL_HOST=qbittorrent.${HOST_URL}
+      - LETSENCRYPT_HOST=qbittorrent.${HOST_URL}
+      - LETSENCRYPT_EMAIL=${EMAIL}      
     volumes:
       - /home/freender/config/qbittorrent/config:/config
       - /media/plex:/plex
@@ -121,9 +121,9 @@ services:
       - PGID=1000
       - TZ=America/Indiana/Indianapolis
       - VIRTUAL_PORT=3579
-      - VIRTUAL_HOST=ombi.freender.pw
-      - LETSENCRYPT_HOST=ombi.freender.pw
-      - LETSENCRYPT_EMAIL=freender.mail@gmail.com
+      - VIRTUAL_HOST=ombi.${HOST_URL}
+      - LETSENCRYPT_HOST=ombi.${HOST_URL}
+      - LETSENCRYPT_EMAIL=${EMAIL}
     volumes:
       - /home/freender/config/ombi/config:/config
     ports:
@@ -138,9 +138,9 @@ services:
       - PGID=1000
       - TZ=America/Indiana/Indianapolis
       - VIRTUAL_PORT=8181
-      - VIRTUAL_HOST=tautulli.freender.pw
-      - LETSENCRYPT_HOST=tautulli.freender.pw
-      - LETSENCRYPT_EMAIL=freender.mail@gmail.com
+      - VIRTUAL_HOST=tautulli.${HOST_URL}
+      - LETSENCRYPT_HOST=tautulli.${HOST_URL}
+      - LETSENCRYPT_EMAIL=${EMAIL}
     volumes:
       - /home/freender/config/tautulli/config:/config
       - /home/freender/config/plex/config/Library/Application Support/Plex Media Server/Logs:/logs
@@ -156,9 +156,9 @@ services:
       - PGID=1000
       - TZ=America/Indiana/Indianapolis
       - VIRTUAL_PORT=8686
-      - VIRTUAL_HOST=lidarr.freender.pw
-      - LETSENCRYPT_HOST=lidarr.freender.pw
-      - LETSENCRYPT_EMAIL=freender.mail@gmail.com
+      - VIRTUAL_HOST=lidarr.${HOST_URL}
+      - LETSENCRYPT_HOST=lidarr.${HOST_URL}
+      - LETSENCRYPT_EMAIL=${EMAIL}
     volumes:
       - /home/freender/config/lidarr/config:/config
       - /media/plex:/plex
@@ -174,9 +174,9 @@ services:
       - PGID=1000
       - TZ=America/Indiana/Indianapolis
       - VIRTUAL_PORT=5076
-      - VIRTUAL_HOST=hydra.freender.pw
-      - LETSENCRYPT_HOST=hydra.freender.pw
-      - LETSENCRYPT_EMAIL=freender.mail@gmail.com
+      - VIRTUAL_HOST=hydra.${HOST_URL}
+      - LETSENCRYPT_HOST=hydra.${HOST_URL}
+      - LETSENCRYPT_EMAIL=${EMAIL}
     volumes:
       - /home/freender/config/hydra2/config:/config
       - /media/plex:/plex
@@ -194,20 +194,20 @@ services:
       - DELAY=300
       - ROOTURL=/
       - LISTENINGPORT=8000
-      - RECORD1=freender.pw,qbittorrent,namecheap,provider,${DDNS_PASSWORD}
-      - RECORD2=freender.pw,jackett,namecheap,provider,${DDNS_PASSWORD}
-      - RECORD3=freender.pw,lidarr,namecheap,provider,${DDNS_PASSWORD}
-      - RECORD4=freender.pw,hydra,namecheap,provider,${DDNS_PASSWORD}   
-      - RECORD5=freender.pw,ombi,namecheap,provider,${DDNS_PASSWORD}
-      - RECORD6=freender.pw,radarr,namecheap,provider,${DDNS_PASSWORD}
-      - RECORD7=freender.pw,sonarr,namecheap,provider,${DDNS_PASSWORD}
-      - RECORD8=freender.pw,tautulli,namecheap,provider,${DDNS_PASSWORD}
-      - RECORD9=freender.pw,ddns,namecheap,provider,${DDNS_PASSWORD}
-      - RECORD10=freender.pw,nzbget,namecheap,provider,${DDNS_PASSWORD}
+      - RECORD1=${HOST_URL},qbittorrent,namecheap,provider,${DDNS_PASSWORD}
+      - RECORD2=${HOST_URL},jackett,namecheap,provider,${DDNS_PASSWORD}
+      - RECORD3=${HOST_URL},lidarr,namecheap,provider,${DDNS_PASSWORD}
+      - RECORD4=${HOST_URL},hydra,namecheap,provider,${DDNS_PASSWORD}   
+      - RECORD5=${HOST_URL},ombi,namecheap,provider,${DDNS_PASSWORD}
+      - RECORD6=${HOST_URL},radarr,namecheap,provider,${DDNS_PASSWORD}
+      - RECORD7=${HOST_URL},sonarr,namecheap,provider,${DDNS_PASSWORD}
+      - RECORD8=${HOST_URL},tautulli,namecheap,provider,${DDNS_PASSWORD}
+      - RECORD9=${HOST_URL},ddns,namecheap,provider,${DDNS_PASSWORD}
+      - RECORD10=${HOST_URL},nzbget,namecheap,provider,${DDNS_PASSWORD}
       - VIRTUAL_PORT=8000
-      - VIRTUAL_HOST=ddns.freender.pw
-      - LETSENCRYPT_HOST=ddns.freender.pw
-      - LETSENCRYPT_EMAIL=freender.mail@gmail.com
+      - VIRTUAL_HOST=ddns.${HOST_URL}
+      - LETSENCRYPT_HOST=ddns.${HOST_URL}
+      - LETSENCRYPT_EMAIL=${EMAIL}
     restart: always     
     
   nginx-web:
