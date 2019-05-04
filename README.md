@@ -43,6 +43,7 @@ EMAIL=someemail@gmail.com
 4. Clone this repository
 
 ```
+cd ~
 git clone https://freender@github.com/freender/docker-vm.git
 ```
 
@@ -89,6 +90,24 @@ sudo sh -c "openssl passwd -apr1 >> /home/freender/docker-compose-letsencrypt-ng
 
 sudo sh -c "echo -n 'freender:' >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/qbittorrent.freender.pw"
 sudo sh -c "openssl passwd -apr1 >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/qbittorrent.freender.pw"
+```
+
+
+#OPTIONAL STEPS - AUTOUPDATE docker-compose.yaml file and redeploy images
+
+
+7. Copy Update script to MainDir
+
+```
+cp ~/docker-vm/* ~/docker-compose-letsencrypt-nginx-proxy-companion
+chmod +x update.sh
+
+```
+
+8. Script allows to check out latest docket-compose file and redeploy all images
+
+```
+./update.sh
 ```
 
 7. In some cases you will need to restart the proxy in order to read, as an example, the Basic Auth, if you set it after your service container is already up and running. So, the way I use to restart the proxy (NGINX) is as following, which has no downtime:
