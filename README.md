@@ -93,8 +93,6 @@ sudo sh -c "openssl passwd -apr1 >> /home/freender/docker-compose-letsencrypt-ng
 ```
 
 
-#OPTIONAL STEPS - AUTOUPDATE docker-compose.yaml file and redeploy images
-
 
 7. Copy Update script to MainDir
 
