@@ -120,5 +120,12 @@ docker exec -it ${NGINX_WEB} nginx -s reload
 docker-compose logs -f [service name]
 ```
 
+9. Clean-up old images and free space
+
+```
+docker system prune
+```
+
+
 Important links:
 https://github.com/evertramos/docker-compose-letsencrypt-nginx-proxy-companion
