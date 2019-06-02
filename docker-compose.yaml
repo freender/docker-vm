@@ -108,7 +108,9 @@ services:
       - /media/plex:/plex
       - /media/ssd/incomplete:/incomplete-downloads
     ports:
-      - 8180:8180
+      - 6881:6881
+      - 6881:6881/udp
+      - 8080:8080
     restart: unless-stopped
        
   ombi:
