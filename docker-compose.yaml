@@ -108,8 +108,6 @@ services:
       - /media/plex:/plex
       - /media/ssd/incomplete:/incomplete-downloads
     ports:
-      - 6881:6882
-      - 6881:6882/udp
       - 8180:8180
     restart: unless-stopped
        
