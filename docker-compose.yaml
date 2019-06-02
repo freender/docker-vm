@@ -108,8 +108,8 @@ services:
       - /media/plex:/plex
       - /media/ssd/incomplete:/incomplete-downloads
     ports:
-      - 6881:6881
-      - 6881:6881/udp
+      - 6881:6882
+      - 6881:6882/udp
       - 8180:8180
     restart: unless-stopped
        
@@ -204,12 +204,31 @@ services:
       - RECORD8=${HOST_URL},tautulli,namecheap,provider,${DDNS_PASSWORD}
       - RECORD9=${HOST_URL},ddns,namecheap,provider,${DDNS_PASSWORD}
       - RECORD10=${HOST_URL},nzbget,namecheap,provider,${DDNS_PASSWORD}
+      - RECORD11=${HOST_URL},phlex,namecheap,provider,${DDNS_PASSWORD}
       - VIRTUAL_PORT=8000
       - VIRTUAL_HOST=ddns.${HOST_URL}
       - LETSENCRYPT_HOST=ddns.${HOST_URL}
       - LETSENCRYPT_EMAIL=${EMAIL}
-    restart: always     
-    
+    restart: always
+
+  phlex:
+    image: digitalhigh/phlex
+    container_name: phlex
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Indiana/Indianapolis
+      - VIRTUAL_PORT=5666
+      - VIRTUAL_HOST=phlex.${HOST_URL}
+      - LETSENCRYPT_HOST=phlex.${HOST_URL}
+      - LETSENCRYPT_EMAIL=${EMAIL}
+    volumes:
+      - /home/freender/config/phlex/config:/config
+      - /media/plex:/plex
+    ports:
+      - 5666:5666
+    restart: unless-stopped
+      
   nginx-web:
     image: nginx
     labels:

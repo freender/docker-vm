@@ -111,7 +111,7 @@ chmod +x update.sh
 7. In some cases you will need to restart the proxy in order to read, as an example, the Basic Auth, if you set it after your service container is already up and running. So, the way I use to restart the proxy (NGINX) is as following, which has no downtime:
 
 ```
-docker exec -it ${NGINX_WEB} nginx -s reload
+docker exec -it nginx-web nginx -s reload
 ```
 
 8. Show logs
@@ -125,6 +125,17 @@ docker-compose logs -f [service name]
 ```
 docker system prune
 ```
+
+10.
+Pretty late I know, but I solved this issue by running the following:
+
+docker stop $(docker ps -a -q); docker rm $(docker ps -a -q); docker volume rm $(docker volume ls -qf dangling=true)
+
+docker network rm $(docker network ls -q)
+
+sudo lsof -nP | grep LISTEN
+
+sudo kill -9 1548
 
 
 Important links:
