@@ -138,11 +138,6 @@ sudo lsof -nP | grep LISTEN
 sudo kill -9 1548
 
 
-11.
-SOLUTION:
-sudo systemctl stop systemd-resolved
-sudo systemctl disable systemd-resolved
-
 
 Important links:
 https://github.com/evertramos/docker-compose-letsencrypt-nginx-proxy-companion

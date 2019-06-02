@@ -110,7 +110,7 @@ services:
     ports:
       - 6881:6881
       - 6881:6881/udp
-      - 8080:8080
+      - 8180:8180
     restart: unless-stopped
        
   ombi:
