@@ -4,21 +4,21 @@ Plex Media Server + Web Proxy using Docker, NGINX and Let's Encrypt
 
 ## How to use it
 
-1. Clone this repository - docker-compose + letsencrypt + nginx-proxy-companion
+⋅⋅1. Clone this repository - docker-compose + letsencrypt + nginx-proxy-companion
 
 ```
 cd ~
 git clone https://github.com/evertramos/docker-compose-letsencrypt-nginx-proxy-companion.git
 ```
 
-2. Make a copy of our .env.sample and rename it to .env:
+⋅⋅1. Make a copy of our .env.sample and rename it to .env:
 
 ```
 cd ~/docker-compose-letsencrypt-nginx-proxy-companion
 cp .env.sample .env
 ```
 
-3. Add and fill following constants to .env
+⋅⋅1. Add and fill following constants to .env
 
 ```
 vim .env
@@ -115,7 +115,7 @@ chmod +x update.sh
 
 ```
 
-8. Script allows to check out latest docket-compose file and redeploy all images
+8. Script allows to check out latest docker-compose file and redeploy all images
 
 ```
 ./update.sh
@@ -138,18 +138,6 @@ docker-compose logs -f [service name]
 ```
 docker system prune
 ```
-
-10.
-Pretty late I know, but I solved this issue by running the following:
-
-docker stop $(docker ps -a -q); docker rm $(docker ps -a -q); docker volume rm $(docker volume ls -qf dangling=true)
-
-docker network rm $(docker network ls -q)
-
-sudo lsof -nP | grep LISTEN
-
-sudo kill -9 1548
-
 
 
 Important links:
