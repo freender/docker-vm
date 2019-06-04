@@ -92,6 +92,19 @@ sudo sh -c "echo -n 'freender:' >> /home/freender/docker-compose-letsencrypt-ngi
 sudo sh -c "openssl passwd -apr1 >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/qbittorrent.freender.pw"
 ```
 
+7.
+```
+cd ~/config
+mkdir ddns-updater
+touch ~/config/ddns-updater/config.json
+# Owned by user ID of Docker container (1000)
+chown -R 1000 ddns-updater
+# all access (for sqlite database)
+chmod 700 ddns-updater
+# read access only
+chmod 400 ddns-updater/config.json
+```
+
 
 
 7. Copy Update script to MainDir

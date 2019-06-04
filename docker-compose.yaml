@@ -185,32 +185,26 @@ services:
     restart: unless-stopped
  
   ddns-updater:
-    build: https://github.com/qdm12/ddns-updater.git
     image: qmcgaw/ddns-updater
     container_name: ddns-updater
+    network_mode: bridge
     ports:
       - 8000:8000/tcp
+    volumes:
+      -  /home/freender/config/ddns-updater:/updater/data
     environment:
       - DELAY=300
       - ROOTURL=/
       - LISTENINGPORT=8000
-      - RECORD1=${HOST_URL},qbittorrent,namecheap,provider,${DDNS_PASSWORD}
-      - RECORD2=${HOST_URL},jackett,namecheap,provider,${DDNS_PASSWORD}
-      - RECORD3=${HOST_URL},lidarr,namecheap,provider,${DDNS_PASSWORD}
-      - RECORD4=${HOST_URL},hydra,namecheap,provider,${DDNS_PASSWORD}   
-      - RECORD5=${HOST_URL},ombi,namecheap,provider,${DDNS_PASSWORD}
-      - RECORD6=${HOST_URL},radarr,namecheap,provider,${DDNS_PASSWORD}
-      - RECORD7=${HOST_URL},sonarr,namecheap,provider,${DDNS_PASSWORD}
-      - RECORD8=${HOST_URL},tautulli,namecheap,provider,${DDNS_PASSWORD}
-      - RECORD9=${HOST_URL},ddns,namecheap,provider,${DDNS_PASSWORD}
-      - RECORD10=${HOST_URL},nzbget,namecheap,provider,${DDNS_PASSWORD}
-      - RECORD11=${HOST_URL},phlex,namecheap,provider,${DDNS_PASSWORD}
+      - LOGGING=human
+      - NODEID=0
+      - LOGLEVEL=error
       - VIRTUAL_PORT=8000
       - VIRTUAL_HOST=ddns.${HOST_URL}
       - LETSENCRYPT_HOST=ddns.${HOST_URL}
       - LETSENCRYPT_EMAIL=${EMAIL}
     restart: always
-
+  
   phlex:
     image: digitalhigh/phlex
     container_name: phlex
