@@ -202,28 +202,8 @@ services:
       - VIRTUAL_HOST=ddns.${HOST_URL}
       - LETSENCRYPT_HOST=ddns.${HOST_URL}
       - LETSENCRYPT_EMAIL=${EMAIL}
-    restart: always
-  
-  phlex:
-    image: digitalhigh/phlex
-    container_name: phlex
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/Indiana/Indianapolis
-      - VIRTUAL_PORT=5666
-      - VIRTUAL_HOST=phlex.${HOST_URL}
-      - LETSENCRYPT_HOST=phlex.${HOST_URL}
-      - LETSENCRYPT_EMAIL=${EMAIL}
-    volumes:
-      - /home/freender/config/phlex/config:/config
-      - /media/plex:/plex
-    ports:
-      - 5666:5666
-      - 5666:5667
-      - 5666:9000      
-    restart: unless-stopped
-      
+    restart: always 
+     
   nginx-web:
     image: nginx
     labels:
