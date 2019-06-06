@@ -220,6 +220,8 @@ services:
       - /media/plex:/plex
     ports:
       - 5666:5666
+      - 5666:5667
+      - 5666:9000      
     restart: unless-stopped
       
   nginx-web:
