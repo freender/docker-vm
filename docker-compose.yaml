@@ -212,8 +212,8 @@ services:
       - PGID=1000
       - TZ=America/Indiana/Indianapolis
       - VIRTUAL_PORT=9983
-      - VIRTUAL_HOST=organizr.${HOST_URL}
-      - LETSENCRYPT_HOST=organizr.${HOST_URL}
+      - VIRTUAL_HOST=${HOST_URL}
+      - LETSENCRYPT_HOST=${HOST_URL}
       - LETSENCRYPT_EMAIL=${EMAIL}
     volumes:
       - /home/freender/config/organizr:/config
