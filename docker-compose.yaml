@@ -205,7 +205,7 @@ services:
     restart: always 
 
   organizr:
-    image: linuxserver/organizr
+    image: organizrtools/organizr-v2
     container_name: organizr
     environment:
       - PUID=1000
