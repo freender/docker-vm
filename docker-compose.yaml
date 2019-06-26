@@ -203,6 +203,23 @@ services:
       - LETSENCRYPT_HOST=ddns.${HOST_URL}
       - LETSENCRYPT_EMAIL=${EMAIL}
     restart: always 
+
+  organizr:
+    image: linuxserver/organizr
+    container_name: organizr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Indiana/Indianapolis
+      - VIRTUAL_PORT=9983
+      - VIRTUAL_HOST=organizr.${HOST_URL}
+      - LETSENCRYPT_HOST=organizr.${HOST_URL}
+      - LETSENCRYPT_EMAIL=${EMAIL}
+    volumes:
+      - /home/freender/config/organizr:/config
+    ports:
+      - 9983:9983
+    restart: unless-stopped
      
   nginx-web:
     image: nginx
