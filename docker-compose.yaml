@@ -218,7 +218,7 @@ services:
     volumes:
       - /home/freender/config/organizr:/config
     ports:
-      - 9983:9983
+      - 9983:80
     restart: unless-stopped
      
   nginx-web:
