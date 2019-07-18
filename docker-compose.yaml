@@ -203,7 +203,26 @@ services:
       - LETSENCRYPT_HOST=ddns.${HOST_URL}
       - LETSENCRYPT_EMAIL=${EMAIL}
     restart: always 
-    
+   
+  bazarr:
+    image: linuxserver/bazarr
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Indiana/Indianapolis
+      - UMASK_SET=022 #optional
+      - VIRTUAL_PORT=6767
+      - VIRTUAL_HOST=bazarr.${HOST_URL}
+      - LETSENCRYPT_HOST=bazarr.${HOST_URL}
+      - LETSENCRYPT_EMAIL=${EMAIL}
+    volumes:
+      - /home/freender/config/bazarr/config:/config
+      - /media/plex:/plex
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+   
   nginx-web:
     image: nginx
     labels:
