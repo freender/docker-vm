@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "Script is running under following user" $USER
 cd /home/freender/docker-vm
 rm *
 git reset --hard origin/master
