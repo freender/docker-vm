@@ -1,5 +1,5 @@
 #!/bin/bash
-
+. /home/$USER/.profile
 echo $USER
 cd /home/freender/docker-vm
 rm *
