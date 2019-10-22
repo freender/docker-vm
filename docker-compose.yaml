@@ -31,6 +31,7 @@ services:
     volumes:
       - /home/freender/config/sonarr/config:/config
       - /media/plex:/plex
+      - /media/ssd/incomplete:/incomplete-downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -49,6 +50,7 @@ services:
     volumes:
       - /home/freender/config/radarr/config:/config
       - /media/plex:/plex
+      - /media/ssd/incomplete:/incomplete-downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -162,6 +164,7 @@ services:
     volumes:
       - /home/freender/config/lidarr/config:/config
       - /media/plex:/plex
+      - /media/ssd/incomplete:/incomplete-downloads
     ports:
       - 8686:8686
     restart: unless-stopped
