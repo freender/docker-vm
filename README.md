@@ -26,15 +26,11 @@ vim .env
 
 Insert 3 variables:
 ```
-#DDNS Password
-
-DDNS_PASSWORD=yourpassword
-
 #Root domain URL
 
 HOST_URL=yourdomain.com
 
-#Email for LE
+#Email for letsencrypt acount
 
 EMAIL=youremail@gmail.com
 ```
@@ -75,18 +71,14 @@ sudo sh -c "openssl passwd -apr1 >> /home/freender/docker-compose-letsencrypt-ng
 sudo sh -c "echo -n 'freender:' >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/hydra.freender.pw"
 sudo sh -c "openssl passwd -apr1 >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/hydra.freender.pw"
 
-
 sudo sh -c "echo -n 'freender:' >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/tautulli.freender.pw"
 sudo sh -c "openssl passwd -apr1 >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/tautulli.freender.pw"
-
 
 sudo sh -c "echo -n 'freender:' >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/ddns.freender.pw"
 sudo sh -c "openssl passwd -apr1 >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/ddns.freender.pw"
 
 sudo sh -c "echo -n 'freender:' >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/qbittorrent.freender.pw"
 sudo sh -c "openssl passwd -apr1 >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/qbittorrent.freender.pw"
-
-
 
 sudo sh -c "echo -n 'freender:' >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/bazarr.freender.pw"
 sudo sh -c "openssl passwd -apr1 >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/bazarr.freender.pw"
@@ -132,8 +124,7 @@ chmod 400 ~/config/ddns-updater/config.json
 ```
 
 
-
-9. Copy Update script to MainDir
+8. Copy Update script to MainDir
 
 ```
 cp ~/docker-vm/* ~/docker-compose-letsencrypt-nginx-proxy-companion
