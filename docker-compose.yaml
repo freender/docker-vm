@@ -183,6 +183,7 @@ services:
     volumes:
       - /home/freender/config/hydra2/config:/config
       - /media/plex:/plex
+      - /media/ssd/incomplete:/incomplete-downloads
     ports:
       - 5076:5076
     restart: unless-stopped
