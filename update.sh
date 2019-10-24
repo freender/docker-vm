@@ -12,3 +12,5 @@ cd /home/freender/docker-compose-letsencrypt-nginx-proxy-companion
 echo "Running docker-compose up -d"
 /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/start.sh
 docker-compose restart nginx-gen
+echo "Clean Up after Docker"
+docker system prune -f
