@@ -74,6 +74,25 @@ services:
      - 6789:6789
     restart: unless-stopped
      
+  sabnzbd:
+    image: linuxserver/sabnzbd
+    container_name: sabnzbd
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Indiana/Indianapolis
+      - VIRTUAL_PORT=8080
+      - VIRTUAL_HOST=sabnzbd.${HOST_URL}
+      - LETSENCRYPT_HOST=sabnzbd.${HOST_URL}
+      - LETSENCRYPT_EMAIL=${EMAIL}      
+    volumes:
+      - /home/freender/config/sabnzbd/config:/config
+      - /media/plex:/plex
+      - /media/ssd/incomplete:/incomplete-downloads
+    ports:
+      - 8080:8080
+    restart: unless-stopped         
+     
   jackett:
     image: linuxserver/jackett
     container_name: jackett
