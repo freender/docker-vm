@@ -274,14 +274,15 @@ services:
         max-size: ${NGINX_WEB_LOG_MAX_SIZE:-4m}
         max-file: ${NGINX_WEB_LOG_MAX_FILE:-10}
 
-  watchtower:
-    image: v2tec/watchtower
-    container_name: watchtower
-    environment: *common-variables
-    restart: always
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    command: --interval 60
+#  watchtower:
+#    image: v2tec/watchtower
+#    container_name: watchtower
+#    environment: *common-variables
+#    restart: always
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+#      - /home/freender/.docker/config.json:/config.json
+#    command: --interval 60
 
   nginx-gen:
     image: jwilder/docker-gen
