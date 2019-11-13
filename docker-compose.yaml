@@ -1,4 +1,10 @@
-version: "3"
+version: "3.4"
+
+x-common-variables: &common-variables
+  - PUID=1000
+  - PGID=1000
+  - TZ=America/Indiana/Indianapolis
+  
 services:
   plex:
     image: linuxserver/plex
@@ -270,8 +276,7 @@ services:
   watchtower:
     image: v2tec/watchtower
     container_name: watchtower
-    environment:
-      - TZ=America/Indiana/Indianapolis
+    environment: *common-variables
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
