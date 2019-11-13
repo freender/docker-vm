@@ -273,7 +273,7 @@ services:
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: --interval 3600
+    command: --interval 60
 
   nginx-gen:
     image: jwilder/docker-gen
