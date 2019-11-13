@@ -1,9 +1,9 @@
 version: "3.4"
 
 x-common-variables: &common-variables
-  - PUID=1000
-  - PGID=1000
-  - TZ=America/Indiana/Indianapolis
+  PUID: 1000
+  PGID: 1000
+  TZ: America/Indiana/Indianapolis
   
 services:
   plex:
