@@ -11,8 +11,8 @@ services:
     container_name: plex
     network_mode: host
     environment:
-      - <<: *common-variables
-      - VERSION=docker
+      <<: *common-variables
+      VERSION: docker
     volumes:
       - /home/freender/config/plex/config:/config
       - /media/plex/movies:/movies
