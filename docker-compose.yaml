@@ -252,7 +252,17 @@ services:
     ports:
       - 6767:6767
     restart: unless-stopped
-   
+ 
+#  watchtower:
+#    image: v2tec/watchtower
+#    container_name: watchtower
+#    environment: *common-variables
+#    restart: always
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+#      - /home/freender/.docker/config.json:/config.json
+#    command: --interval 3600 --cleanup
+ 
   nginx-web:
     image: nginx
     labels:
@@ -273,16 +283,6 @@ services:
       options:
         max-size: ${NGINX_WEB_LOG_MAX_SIZE:-4m}
         max-file: ${NGINX_WEB_LOG_MAX_FILE:-10}
-
-  watchtower:
-    image: v2tec/watchtower
-    container_name: watchtower
-    environment: *common-variables
-    restart: always
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /home/freender/.docker/config.json:/config.json
-    command: --interval 3600 --cleanup
 
   nginx-gen:
     image: jwilder/docker-gen
