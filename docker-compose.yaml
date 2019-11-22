@@ -252,6 +252,24 @@ services:
     ports:
       - 6767:6767
     restart: unless-stopped
+    
+  gs-rest-service-master:
+    image: springio/gs-spring-boot-docker:latest
+    container_name: gs-rest-service-master
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Indiana/Indianapolis
+      #- VIRTUAL_PORT=6767
+      #- VIRTUAL_HOST=bazarr.${HOST_URL}
+      #- LETSENCRYPT_HOST=bazarr.${HOST_URL}
+      #- LETSENCRYPT_EMAIL=${EMAIL}
+    volumes:
+      - /home/freender/config/gs-rest-service-master/config:/config
+      - /home/freender/config/gs-rest-service-master/config/tmp:/tmp
+    ports:
+      - 8090:8080
+    restart: unless-stopped   
  
   nginx-web:
     image: nginx
