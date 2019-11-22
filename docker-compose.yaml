@@ -268,7 +268,7 @@ services:
       - /home/freender/config/gs-rest-service-master/config:/config
       - /home/freender/config/gs-rest-service-master/config/tmp:/tmp
     ports:
-      - 8090:8080
+      - 8080:8080
     restart: unless-stopped   
  
   nginx-web:
