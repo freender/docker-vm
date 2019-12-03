@@ -158,6 +158,15 @@ docker-compose logs -f [service name]
 docker system prune
 ```
 
+```
+SQLite Access
+```
+
+apt update
+apt install sqlite3
+cd /config
+sqlite3 Ombi.db
+
 
 Important links:
 https://github.com/evertramos/docker-compose-letsencrypt-nginx-proxy-companion
