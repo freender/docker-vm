@@ -22,7 +22,7 @@ services:
       - /media/plex/tv:/tv
       - /media/plex/music:/music
       - /media/ssd/transcode:/transcode
-    restart: unless-stopped
+    restart: always
     
   sonarr:
     image: linuxserver/sonarr:preview
@@ -41,7 +41,7 @@ services:
       - /media/ssd/incomplete:/incomplete-downloads
     ports:
       - 8989:8989
-    restart: unless-stopped
+    restart: always
     
   radarr:
     image: linuxserver/radarr:nightly
@@ -60,7 +60,7 @@ services:
       - /media/ssd/incomplete:/incomplete-downloads
     ports:
       - 7878:7878
-    restart: unless-stopped
+    restart: always
 
   nzbget:
     image: linuxserver/nzbget
@@ -79,7 +79,7 @@ services:
       - /media/ssd/incomplete:/incomplete-downloads
     ports:
      - 6789:6789
-    restart: unless-stopped
+    restart: always
      
 #  sabnzbd:
 #    image: linuxserver/sabnzbd
@@ -98,7 +98,7 @@ services:
 #      - /media/ssd/incomplete:/incomplete-downloads
 #    ports:
 #      - 8080:8080
-#    restart: unless-stopped         
+#    restart: always         
      
   jackett:
     image: linuxserver/jackett
@@ -116,7 +116,7 @@ services:
       - /media/plex:/plex
     ports:
       - 9117:9117
-    restart: unless-stopped
+    restart: always
      
   qbittorrent:
     image: linuxserver/qbittorrent
@@ -139,7 +139,7 @@ services:
       - 6881:6881
       - 6881:6881/udp
       - 8180:8180
-    restart: unless-stopped
+    restart: always
        
   ombi:
     image: linuxserver/ombi
@@ -156,7 +156,7 @@ services:
       - /home/freender/config/ombi/config:/config
     ports:
       - 3579:3579
-    restart: unless-stopped
+    restart: always
     
   tautulli:
     image: linuxserver/tautulli
@@ -174,7 +174,7 @@ services:
       - /home/freender/config/plex/config/Library/Application Support/Plex Media Server/Logs:/logs
     ports:
       - 8181:8181
-    restart: unless-stopped
+    restart: always
     
   lidarr:
     image: linuxserver/lidarr
@@ -193,7 +193,7 @@ services:
       - /media/ssd/incomplete:/incomplete-downloads
     ports:
       - 8686:8686
-    restart: unless-stopped
+    restart: always
  
   hydra2:
     image: linuxserver/hydra2
@@ -212,7 +212,7 @@ services:
       - /media/ssd/incomplete:/incomplete-downloads
     ports:
       - 5076:5076
-    restart: unless-stopped
+    restart: always
  
   ddns-updater:
     image: qmcgaw/ddns-updater
@@ -251,7 +251,7 @@ services:
       - /media/plex:/plex
     ports:
       - 6767:6767
-    restart: unless-stopped
+    restart: always
     
   #gs-rest-service-master:
    # image: springio/gs-spring-boot-docker:latest
@@ -269,7 +269,7 @@ services:
    #   - /home/freender/config/gs-rest-service-master/config/tmp:/tmp
    # ports:
    #   - 8080:8080
-   # restart: unless-stopped   
+   # restart: always   
  
   nginx-web:
     image: nginx
