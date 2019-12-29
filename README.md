@@ -33,6 +33,11 @@ HOST_URL=yourdomain.com
 #Email for letsencrypt acount
 
 EMAIL=youremail@gmail.com
+
+# OMBI MYSQL_ROOT_PASSWORD
+MYSQL_ROOT_PASSWORD = password
+
+
 ```
 
 

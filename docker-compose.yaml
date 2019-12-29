@@ -253,23 +253,35 @@ services:
       - 6767:6767
     restart: always
     
-  #gs-rest-service-master:
-   # image: springio/gs-spring-boot-docker:latest
-   # container_name: gs-rest-service-master
+  #gwl:
+   # image: freender/gwl:latest
+   # container_name: gwl
    # environment:
    #   - PUID=1000
    #   - PGID=1000
    #   - TZ=America/Indiana/Indianapolis
       #- VIRTUAL_PORT=6767
-      #- VIRTUAL_HOST=bazarr.${HOST_URL}
-      #- LETSENCRYPT_HOST=bazarr.${HOST_URL}
+      #- VIRTUAL_HOST=gwl.${HOST_URL}
+      #- LETSENCRYPT_HOST=gwlc.${HOST_URL}
       #- LETSENCRYPT_EMAIL=${EMAIL}
    # volumes:
-   #   - /home/freender/config/gs-rest-service-master/config:/config
-   #   - /home/freender/config/gs-rest-service-master/config/tmp:/tmp
+   #   - /home/freender/config/gwl/config:/config
+   #   - /home/freender/config/gwl/config/tmp:/tmp
    # ports:
    #   - 8080:8080
    # restart: always   
+ 
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
  
   nginx-web:
     image: nginx
