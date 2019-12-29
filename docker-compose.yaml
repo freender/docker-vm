@@ -284,6 +284,15 @@ services:
   adminer:
     image: adminer
     restart: always
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Indiana/Indianapolis
+      - UMASK_SET=022 #optional
+      - VIRTUAL_PORT=6767
+      - VIRTUAL_HOST=db.${HOST_URL}
+      - LETSENCRYPT_HOST=db.${HOST_URL}
+      - LETSENCRYPT_EMAIL=${EMAIL}
     ports:
       - 8080:8080
  
