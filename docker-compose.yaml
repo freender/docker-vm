@@ -274,6 +274,8 @@ services:
   db:
     image: mariadb
     restart: always
+    volumes:
+      - /home/freender/config/db/config:/var/lib/mysql
     ports:
       - 3306:3306
     environment:
