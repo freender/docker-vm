@@ -273,24 +273,29 @@ services:
  
   db:
     image: mariadb
+    container_name: db
     restart: always
     volumes:
       - /home/freender/config/db/config:/var/lib/mysql
     ports:
       - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Indiana/Indianapolis
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
   adminer:
     image: adminer
+    container_name: adminer
     restart: always
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=America/Indiana/Indianapolis
       - VIRTUAL_PORT=6767
-      - VIRTUAL_HOST=db.${HOST_URL}
-      - LETSENCRYPT_HOST=db.${HOST_URL}
+      - VIRTUAL_HOST=adminer.${HOST_URL}
+      - LETSENCRYPT_HOST=adminer.${HOST_URL}
       - LETSENCRYPT_EMAIL=${EMAIL}
     ports:
       - 8080:8080
