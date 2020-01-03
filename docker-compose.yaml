@@ -253,23 +253,23 @@ services:
       - 6767:6767
     restart: always
     
-  gwl:
-    image: freender/gwl:latest
-    container_name: gwl
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/Indiana/Indianapolis
-      - VIRTUAL_PORT=6767
-      - VIRTUAL_HOST=gwl.${HOST_URL}
-      - LETSENCRYPT_HOST=gwlc.${HOST_URL}
-      - LETSENCRYPT_EMAIL=${EMAIL}
-    volumes:
-      - /home/freender/config/gwl/config:/config
-      - /home/freender/config/gwl/config/tmp:/tmp
-    ports:
-      - 1080:8080
-    restart: always   
+  #gwl:
+  #  image: freender/gwl:latest
+  #  container_name: gwl
+  #  environment:
+  #    - PUID=1000
+  #    - PGID=1000
+  #    - TZ=America/Indiana/Indianapolis
+  #    - VIRTUAL_PORT=6767
+  #    - VIRTUAL_HOST=gwl.${HOST_URL}
+  #    - LETSENCRYPT_HOST=gwlc.${HOST_URL}
+  #    - LETSENCRYPT_EMAIL=${EMAIL}
+  #  volumes:
+  #    - /home/freender/config/gwl/config:/config
+  #    - /home/freender/config/gwl/config/tmp:/tmp
+  #  ports:
+  #    - 1080:8080
+  #  restart: always   
  
   db:
     image: mariadb
