@@ -345,6 +345,9 @@ services:
     restart: unless-stopped
     ports:
       - 3000:3000  
+    volumes:
+      - /home/freender/config/grafana/config/data:/var/lib/grafana
+      - /home/freender/config/grafana/config/provisioning:/etc/grafana/provisioning
     links:
       - prometheus:prometheus
     environment:
@@ -358,7 +361,6 @@ services:
       - GF_SMTP_USER=myadrress@gmail.com
       - GF_SMTP_PASSWORD=mypassword
       - GF_SMTP_FROM_ADDRESS=myaddress@gmail.com
- 
  
   db:
     image: mariadb
