@@ -278,6 +278,9 @@ services:
     volumes:
       - /home/freender/config/prometheus/config:/etc/prometheus:rw
       - /home/freender/config/prometheus/data:/prometheus:rw
+    environment:
+      - PUID=1000
+      - PGID=1000
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -295,6 +298,9 @@ services:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /:/rootfs:ro
+    environment:
+      - PUID=1000
+      - PGID=1000
     command: 
       - '--path.procfs=/host/proc' 
       - '--path.sysfs=/host/sys'
@@ -308,6 +314,9 @@ services:
     image: prom/alertmanager
     ports:
       - 9093:9093
+    environment:
+      - PUID=1000
+      - PGID=1000
     volumes:
       - /home/freender/config/alertmanager/config:/etc/alertmanager
     restart: always
@@ -321,6 +330,9 @@ services:
     restart: unless-stopped
     ports:
       - 18080:8080 
+    environment:
+      - PUID=1000
+      - PGID=1000
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
@@ -335,9 +347,9 @@ services:
       - 3000:3000  
     links:
       - prometheus:prometheus
-    #volumes:
-    #  - /home/freender/config/grafana/config:/var/lib/grafana
     environment:
+      - PUID=1000
+      - PGID=1000
       - GF_SECURITY_ADMIN_PASSWORD=MYPASSWORT
       - GF_USERS_ALLOW_SIGN_UP=false
       - GF_SERVER_DOMAIN=myrul.com
