@@ -355,14 +355,18 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - GF_SECURITY_ADMIN_PASSWORD=MYPASSWORT
+      - GF_SECURITY_ADMIN_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - GF_USERS_ALLOW_SIGN_UP=false
-      - GF_SERVER_DOMAIN=myrul.com
+      - GF_SERVER_DOMAIN=grafana.freender.pw
       - GF_SMTP_ENABLED=true
       - GF_SMTP_HOST=smtp.gmail.com:587
       - GF_SMTP_USER=myadrress@gmail.com
       - GF_SMTP_PASSWORD=mypassword
       - GF_SMTP_FROM_ADDRESS=myaddress@gmail.com
+      - VIRTUAL_PORT=3000
+      - VIRTUAL_HOST=grafana.${HOST_URL}
+      - LETSENCRYPT_HOST=grafana.${HOST_URL}
+      - LETSENCRYPT_EMAIL=${EMAIL}
  
   db:
     image: mariadb
