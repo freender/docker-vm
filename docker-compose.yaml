@@ -280,7 +280,7 @@ services:
       - /home/freender/config/prometheus/data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.local.path=/prometheus'
+      - '--storage.tsdb.path=/prometheus'
       - '--alertmanager.url=http://alertmanager:9093'
     expose:
       - 9090
