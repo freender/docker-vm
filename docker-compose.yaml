@@ -333,6 +333,8 @@ services:
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/snap/docker:/var/lib/docker:ro
+    command:
+      - '--housekeeping_interval=5s'
  
   prometheus:
     image: prom/prometheus:v2.1.0
