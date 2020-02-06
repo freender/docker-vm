@@ -281,8 +281,8 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
-    expose:
-      - 9090
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
     ports:
       - 9090:9090
     links:
@@ -295,9 +295,7 @@ services:
     restart: unless-stopped
     ports:
       - 9100:9100 
-    expose:
-      - 9100
-
+      
   cadvisor:
     image: google/cadvisor:latest
     container_name: monitoring_cadvisor
@@ -309,9 +307,7 @@ services:
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/snap/docker/:/var/lib/docker:ro
-    expose:
-      - 18080
-  
+
   grafana:
     image: grafana/grafana:latest
     container_name: monitoring_grafana
@@ -335,7 +331,7 @@ services:
  
   db:
     image: mariadb
-    container_name: db
+    container_name: ombi_db
     restart: always
     volumes:
       - /home/freender/config/db/config:/var/lib/mysql
