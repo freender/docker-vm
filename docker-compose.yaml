@@ -309,7 +309,7 @@ services:
     ports:
       - 9093:9093
     volumes:
-      - /home/freender/config/alertmanager/config/:/etc/alertmanager/
+      - /home/freender/config/alertmanager/config:/etc/alertmanager
     restart: always
     command:
       - '--config.file=/etc/alertmanager/config.yml'
