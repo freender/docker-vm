@@ -368,7 +368,7 @@ services:
       - LETSENCRYPT_HOST=grafana.${HOST_URL}
       - LETSENCRYPT_EMAIL=${EMAIL}
  
-  db:
+  ombi_db:
     image: mariadb
     container_name: ombi_db
     restart: always
