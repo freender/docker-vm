@@ -279,9 +279,9 @@ services:
       - /home/freender/config/prometheus/config:/etc/prometheus/
       - /home/freender/config/prometheus/data:/prometheus
     command:
-      - '-config.file=/etc/prometheus/prometheus.yml'
-      - '-storage.local.path=/prometheus'
-      - '-alertmanager.url=http://alertmanager:9093'
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.local.path=/prometheus'
+      - '--alertmanager.url=http://alertmanager:9093'
     expose:
       - 9090
     ports:
