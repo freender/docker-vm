@@ -271,27 +271,7 @@ services:
   #    - 1080:8080
   #  restart: always   
  
-  prometheus:
-    image: prom/prometheus:v2.1.0
-    container_name: prometheus
-    restart: unless-stopped
-    volumes:
-      - /home/freender/config/prometheus/config:/etc/prometheus:rw
-      - /home/freender/config/prometheus/data:/prometheus:rw
-    environment:
-      - PUID=1000
-      - PGID=1000
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
-      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
-      - '--web.console.templates=/usr/share/prometheus/consoles'
-    ports:
-      - 9090:9090
-    links:
-      - cadvisor:cadvisor
-      - alertmanager:alertmanager
-      - node-exporter:node-exporter
+
 
   node-exporter:
     image: prom/node-exporter
@@ -303,6 +283,10 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
+      - VIRTUAL_PORT=9100
+      - VIRTUAL_HOST=node-exporter.${HOST_URL}
+      - LETSENCRYPT_HOST=node-exporter.${HOST_URL}
+      - LETSENCRYPT_EMAIL=${EMAIL}
     command: 
       - '--path.procfs=/host/proc' 
       - '--path.sysfs=/host/sys'
@@ -320,6 +304,10 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
+      - VIRTUAL_PORT=9093
+      - VIRTUAL_HOST=alertmanager.${HOST_URL}
+      - LETSENCRYPT_HOST=alertmanager.${HOST_URL}
+      - LETSENCRYPT_EMAIL=${EMAIL}
     volumes:
       - /home/freender/config/alertmanager/config:/etc/alertmanager
     restart: always
@@ -336,12 +324,42 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
+      - VIRTUAL_PORT=18080
+      - VIRTUAL_HOST=cadvisor.${HOST_URL}
+      - LETSENCRYPT_HOST=cadvisor.${HOST_URL}
+      - LETSENCRYPT_EMAIL=${EMAIL}
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/snap/docker:/var/lib/docker:ro
-
+ 
+    prometheus:
+    image: prom/prometheus:v2.1.0
+    container_name: prometheus
+    restart: unless-stopped
+    volumes:
+      - /home/freender/config/prometheus/config:/etc/prometheus:rw
+      - /home/freender/config/prometheus/data:/prometheus:rw
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VIRTUAL_PORT=9090
+      - VIRTUAL_HOST=prometheus.${HOST_URL}
+      - LETSENCRYPT_HOST=prometheus.${HOST_URL}
+      - LETSENCRYPT_EMAIL=${EMAIL}
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    ports:
+      - 9090:9090
+    links:
+      - cadvisor:cadvisor
+      - alertmanager:alertmanager
+      - node-exporter:node-exporter
+      
   grafana:
     image: grafana/grafana:latest
     container_name: grafana

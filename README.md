@@ -90,6 +90,27 @@ sudo sh -c "openssl passwd -apr1 >> /home/freender/docker-compose-letsencrypt-ng
 
 sudo sh -c "echo -n 'admin:' >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/grafana.freender.pw"
 sudo sh -c "openssl passwd -apr1 >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/grafana.freender.pw"
+
+
+
+
+
+sudo sh -c "echo -n 'admin:' >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/prometheus.freender.pw"
+sudo sh -c "openssl passwd -apr1 >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/prometheus.freender.pw"
+
+sudo sh -c "echo -n 'admin:' >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/node-exporter.freender.pw"
+sudo sh -c "openssl passwd -apr1 >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/node-exporter.freender.pw"
+
+sudo sh -c "echo -n 'admin:' >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/alertmanager.freender.pw"
+sudo sh -c "openssl passwd -apr1 >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/alertmanager.freender.pw"
+
+sudo sh -c "echo -n 'admin:' >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/cadvisor.freender.pw"
+sudo sh -c "openssl passwd -apr1 >> /home/freender/docker-compose-letsencrypt-nginx-proxy-companion/nginx-data/htpasswd/cadvisor.freender.pw"
+
+
+
+
+
 ```
 
 6. Create ddns-updater config
