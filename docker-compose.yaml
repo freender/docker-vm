@@ -301,6 +301,8 @@ services:
     image: google/cadvisor:latest
     container_name: monitoring_cadvisor
     restart: unless-stopped
+    ports:
+      - 18080:8080 
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
