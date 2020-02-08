@@ -1,4 +1,4 @@
-version: "3.4"
+version: "3.7"
 
 x-common-variables: &common-variables
   PUID: 1000
@@ -152,6 +152,8 @@ services:
       - VIRTUAL_HOST=ombi.${HOST_URL}
       - LETSENCRYPT_HOST=ombi.${HOST_URL}
       - LETSENCRYPT_EMAIL=${EMAIL}
+    depends_on:
+      - ombi_db
     volumes:
       - /home/freender/config/ombi/config:/config
     ports:
@@ -271,8 +273,6 @@ services:
   #    - 1080:8080
   #  restart: always   
  
-
-
   node-exporter:
     image: prom/node-exporter
     container_name: node-exporter
@@ -316,7 +316,7 @@ services:
       - '--storage.path=/alertmanager'
       
   cadvisor:
-    image: google/cadvisor:latest
+    image: google/cadvisor
     container_name: cadvisor
     restart: unless-stopped
     ports:
@@ -360,10 +360,11 @@ services:
     links:
       - cadvisor:cadvisor
       - alertmanager:alertmanager
-      - node-exporter:node-exporter
+    depends_on:
+      - cadvisor
       
   grafana:
-    image: grafana/grafana:latest
+    image: grafana/grafana
     container_name: grafana
     restart: unless-stopped
     ports:
@@ -371,23 +372,17 @@ services:
     volumes:
       - /home/freender/config/grafana/config/data:/var/lib/grafana
       - /home/freender/config/grafana/config/provisioning:/etc/grafana/provisioning
-    links:
-      - prometheus:prometheus
     environment:
       - PUID=1000
       - PGID=1000
       - GF_SECURITY_ADMIN_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - GF_USERS_ALLOW_SIGN_UP=false
-      - GF_SERVER_DOMAIN=grafana.freender.pw
-      - GF_SMTP_ENABLED=true
-      - GF_SMTP_HOST=smtp.gmail.com:587
-      - GF_SMTP_USER=myadrress@gmail.com
-      - GF_SMTP_PASSWORD=mypassword
-      - GF_SMTP_FROM_ADDRESS=myaddress@gmail.com
       - VIRTUAL_PORT=3000
       - VIRTUAL_HOST=grafana.${HOST_URL}
       - LETSENCRYPT_HOST=grafana.${HOST_URL}
       - LETSENCRYPT_EMAIL=${EMAIL}
+    depends_on:
+      - prometheus
  
   ombi_db:
     image: mariadb
