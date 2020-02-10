@@ -16,7 +16,7 @@ services:
       - TZ=America/Indiana/Indianapolis
       - VERSION=docker
     volumes:
-      - ./config/plex/config:/config
+      - /home/freender/config/plex/config:/config
       - /media/plex/movies:/movies
       - /media/plex/sport:/sport
       - /media/plex/tv:/tv
@@ -36,7 +36,7 @@ services:
       - LETSENCRYPT_HOST=sonarr.${HOST_URL}
       - LETSENCRYPT_EMAIL=${EMAIL}
     volumes:
-      - ./config/sonarr/config:/config
+      - /home/freender/config/sonarr/config:/config
       - /media/plex:/plex
       - /media/ssd/incomplete:/incomplete-downloads
     ports:
@@ -55,7 +55,7 @@ services:
       - LETSENCRYPT_HOST=radarr.${HOST_URL}
       - LETSENCRYPT_EMAIL=${EMAIL}
     volumes:
-      - ./config/radarr/config:/config
+      - /home/freender/config/radarr/config:/config
       - /media/plex:/plex
       - /media/ssd/incomplete:/incomplete-downloads
     ports:
@@ -74,7 +74,7 @@ services:
       - LETSENCRYPT_HOST=nzbget.${HOST_URL}
       - LETSENCRYPT_EMAIL=${EMAIL}
     volumes:
-      - ./config/nzbget/config:/config
+      - /home/freender/config/nzbget/config:/config
       - /media/plex:/plex
       - /media/ssd/incomplete:/incomplete-downloads
     ports:
@@ -93,7 +93,7 @@ services:
 #      - LETSENCRYPT_HOST=sabnzbd.${HOST_URL}
 #      - LETSENCRYPT_EMAIL=${EMAIL}      
 #    volumes:
-#      - ./config/sabnzbd/config:/config
+#      - /home/freender/config/sabnzbd/config:/config
 #      - /media/plex:/plex
 #      - /media/ssd/incomplete:/incomplete-downloads
 #    ports:
@@ -112,7 +112,7 @@ services:
       - LETSENCRYPT_HOST=jackett.${HOST_URL}
       - LETSENCRYPT_EMAIL=${EMAIL}
     volumes:
-      - ./config/jackett/config:/config
+      - /home/freender/config/jackett/config:/config
       - /media/plex:/plex
     ports:
       - 9117:9117
@@ -132,7 +132,7 @@ services:
       - LETSENCRYPT_HOST=qbittorrent.${HOST_URL}
       - LETSENCRYPT_EMAIL=${EMAIL}      
     volumes:
-      - ./config/qbittorrent/config:/config
+      - /home/freender/config/qbittorrent/config:/config
       - /media/plex:/plex
       - /media/ssd/incomplete:/incomplete-downloads
     ports:
@@ -155,7 +155,7 @@ services:
     depends_on:
       - ombi_db
     volumes:
-      - ./config/ombi/config:/config
+      - /home/freender/config/ombi/config:/config
     ports:
       - 3579:3579
     restart: always
@@ -172,8 +172,8 @@ services:
       - LETSENCRYPT_HOST=tautulli.${HOST_URL}
       - LETSENCRYPT_EMAIL=${EMAIL}
     volumes:
-      - ./config/tautulli/config:/config
-      - ./config/plex/config/Library/Application Support/Plex Media Server/Logs:/logs
+      - /home/freender/config/tautulli/config:/config
+      - /home/freender/config/plex/config/Library/Application Support/Plex Media Server/Logs:/logs
     ports:
       - 8181:8181
     restart: always
@@ -190,7 +190,7 @@ services:
       - LETSENCRYPT_HOST=lidarr.${HOST_URL}
       - LETSENCRYPT_EMAIL=${EMAIL}
     volumes:
-      - ./config/lidarr/config:/config
+      - /home/freender/config/lidarr/config:/config
       - /media/plex:/plex
       - /media/ssd/incomplete:/incomplete-downloads
     ports:
@@ -209,7 +209,7 @@ services:
       - LETSENCRYPT_HOST=hydra.${HOST_URL}
       - LETSENCRYPT_EMAIL=${EMAIL}
     volumes:
-      - ./config/hydra2/config:/config
+      - /home/freender/config/hydra2/config:/config
       - /media/plex:/plex
       - /media/ssd/incomplete:/incomplete-downloads
     ports:
@@ -222,7 +222,7 @@ services:
     ports:
       - 8000:8000/tcp
     volumes:
-      -  ./config/ddns-updater:/updater/data
+      -  /home/freender/config/ddns-updater:/updater/data
     environment:
       - DELAY=300
       - ROOTURL=/
@@ -249,7 +249,7 @@ services:
       - LETSENCRYPT_HOST=bazarr.${HOST_URL}
       - LETSENCRYPT_EMAIL=${EMAIL}
     volumes:
-      - ./config/bazarr/config:/config
+      - /home/freender/config/bazarr/config:/config
       - /media/plex:/plex
     ports:
       - 6767:6767
@@ -267,8 +267,8 @@ services:
   #    - LETSENCRYPT_HOST=gwlc.${HOST_URL}
   #    - LETSENCRYPT_EMAIL=${EMAIL}
   #  volumes:
-  #    - ./config/gwl/config:/config
-  #    - ./config/gwl/config/tmp:/tmp
+  #    - /home/freender/config/gwl/config:/config
+  #    - /home/freender/config/gwl/config/tmp:/tmp
   #  ports:
   #    - 1080:8080
   #  restart: always   
@@ -309,7 +309,7 @@ services:
       - LETSENCRYPT_HOST=alertmanager.${HOST_URL}
       - LETSENCRYPT_EMAIL=${EMAIL}
     volumes:
-      - ./config/alertmanager/config:/etc/alertmanager
+      - /home/freender/config/alertmanager/config:/etc/alertmanager
     restart: always
     command:
       - '--config.file=/etc/alertmanager/config.yml'
@@ -341,8 +341,8 @@ services:
     container_name: prometheus
     restart: unless-stopped
     volumes:
-      - ./config/prometheus/config:/etc/prometheus:rw
-      - ./config/prometheus/data:/prometheus:rw
+      - /home/freender/config/prometheus/config:/etc/prometheus:rw
+      - /home/freender/config/prometheus/data:/prometheus:rw
     environment:
       - PUID=1000
       - PGID=1000
@@ -370,8 +370,8 @@ services:
     ports:
       - 3000:3000  
     volumes:
-      - ./config/grafana/config/data:/var/lib/grafana
-      - ./config/grafana/config/provisioning:/etc/grafana/provisioning
+      - /home/freender/config/grafana/config/data:/var/lib/grafana
+      - /home/freender/config/grafana/config/provisioning:/etc/grafana/provisioning
     environment:
       - PUID=1000
       - PGID=1000
@@ -389,7 +389,7 @@ services:
     container_name: ombi_db
     restart: always
     volumes:
-      - ./config/db/config:/var/lib/mysql
+      - /home/freender/config/db/config:/var/lib/mysql
     ports:
       - 3306:3306
     environment:
@@ -423,11 +423,11 @@ services:
       - "${IP:-0.0.0.0}:${DOCKER_HTTP:-80}:80"
       - "${IP:-0.0.0.0}:${DOCKER_HTTPS:-443}:443"
     volumes:
-      - ./config/nginx-data/conf.d:/etc/nginx/conf.d
-      - ./config/nginx-data/vhost.d:/etc/nginx/vhost.d
-      - ./config/nginx-data/html:/usr/share/nginx/html
-      - ./config/nginx-data/certs:/etc/nginx/certs:ro
-      - ./config/nginx-data/htpasswd:/etc/nginx/htpasswd:ro
+      - /home/freender/config/nginx-data/conf.d:/etc/nginx/conf.d
+      - /home/freender/config/nginx-data/vhost.d:/etc/nginx/vhost.d
+      - /home/freender/config/nginx-data/html:/usr/share/nginx/html
+      - /home/freender/config/nginx-data/certs:/etc/nginx/certs:ro
+      - /home/freender/config/nginx-data/htpasswd:/etc/nginx/htpasswd:ro
     logging:
       driver: ${NGINX_WEB_LOG_DRIVER:-json-file}
       options:
@@ -440,13 +440,13 @@ services:
     container_name: ${DOCKER_GEN:-nginx-gen}
     restart: always
     volumes:
-      - ./config/nginx-data/conf.d:/etc/nginx/conf.d
-      - ./config/nginx-data/vhost.d:/etc/nginx/vhost.d
-      - ./config/nginx-data/html:/usr/share/nginx/html
-      - ./config/nginx-data/certs:/etc/nginx/certs:ro
-      - ./config/nginx-data/htpasswd:/etc/nginx/htpasswd:ro
+      - /home/freender/config/nginx-data/conf.d:/etc/nginx/conf.d
+      - /home/freender/config/nginx-data/vhost.d:/etc/nginx/vhost.d
+      - /home/freender/config/nginx-data/html:/usr/share/nginx/html
+      - /home/freender/config/nginx-data/certs:/etc/nginx/certs:ro
+      - /home/freender/config/nginx-data/htpasswd:/etc/nginx/htpasswd:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./config/nginx-data/template/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
+      - /home/freender/config/nginx-data/template/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
     logging:
       driver: ${NGINX_GEN_LOG_DRIVER:-json-file}
       options:
@@ -458,10 +458,10 @@ services:
     container_name: ${LETS_ENCRYPT:-nginx-letsencrypt}
     restart: always
     volumes:
-      - ./config/nginx-data/conf.d:/etc/nginx/conf.d
-      - ./config/nginx-data/vhost.d:/etc/nginx/vhost.d
-      - ./config/nginx-data/html:/usr/share/nginx/html
-      - ./config/nginx-data/certs:/etc/nginx/certs:rw
+      - /home/freender/config/nginx-data/conf.d:/etc/nginx/conf.d
+      - /home/freender/config/nginx-data/vhost.d:/etc/nginx/vhost.d
+      - /home/freender/config/nginx-data/html:/usr/share/nginx/html
+      - /home/freender/config/nginx-data/certs:/etc/nginx/certs:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       NGINX_DOCKER_GEN_CONTAINER: ${DOCKER_GEN:-nginx-gen}
