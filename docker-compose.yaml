@@ -423,11 +423,11 @@ services:
       - "${IP:-0.0.0.0}:${DOCKER_HTTP:-80}:80"
       - "${IP:-0.0.0.0}:${DOCKER_HTTPS:-443}:443"
     volumes:
-      - ${NGINX_FILES_PATH:-./data}/conf.d:/etc/nginx/conf.d
-      - ${NGINX_FILES_PATH:-./data}/vhost.d:/etc/nginx/vhost.d
-      - ${NGINX_FILES_PATH:-./data}/html:/usr/share/nginx/html
-      - ${NGINX_FILES_PATH:-./data}/certs:/etc/nginx/certs:ro
-      - ${NGINX_FILES_PATH:-./data}/htpasswd:/etc/nginx/htpasswd:ro
+      - /home/freender/config/nginx-data/conf.d:/etc/nginx/conf.d
+      - /home/freender/config/nginx-data/vhost.d:/etc/nginx/vhost.d
+      - /home/freender/config/nginx-data/html:/usr/share/nginx/html
+      - /home/freender/config/nginx-data/certs:/etc/nginx/certs:ro
+      - /home/freender/config/nginx-data/htpasswd:/etc/nginx/htpasswd:ro
     logging:
       driver: ${NGINX_WEB_LOG_DRIVER:-json-file}
       options:
@@ -440,13 +440,13 @@ services:
     container_name: ${DOCKER_GEN:-nginx-gen}
     restart: always
     volumes:
-      - ${NGINX_FILES_PATH:-./data}/conf.d:/etc/nginx/conf.d
-      - ${NGINX_FILES_PATH:-./data}/vhost.d:/etc/nginx/vhost.d
-      - ${NGINX_FILES_PATH:-./data}/html:/usr/share/nginx/html
-      - ${NGINX_FILES_PATH:-./data}/certs:/etc/nginx/certs:ro
-      - ${NGINX_FILES_PATH:-./data}/htpasswd:/etc/nginx/htpasswd:ro
+      - /home/freender/config/nginx-data/conf.d:/etc/nginx/conf.d
+      - /home/freender/config/nginx-data/vhost.d:/etc/nginx/vhost.d
+      - /home/freender/config/nginx-data/html:/usr/share/nginx/html
+      - /home/freender/config/nginx-data/certs:/etc/nginx/certs:ro
+      - /home/freender/config/nginx-data/htpasswd:/etc/nginx/htpasswd:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
+      - /home/freender/config/nginx-data/template/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
     logging:
       driver: ${NGINX_GEN_LOG_DRIVER:-json-file}
       options:
@@ -458,10 +458,10 @@ services:
     container_name: ${LETS_ENCRYPT:-nginx-letsencrypt}
     restart: always
     volumes:
-      - ${NGINX_FILES_PATH:-./data}/conf.d:/etc/nginx/conf.d
-      - ${NGINX_FILES_PATH:-./data}/vhost.d:/etc/nginx/vhost.d
-      - ${NGINX_FILES_PATH:-./data}/html:/usr/share/nginx/html
-      - ${NGINX_FILES_PATH:-./data}/certs:/etc/nginx/certs:rw
+      - /home/freender/config/nginx-data/conf.d:/etc/nginx/conf.d
+      - /home/freender/config/nginx-data/vhost.d:/etc/nginx/vhost.d
+      - /home/freender/config/nginx-data/html:/usr/share/nginx/html
+      - /home/freender/config/nginx-data/certs:/etc/nginx/certs:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       NGINX_DOCKER_GEN_CONTAINER: ${DOCKER_GEN:-nginx-gen}
