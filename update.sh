@@ -6,7 +6,7 @@ echo "Pulling new script from GitHub"
 git reset --hard origin/master
 git pull
 mv /home/freender/docker-vm/docker-compose.yaml /home/freender/docker-compose
-mv /home/freender/docker-vm/update.sh /home/freender/docker-compose
+mv /home/freender/docker-vm/update.sh /home/freender
 chmod +x /home/freender/docker-compose/update.sh
 cd /home/freender/docker-compose
 echo "Running docker-compose up -d"
