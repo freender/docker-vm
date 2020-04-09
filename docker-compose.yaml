@@ -255,6 +255,20 @@ services:
       - 6767:6767
     restart: always
     
+  nginx-proxy-manager:
+    image: jlesage/nginx-proxy-manager
+    container_name: NginxProxyManager
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Indiana/Indianapolis
+    volumes:
+      - /mnt/user/appdata/NginxProxyManager:/config
+    ports:
+      - 1880:80
+      - 18443:443
+    restart: always
+    
   #gwl:
   #  image: freender/gwl:latest
   #  container_name: gwl
@@ -384,12 +398,12 @@ services:
     depends_on:
       - prometheus
  
-  ombi_db:
-    image: mariadb
-    container_name: ombi_db
+  mariadb:
+    image: linuxserver/mariadb
+    container_name: mariadb
     restart: always
     volumes:
-      - /mnt/user/appdata/db:/var/lib/mysql
+      - /mnt/user/appdata/mariadb:/config
     ports:
       - 3306:3306
     environment:
