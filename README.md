@@ -228,6 +228,12 @@ Unmount Share
 
 fusermount -uz /mnt/user/mount_rclone/gdrive
 
+```
+Unzip Plex directory from backup
+```
+
+tar -zxvf CA_backup.tar.gz plex
+
 
 Important links:
 https://github.com/evertramos/docker-compose-letsencrypt-nginx-proxy-companion
