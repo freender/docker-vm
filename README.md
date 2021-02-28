@@ -175,8 +175,9 @@ Nice to have commands:
 docker exec -it nginx-web nginx -s reload
 ```
 
+```
   docker exec -it plex /bin/bash
-
+```
 
  - Show logs
 
@@ -190,31 +191,31 @@ docker-compose logs -f [service name]
 docker system prune
 ```
 
-```
-SQLite Access
-```
 
+SQLite Access
+
+```
 apt update
 apt install sqlite3
 cd /config
 sqlite3 Ombi.db
-
+```
 
 Check linux permissions
-
+```
  ls -l | awk '{k=0;for(i=0;i<=8;i++)k+=((substr($1,i+2,1)~/[rwx]/) \
              *2^(8-i));if(k)printf("%0o ",k);print}'
-
+```
 
 Add Symlink
-
+```
 ln -s /mnt/disks/plexssd/plex /mnt/user/appdata/plex
-
+```
 
 Please create a thread dump.
-
+```
 sudo docker exec --user=hotio -it hydra2 /bin/bash
-
+```
 Install JRE11 sudo apt-get update, sudo apt-get install openjdk-11-jdk-headless
 Find out the java process PID ps aux | grep java
 Create the thread dump jstack PID > threads.txt
@@ -225,15 +226,15 @@ Did you do anything to change the logging besides changing the config? I'm seein
 Could you set the XMX value to 2048 or something like that just to see what happens?
 
 Unmount Share
-
+```
 fusermount -uz /mnt/user/mount_rclone/gdrive
 
 ```
 Unzip Plex directory from backup
+
 ```
-
 tar -zxvf CA_backup.tar.gz plex
-
+```
 
 Important links:
 https://github.com/evertramos/docker-compose-letsencrypt-nginx-proxy-companion
