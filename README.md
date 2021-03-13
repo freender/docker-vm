@@ -50,6 +50,11 @@ docker-compose up -d
 
 Nice to have commands:
 
+Enable FSTRIM
+https://www.jeffgeerling.com/blog/2020/enabling-trim-on-external-ssd-on-raspberry-pi
+
+
+
  - run shell inside container
 ```
   docker exec -it plex /bin/bash
