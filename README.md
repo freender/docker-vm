@@ -56,8 +56,9 @@ sudo apt install apt-listchanges
 
 ```
 2. Edit 50unattended-upgrades
+```
 vi /etc/apt/apt.conf.d/50unattended-upgrades
-
+```
 3. Change following info
 ```
 // The Raspberry Pi Foundation doesn't use separate a separate security upgrades channel.
