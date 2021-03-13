@@ -81,15 +81,6 @@ Unattended-Upgrade::Automatic-Reboot "true";
 //  Default: "now"
 Unattended-Upgrade::Automatic-Reboot-Time "04:00";
 };
-
-// Automatically reboot *WITHOUT CONFIRMATION* if
-//  the file /var/run/reboot-required is found after the upgrade
-Unattended-Upgrade::Automatic-Reboot "true";
-
-// If automatic reboot is enabled and needed, reboot at the specific
-// time instead of immediately
-//  Default: "now"
-Unattended-Upgrade::Automatic-Reboot-Time "04:00";
 ```
 4. Edit 20auto-upgrades
 ```
