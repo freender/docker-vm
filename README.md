@@ -113,7 +113,7 @@ sudo rpi-eeprom-update -d -a
 ```
 
 ## Argon M.2 Soft
-``
+```
 curl https://download.argon40.com/argon1.sh | bash
 argonone-config  #configure driver
 ```
