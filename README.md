@@ -59,6 +59,7 @@ sudo apt install apt-listchanges
 vi /etc/apt/apt.conf.d/50unattended-upgrades
 
 3. Change following info
+```
 // The Raspberry Pi Foundation doesn't use separate a separate security upgrades channel.
 // To make sure your RPi has the latest security fixes, you have to install all updates.
 
@@ -89,7 +90,19 @@ Unattended-Upgrade::Automatic-Reboot "true";
 // time instead of immediately
 //  Default: "now"
 Unattended-Upgrade::Automatic-Reboot-Time "04:00";
-
+```
+4. Edit 20auto-upgrades
+```
+vi /etc/apt/apt.conf.d/20auto-upgrades
+```
+5. Add following info
+```
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Download-Upgradeable-Packages "1";
+APT::Periodic::AutocleanInterval "3";
+APT::Periodic::Verbose "1";
+APT::Periodic::Unattended-Upgrade "1";
+```
 
 ## Nice to have commands:
 
