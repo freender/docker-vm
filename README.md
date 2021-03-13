@@ -111,6 +111,9 @@ sudo rpi-update
 sudo reboot
 sudo rpi-eeprom-update -d -a
 sudo reboot
+
+
+# Use raspi-config to select either the default-production release or latest update.
 sudo raspi-config
 ```
 
