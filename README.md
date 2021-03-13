@@ -171,12 +171,12 @@ ps aux | grep java
 jstack PID > threads.txt
 ```
 
-Unmount Share
+ - unmount Share
 ```
 fusermount -uz /mnt/user/mount_rclone/gdrive
 
 ```
-Unzip Plex directory from backup
+ - unzip Plex directory from backup
 
 ```
 tar -zxvf CA_backup.tar.gz plex
