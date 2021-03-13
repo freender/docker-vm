@@ -110,6 +110,7 @@ sudo apt update & sudo apt -y full-upgrade
 sudo rpi-update
 sudo reboot
 sudo rpi-eeprom-update -d -a
+```
 
 ## Argon M.2 Soft
 ``
