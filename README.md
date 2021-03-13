@@ -118,13 +118,11 @@ curl https://download.argon40.com/argon1.sh | bash
 argonone-config  #configure driver
 ```
 
-
-## Nice to have commands:
-
-Enable FSTRIM
+## Enable FSTRIM
 https://www.jeffgeerling.com/blog/2020/enabling-trim-on-external-ssd-on-raspberry-pi
 
 
+## Nice to have commands:
 
  - run shell inside container
 ```
