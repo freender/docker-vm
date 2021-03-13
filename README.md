@@ -2,19 +2,27 @@
 
 ## Installation steps:
 1. Update all packages
+```
 sudo apt update & sudo apt -y full-upgrade
+```
 
 2. Install Docker
+```
 curl -sSL https://get.docker.com | sh
+```
+
 
 3. Add permission to Pi User to run Docker Commands
+```
 sudo usermod -aG docker pi
+```
 
 4. Reboot here
 
 5. Test Docker installation
+```
 docker run hello-world
-
+```
 4. IMPORTANT! Install proper dependencies
 sudo apt-get install -y libffi-dev libssl-dev
 
