@@ -97,17 +97,14 @@ ln -s /mnt/disks/plexssd/plex /mnt/user/appdata/plex
 ```
 sudo docker exec --user=hotio -it hydra2 /bin/bash
 
-Install JRE11 
+#Install JRE11 
 sudo apt-get update & sudo apt-get install openjdk-11-jdk-headless
 
-Find out the java process PID 
+#Find out the java process PID 
 ps aux | grep java
 
-Create the thread dump 
-
+#Create the thread dump 
 jstack PID > threads.txt
-
-Get the txt file (use scp or something or just copy the content to the clipboard)
 ```
 
 Unmount Share
