@@ -104,6 +104,20 @@ APT::Periodic::Verbose "1";
 APT::Periodic::Unattended-Upgrade "1";
 ```
 
+## Firmware Raspberry Pi 4 upgrade
+```
+sudo apt update & sudo apt -y full-upgrade
+sudo rpi-update
+sudo reboot
+sudo rpi-eeprom-update -d -a
+
+## Argon M.2 Soft
+``
+curl https://download.argon40.com/argon1.sh | bash
+argonone-config  #configure driver
+```
+
+
 ## Nice to have commands:
 
 Enable FSTRIM
