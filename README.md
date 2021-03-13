@@ -48,6 +48,49 @@ docker-compose pull
 docker-compose up -d
 ```
 
+## Unattended updates:
+1. Install unattended-upgrades package
+```
+sudo apt install unattended-upgrades
+sudo apt install apt-listchanges
+
+```
+2. Edit 50unattended-upgrades
+vi /etc/apt/apt.conf.d/50unattended-upgrades
+
+3. Change following info
+// The Raspberry Pi Foundation doesn't use separate a separate security upgrades channel.
+// To make sure your RPi has the latest security fixes, you have to install all updates.
+
+Unattended-Upgrade::Origins-Pattern {
+// The Raspberry Pi Foundation doesn't use separate a separate security upgrades channel.
+// To make sure your RPi has the latest security fixes, you have to install all updates.
+
+Unattended-Upgrade::Origins-Pattern {
+        "origin=Raspbian,codename=${distro_codename},label=Raspbian";
+        "origin=Raspberry Pi Foundation,codename=${distro_codename},label=Raspberry Pi Foundation";
+};
+
+// Automatically reboot *WITHOUT CONFIRMATION* if
+//  the file /var/run/reboot-required is found after the upgrade
+Unattended-Upgrade::Automatic-Reboot "true";
+
+// If automatic reboot is enabled and needed, reboot at the specific
+// time instead of immediately
+//  Default: "now"
+Unattended-Upgrade::Automatic-Reboot-Time "04:00";
+};
+
+// Automatically reboot *WITHOUT CONFIRMATION* if
+//  the file /var/run/reboot-required is found after the upgrade
+Unattended-Upgrade::Automatic-Reboot "true";
+
+// If automatic reboot is enabled and needed, reboot at the specific
+// time instead of immediately
+//  Default: "now"
+Unattended-Upgrade::Automatic-Reboot-Time "04:00";
+
+
 ## Nice to have commands:
 
 Enable FSTRIM
