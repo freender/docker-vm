@@ -104,17 +104,16 @@ APT::Periodic::Verbose "1";
 APT::Periodic::Unattended-Upgrade "1";
 ```
 
-## Firmware Raspberry Pi 4 upgrade
+## Raspberry Pi 4 firmware upgrade
 ```
 sudo apt update & sudo apt -y full-upgrade
 sudo rpi-update
 sudo reboot
 sudo rpi-eeprom-update -d -a
-sudo reboot
-
 
 # Use raspi-config to select either the default-production release or latest update.
 sudo raspi-config
+sudo reboot
 ```
 
 ## Argon M.2 Soft
