@@ -5,50 +5,47 @@
 ```
 sudo apt update & sudo apt -y full-upgrade
 ```
-
 2. Install Docker
 ```
 curl -sSL https://get.docker.com | sh
 ```
-
-
 3. Add permission to Pi User to run Docker Commands
 ```
 sudo usermod -aG docker pi
 ```
-
 4. Reboot here
-
+```
+sudo reboot now
+```
 5. Test Docker installation
 ```
 docker run hello-world
 ```
 4. IMPORTANT! Install proper dependencies
+```
 sudo apt-get install -y libffi-dev libssl-dev
-
 sudo apt-get install -y python3 python3-pip
-
 sudo apt-get remove python-configparser
-
+```
 5. Install Docker Compose
+```
 sudo pip3 -v install docker-compose
-
-6. Remove udisks2 - it causes memory leaks
-sudo apt remove udisks2
-
-7. Create docker compose and checkout docker-compose file
-
+```
+6. If you not using Pi4 GUI - Remove udisks2 - it causes memory leaks
+```
+sudo apt remove udisks2 & sudo apt -y autoremove
+```
+7. Clone docker-compose.yaml
+```
 mkdir ~/docker
 cd ~/docker
-git clone https://github.com/evertramos/docker-compose-letsencrypt-nginx-proxy-companion.git
-
-
-8. Pull docker-compose images and run containers from yaml file
+git clone git clone https://github.com/freender/docker-vm.git
+```
+8. Pull docker-compose images and start containers
+```
 docker-compose pull
 docker-compose up -d
-
-
-
+```
 
 Nice to have commands:
 
