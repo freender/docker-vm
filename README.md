@@ -118,11 +118,13 @@ argonone-config  #configure driver
 https://www.jeffgeerling.com/blog/2020/enabling-trim-on-external-ssd-on-raspberry-pi
 
 ## Enable per container memory tracking in docker
-1) Edit /boot/cmdline.txt 
+1) Edit cmdline.txt file
 ```
 vi /boot/cmdline.txt
 ```
-2) Add ```cgroup_enable=memory cgroup_memory=1``` in ```/boot/cmdline.txt``` at the end of the line and reboot.
+2) Add following parameter at the end of the line
+```cgroup_enable=memory cgroup_memory=1```
+3) Reboot
 
 ## Overclock Pi4
 1) Edit the config.txt file 
