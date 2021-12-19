@@ -142,6 +142,12 @@ arm_freq=2000
 ```
 3) Reboot
 
+## Smart Control
+
+```
+sudo apt install smartmontools
+``
+
 ## Nice to have commands:
 
  - run shell inside container
