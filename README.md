@@ -146,7 +146,7 @@ arm_freq=2000
 
 ```
 sudo apt install smartmontools
-``
+```
 
 ## Nice to have commands:
 
