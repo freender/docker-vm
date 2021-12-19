@@ -124,6 +124,20 @@ vi /boot/cmdline.txt
 ```
 2) Add ```cgroup_enable=memory cgroup_memory=1``` in ```/boot/cmdline.txt``` at the end of the line and reboot.
 
+## Overclock Pi4
+1) Edit the config.txt file 
+```
+vim /boot/config.txt
+```
+
+2) With the following settings:
+```
+#uncomment to overclock the arm. 700 MHz is the default.
+over_voltage=6
+arm_freq=2000
+```
+3) Reboot
+
 ## Nice to have commands:
 
  - run shell inside container
