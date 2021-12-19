@@ -123,7 +123,9 @@ https://www.jeffgeerling.com/blog/2020/enabling-trim-on-external-ssd-on-raspberr
 vi /boot/cmdline.txt
 ```
 2) Add following parameter at the end of the line
-```cgroup_enable=memory cgroup_memory=1```
+```
+cgroup_enable=memory cgroup_memory=1
+```
 3) Reboot
 
 ## Overclock Pi4
