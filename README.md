@@ -147,8 +147,11 @@ arm_freq=2000
 ```
 sudo apt install smartmontools
 ```
-2) ```sudo visudo```
-3) For smartctl add the following lines 
+2) Update your sudoers file:
+```
+sudo visudo
+```
+3) Add the following lines 
 ```
 Cmnd_Alias SMARTCTL = /usr/bin/smartctl
 telegraf  ALL=(ALL) NOPASSWD: SMARTCTL
