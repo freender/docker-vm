@@ -143,9 +143,16 @@ arm_freq=2000
 3) Reboot
 
 ## Smart Control
-
+1) Install smartmontools
 ```
 sudo apt install smartmontools
+```
+2) ```sudo visudo```
+3) For smartctl add the following lines 
+```
+Cmnd_Alias SMARTCTL = /usr/bin/smartctl
+telegraf  ALL=(ALL) NOPASSWD: SMARTCTL
+Defaults!SMARTCTL !logfile, !syslog, !pam_session
 ```
 
 ## Nice to have commands:
