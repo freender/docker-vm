@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#Current crontab -e content
-#PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games
+# Add this script to cron
+# crontab -e
 #0 9 * * 1,4 /home/pi/backup.sh > /home/pi/backup.txt 2>&1
 
 # Backup rsyslog config
@@ -18,6 +18,9 @@ docker-compose stop
 
 #Delete Nginx logs after backup
 sudo zip -oqrm /home/pi/backup/nginx_logs_pi_$now.zip /home/pi/docker/nginx_proxy_manager/data/logs
+
+#Delete Certbot archived keys after backup
+sudo zip -oqrm /home/pi/backup/nginx_keys_pi_$now.zip /home/pi/docker/nginx_proxy_manager/letsencrypt/csr /home/pi/docker/nginx_proxy_manager/letsencrypt/keys
 
 #Delete pihole logs after backup
 sudo zip -oqrm /home/pi/backup/pihole_logs_pi_$now.zip /home/pi/docker/pi-hole/etc-pihole/pihole-FTL.db
