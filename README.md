@@ -155,6 +155,10 @@ vim /etc/udev/rules.d/10-trim.rules
 ```
 ACTION=="add|change", ATTRS{idVendor}=="174c", ATTRS{idProduct}=="55aa", SUBSYSTEM=="scsi_disk", ATTR{provisioning_mode}="unmap"
 ```
+4. Enable trim by schedule
+```
+sudo systemctl enable fstrim.timer
+```
 
 ## Enable per container memory tracking in docker (used by telegraf)
 1) Edit cmdline.txt file
