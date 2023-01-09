@@ -128,12 +128,17 @@ https://www.jeffgeerling.com/blog/2020/enabling-trim-on-external-ssd-on-raspberr
 ```
 sudo su
 apt-get install -y sg3-utils lsscsi
-
+```
 2. Change max discard bytes
 ```
 echo  2147450880  > /sys/block/sda/queue/discard_max_bytes
+3. Add following line
+```
 vim /etc/udev/rules.d/10-trim.rules
+```
+```
 ACTION=="add|change", ATTRS{idVendor}=="174c", ATTRS{idProduct}=="55aa", SUBSYSTEM=="scsi_disk", ATTR{provisioning_mode}="unmap"
+```
 
 ```
 
