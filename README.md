@@ -1,5 +1,10 @@
 # Reverse Proxy on Raspberry Pi 4
 
+## OS installation:
+1. Download "Raspberry Pi Imager" here:
+https://www.raspberrypi.com/software/
+2. Connect SSD to PC and flash **Raspberry Pi OS (64-bit)** on SSD
+
 Installs docker + docker-compose on ARM (Rasperry Pi 4) (Use 64 bit OS version!)
 ## Docker Installation steps:
 1. Update all packages
@@ -191,3 +196,9 @@ Cmnd_Alias SMARTCTL = /usr/bin/smartctl
 telegraf  ALL=(ALL) NOPASSWD: SMARTCTL
 Defaults!SMARTCTL !logfile, !syslog, !pam_session
 ```
+
+## Statis IP and SLAAC privacy extension:
+TBD
+
+## SSH add public key
+TDB
