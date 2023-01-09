@@ -47,6 +47,14 @@ docker-compose pull
 docker-compose up -d
 ```
 
+## Gerenic Linux Toolset
+```
+sudo apt install vim
+sudo apt install mc
+sudo apt install iotop
+```
+
+
 ## Unattended updates:
 1. Install unattended-upgrades package
 ```
