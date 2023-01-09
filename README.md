@@ -201,7 +201,25 @@ Defaults!SMARTCTL !logfile, !syslog, !pam_session
 ```
 
 ## Statis IP and SLAAC privacy extension:
-TBD
+1. Edit dhcpd.conf
+```
+sudo vim /etc/dhcpcd.conf
+```
+2. Change following lines
+```
+# Generate SLAAC address using the Hardware Address of the interface
+slaac hwaddr
+# OR generate Stable Private IPv6 Addresses based from the DUID
+#slaac private
+
+# Example static IP configuration:
+interface eth0
+static ip_address=192.168.86.10/24
+#static ip6_address=fd51:42f8:caae:d92e::ff/64
+static routers=192.168.86.1
+static domain_name_servers=8.8.4.4 8.8.8.8 2001:4860:4860::8888
+```
+
 
 ## SSH add public key
 TDB
