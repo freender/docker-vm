@@ -251,3 +251,14 @@ sudo vim /etc/rsyslog.conf
 ```
 sudo service rsyslog restart
 ```
+
+## Enable backups
+1. Copy backup.sh from this repository to ~/
+2. Add script to cron
+```
+crontab -e
+```
+3. Add line:
+```
+0 9 * * 1,4 /home/pi/backup.sh > /home/pi/backup.txt 2>&1
+```
