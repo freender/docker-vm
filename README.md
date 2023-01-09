@@ -4,6 +4,7 @@
 1. Download "Raspberry Pi Imager" here:
 https://www.raspberrypi.com/software/
 2. Connect SSD to PC and flash **Raspberry Pi OS (64-bit)** on SSD
+3. Once flashed create en empty SSH file on ssd to allow SSH access
 
 ## Docker Installation steps:
 1. Update all packages
