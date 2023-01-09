@@ -222,7 +222,11 @@ static domain_name_servers=8.8.4.4 8.8.8.8 2001:4860:4860::8888
 
 
 ## SSH add public key
-TDB
+1. Edit authorized_keys
+```
+vim ~/.ssh/authorized_keys
+```
+2. Add key public key from 1Password (SSH - UNRAID - Tower)
 
 ## Enable syslog server
 TBD
