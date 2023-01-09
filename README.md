@@ -156,12 +156,12 @@ vim /etc/udev/rules.d/10-trim.rules
 ACTION=="add|change", ATTRS{idVendor}=="174c", ATTRS{idProduct}=="55aa", SUBSYSTEM=="scsi_disk", ATTR{provisioning_mode}="unmap"
 ```
 
-## Enable per container memory tracking in docker
+## Enable per container memory tracking in docker (used by telegraf)
 1) Edit cmdline.txt file
 ```
 sudo vim /boot/cmdline.txt
 ```
-2) Add following parameter at the end of the line
+2) First line should start usign following 2 parameters
 ```
 cgroup_enable=memory cgroup_memory=1
 ```
