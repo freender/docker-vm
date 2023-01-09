@@ -116,9 +116,18 @@ sudo reboot
 ```
 
 ## Argon M.2 Soft
+1. Download and configure fan speeds:
 ```
 curl https://download.argon40.com/argon1.sh | bash
 argonone-config  #configure driver
+```
+speed mapping:
+```
+Please provide fan speeds for the following temperatures:
+55C (0-100 only):20
+60C (0-100 only):40
+65C (0-100 only):100
+Configuration updated.
 ```
 
 ## Enable FSTRIM
