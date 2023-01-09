@@ -136,6 +136,7 @@ cgroup_enable=memory cgroup_memory=1
 3) Reboot
 ```
 sudo reboot
+```
 
 ## Overclock Pi4
 1) Edit the config.txt file 
