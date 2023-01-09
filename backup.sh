@@ -12,15 +12,16 @@ cp /etc/rsyslog.conf /home/pi/backup/rsyslog.conf
 #Delete old backup files and create new backup
 now=$(date +"%m%d%Y")
 cd /home/pi/docker
+mkdir -p /home/pi/backup/
 rm -f /home/pi/backup/*
 cp -u /home/pi/backup.sh /home/pi/backup/backup.sh
 docker-compose stop
 
 #Delete Nginx logs after backup
-sudo zip -oqrm /home/pi/backup/nginx_logs_pi_$now.zip /home/pi/docker/nginx_proxy_manager/data/logs
+#sudo zip -oqrm /home/pi/backup/nginx_logs_pi_$now.zip /home/pi/docker/nginx_proxy_manager/data/logs
 
 #Delete Certbot archived keys after backup
-sudo zip -oqrm /home/pi/backup/nginx_keys_pi_$now.zip /home/pi/docker/nginx_proxy_manager/letsencrypt/csr /home/pi/docker/nginx_proxy_manager/letsencrypt/keys
+#sudo zip -oqrm /home/pi/backup/nginx_keys_pi_$now.zip /home/pi/docker/nginx_proxy_manager/letsencrypt/csr /home/pi/docker/nginx_proxy_manager/letsencrypt/keys
 
 #Delete pihole logs after backup
 sudo zip -oqrm /home/pi/backup/pihole_logs_pi_$now.zip /home/pi/docker/pi-hole/etc-pihole/pihole-FTL.db
