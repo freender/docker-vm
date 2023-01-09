@@ -227,6 +227,11 @@ static domain_name_servers=8.8.4.4 8.8.8.8 2001:4860:4860::8888
 vim ~/.ssh/authorized_keys
 ```
 2. Add key public key from 1Password (SSH - UNRAID - Tower)
+3. Adjust permissions
+```
+chown pi:pi authorized_keys
+pi@raspberrypi:~/.ssh $ chmod 644 authorized_keys
+```
 
 ## Enable syslog server
 TBD
