@@ -247,3 +247,7 @@ sudo vim /etc/rsyslog.conf
 # /usr/share/doc/rsyslog-doc/html/configuration/index.html
 *.* @@192.168.86.173:1514
 ```
+3. Restart rsyslog
+```
+sudo service rsyslog restart
+```
