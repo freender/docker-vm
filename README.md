@@ -234,4 +234,16 @@ chmod 644 ~/.ssh/authorized_keys
 ```
 
 ## Enable syslog server
-TBD
+1. Edit rsyslog.conf
+
+```
+sudo vim /etc/rsyslog.conf
+```
+2. Add following info
+```
+# /etc/rsyslog.conf configuration file for rsyslog
+#
+# For more information install rsyslog-doc and see
+# /usr/share/doc/rsyslog-doc/html/configuration/index.html
+*.* @@192.168.86.173:1514
+```
