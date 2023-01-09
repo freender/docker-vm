@@ -5,7 +5,6 @@
 https://www.raspberrypi.com/software/
 2. Connect SSD to PC and flash **Raspberry Pi OS (64-bit)** on SSD
 
-Installs docker + docker-compose on ARM (Rasperry Pi 4) (Use 64 bit OS version!)
 ## Docker Installation steps:
 1. Update all packages
 ```
