@@ -205,3 +205,6 @@ TBD
 
 ## SSH add public key
 TDB
+
+## Enable syslog server
+TBD
