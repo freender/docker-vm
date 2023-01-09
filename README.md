@@ -132,16 +132,12 @@ apt-get install -y sg3-utils lsscsi
 2. Change max discard bytes
 ```
 echo  2147450880  > /sys/block/sda/queue/discard_max_bytes
-3. Add following line
-```
 vim /etc/udev/rules.d/10-trim.rules
 ```
+3. Add following line
 ```
 ACTION=="add|change", ATTRS{idVendor}=="174c", ATTRS{idProduct}=="55aa", SUBSYSTEM=="scsi_disk", ATTR{provisioning_mode}="unmap"
 ```
-
-```
-
 
 ## Enable per container memory tracking in docker
 1) Edit cmdline.txt file
