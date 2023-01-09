@@ -230,7 +230,7 @@ vim ~/.ssh/authorized_keys
 3. Adjust permissions
 ```
 chown pi:pi authorized_keys
-pi@raspberrypi:~/.ssh $ chmod 644 authorized_keys
+chmod 644 authorized_keys
 ```
 
 ## Enable syslog server
