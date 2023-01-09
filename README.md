@@ -233,7 +233,7 @@ chown pi:pi ~/.ssh/authorized_keys
 chmod 644 ~/.ssh/authorized_keys
 ```
 
-## Enable syslog server
+## Enable syslog forwarder
 1. Edit rsyslog.conf
 
 ```
