@@ -1,6 +1,6 @@
 # Reverse Proxy on Raspberry Pi 4
 
-1. Enable permanent SSD boot
+Enable permanent SSD boot
 https://www.makeuseof.com/how-to-boot-raspberry-pi-ssd-permanent-storage/#:~:text=Boot%20Raspberry%20Pi%204%20or%20400%20from%20SSD&text=Click%20the%20Choose%20OS%20button,take%20a%20few%20seconds%20only.
 
 ## OS installation:
