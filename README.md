@@ -141,7 +141,7 @@ sudo reboot
 ## Overclock Pi4
 1) Edit the config.txt file 
 ```
-vim /boot/config.txt
+sudo vim /boot/config.txt
 ```
 
 2) With the following settings:
