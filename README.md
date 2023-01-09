@@ -127,13 +127,15 @@ https://www.jeffgeerling.com/blog/2020/enabling-trim-on-external-ssd-on-raspberr
 ## Enable per container memory tracking in docker
 1) Edit cmdline.txt file
 ```
-vi /boot/cmdline.txt
+sudo vim /boot/cmdline.txt
 ```
 2) Add following parameter at the end of the line
 ```
 cgroup_enable=memory cgroup_memory=1
 ```
 3) Reboot
+```
+sudo reboot
 
 ## Overclock Pi4
 1) Edit the config.txt file 
