@@ -64,7 +64,7 @@ sudo apt install apt-listchanges
 ```
 2. Edit 50unattended-upgrades
 ```
-vi /etc/apt/apt.conf.d/50unattended-upgrades
+vim /etc/apt/apt.conf.d/50unattended-upgrades
 ```
 3. Change following info
 ```
