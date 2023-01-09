@@ -229,8 +229,8 @@ vim ~/.ssh/authorized_keys
 2. Add key public key from 1Password (SSH - UNRAID - Tower)
 3. Adjust permissions
 ```
-chown pi:pi authorized_keys
-chmod 644 authorized_keys
+chown pi:pi ~/.ssh/authorized_keys
+chmod 644 ~/.ssh/authorized_keys
 ```
 
 ## Enable syslog server
