@@ -62,7 +62,7 @@ sudo apt install vim
 sudo apt install mc
 sudo apt install iotop
 ```
-2. Edit profile
+2. Edit profile to make Midnight Commander exit to it's current directory
 ```
 vim ~/.profile
 ```
