@@ -56,12 +56,20 @@ docker-compose up -d
 ```
 
 ## Gerenic Linux Toolset
+1. Install packages
 ```
 sudo apt install vim
 sudo apt install mc
 sudo apt install iotop
 ```
-
+2. Edit profile
+```
+vim ~/.profile
+```
+3. Add Line
+```
+alias mc='source /usr/lib/mc/mc-wrapper.sh'
+```
 
 ## Unattended updates:
 1. Install unattended-upgrades package
