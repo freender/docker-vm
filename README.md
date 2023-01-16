@@ -245,25 +245,6 @@ chown pi:pi ~/.ssh/authorized_keys
 chmod 644 ~/.ssh/authorized_keys
 ```
 
-## Enable syslog forwarder
-1. Edit rsyslog.conf
-
-```
-sudo vim /etc/rsyslog.conf
-```
-2. Add following info
-```
-# /etc/rsyslog.conf configuration file for rsyslog
-#
-# For more information install rsyslog-doc and see
-# /usr/share/doc/rsyslog-doc/html/configuration/index.html
-*.* @@192.168.86.173:1514
-```
-3. Restart rsyslog
-```
-sudo service rsyslog restart
-```
-
 ## Enable backups
 1. Copy backup.sh from this repository to ~/
 2. Add script to cron
