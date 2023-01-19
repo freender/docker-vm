@@ -253,5 +253,7 @@ crontab -e
 ```
 3. Add line:
 ```
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/snap/bin
 0 9 * * 1,4 /home/pi/backup.sh > /home/pi/backup.txt 2>&1
 ```
