@@ -1,6 +1,6 @@
 version: '3.7'
 networks:
-  localnet:
+  macvlan_eth0:
     driver: macvlan
     enable_ipv6: true
     driver_opts:
@@ -13,10 +13,16 @@ networks:
         - subnet: 192.168.86.0/24
           gateway: 192.168.86.1
           ip_range: 192.168.86.64/27
+  freenet: 
+    name: freenet
+    ipam: 
+      config: 
+        - gateway: 10.10.0.1
+          subnet: 10.10.0.0/24
 
 services:
   telegraf:
-    container_name: telegraf
+    container_name: telegraf      
     image: telegraf:latest
     network_mode: host
     environment:
@@ -24,62 +30,292 @@ services:
       - HOST_PROC=/rootfs/proc
       - HOST_SYS=/rootfs/sys
       - HOST_ETC=/rootfs/etc
-      - HOST_MOUNT_PREFIX=/rootfs
+      - HOST_MOUNT_PREFIX=/rootfs  
     volumes:
       - /var/run/utmp:/var/run/utmp
       - /var/run/docker.sock:/var/run/docker.sock
       - /:/rootfs
       - /sys:/rootfs/sys
-      - /etc:/rootfs/etc
+      - /etc:/rootfs/etc  
       - /proc:/rootfs/proc
-      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
+      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf 
       - ./telegraf/scripts:/scripts
       - /run/udev:/run/udev
-    user: telegraf:1001
-    #user: telegraf:$(stat -c '%g' /var/run/docker.sock)
+    user: telegraf:995
+      # In bash run
+      # echo $(stat -c '%g' /var/run/docker.sock)
+      #user: telegraf:995
     restart: always
-  nginx_proxy_manager:
-    container_name: nginx_proxy_manager
-    image: 'jc21/nginx-proxy-manager:latest'
-    networks:
-        localnet:
-          ipv4_address: 192.168.86.15
-    environment:
-      - TZ=America/New_York
-    volumes:
-      - ./nginx_proxy_manager/config.json:/app/config/production.json
-      - ./nginx_proxy_manager/data:/data
-      - ./nginx_proxy_manager/letsencrypt:/etc/letsencrypt
-      - ./nginx_proxy_manager/modules:/etc/nginx/modules
-    restart: always
+    
   pi-hole:
     container_name: pi-hole
-    hostname: pi-hole
-    networks:
-        localnet:
+    hostname: pi-hole2 
+    networks:    
+        freenet:
+        macvlan_eth0:
           ipv4_address: 192.168.86.17
     image: pihole/pihole:latest
+    #ports:
+    #  - 53:53
+    #  - 380:380
+    labels:
+      traefik.enable: true
+      traefik.http.routers.pi-hole.entryPoints: https
+      traefik.http.routers.pi-hole.middlewares: auth@file
+      traefik.http.services.pi-hole.loadbalancer.server.port: 380 
     environment:
       - TZ=America/New_York
       - WEB_PORT=380
+      - DNSMASQ_LISTENING=single
+      - IPv6=true
+      - ServerIP=192.168.86.17
+      - ServerIPv6=${PIHOLE_IPV6}
+      - INTERFACE=eth0 
     volumes:
       - './pi-hole/etc-pihole/:/etc/pihole/'
       - './pi-hole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
     cap_add:
       - NET_ADMIN
     restart: always
-  oauth2-proxy:
-    command: [
-      "--config=/etc/oauth2/oauth2_proxy.cfg",
-      "--skip-provider-button"
-    ]
-    image: quay.io/oauth2-proxy/oauth2-proxy:latest-armv6
+  uptime:
     networks:
-        localnet:
-          ipv4_address: 192.168.86.16
-    container_name: oauth2-proxy
+        freenet:
+        macvlan_eth0:
+          ipv4_address: 192.168.86.18
+    image: louislam/uptime-kuma:beta
     environment:
       TZ: 'America/New_York'
+    container_name: uptime
+    labels:
+      traefik.enable: true
+      traefik.http.routers.uptime.entryPoints: https
+      traefik.http.routers.uptime.middlewares: auth@file
+      traefik.http.services.uptime.loadbalancer.server.port: 3001
     volumes:
-      - ./oauth2-proxy:/etc/oauth2/
+      - ./uptime:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 3001:3001  # <Host Port>:<Container Port>
     restart: always
+
+  redis:
+    container_name: redis
+    image: redis:alpine
+    networks:
+        freenet:
+    expose:
+      - 6379
+    volumes:
+      - ./redis:/usr/local/etc/redis
+    command: /bin/sh -c "redis-server --requirepass ${REDIS_PASS}"
+    restart: always
+
+  traefik:
+    container_name: traefik
+    image: traefik:2.9
+    ports:
+      - 80:80
+      - 443:443
+    #  - 8080:8080 # Dashboard port
+    volumes:
+      - ./traefik/:/etc/traefik/
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+        freenet:
+    labels:
+      traefik.http.routers.api.rule: Host(`${TRAEFIK_URL}`)    # Define the subdomain for the traefik dashboard.
+      traefik.http.routers.api.entryPoints: https    # Set the Traefik entry point.
+      traefik.http.routers.api.service: api@internal    # Enable Traefik API.
+      traefik.enable: true   # Enable Traefik reverse proxy for the Traefik dashboard.
+      traefik.http.routers.api.middlewares: auth@file
+    environment:
+      CF_DNS_API_TOKEN: ${TRAEFIK_DNS_API}
+    restart: always 
+    depends_on:
+      - docker-socket-proxy
+
+  docker-socket-proxy:
+    container_name: docker-socket-proxy
+    image: tecnativa/docker-socket-proxy
+    ports:
+      - 2375:2375
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - freenet
+    environment:
+      CONTAINERS: 1
+      POST: 0
+    privileged: true
+    restart: always
+
+  cloudflared:
+    image: erisamoe/cloudflared
+    container_name: cloudflared
+    restart: always
+    networks:
+      - freenet
+    volumes:
+      - ./cloudflared:/etc/cloudflared
+    command: tunnel run ${CLOUDFLARE_TUNNEL_ID}
+
+  promtail:
+    container_name: promtail
+    image: grafana/promtail:latest
+    volumes:
+      - ./promtail/:/etc/promtail/
+      - ./promtail/positions:/positions
+      - /var/log:/var/log
+      - ./traefik/logs:/traefik/logs
+    networks:
+        freenet:
+
+  postgresql:
+    image: postgres:12.2
+    restart: always
+    container_name: postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      start_period: 20s
+      interval: 30s
+      retries: 5
+      timeout: 5s
+    volumes:
+      - ./postresql:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=${PG_PASS}
+      - POSTGRES_USER=${PG_USER:-authentik}
+      - POSTGRES_DB=${PG_DB:-authentik}
+    env_file:
+      - .env
+    networks:
+        freenet:
+
+  auth:
+    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-latest}
+    restart: always
+    container_name: auth
+    command: server
+    environment:
+      AUTHENTIK_REDIS__HOST: redis
+      AUTHENTIK_POSTGRESQL__HOST: postgresql
+      AUTHENTIK_POSTGRESQL__USER: ${PG_USER:-authentik}
+      AUTHENTIK_POSTGRESQL__NAME: ${PG_DB:-authentik}
+      AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS}
+      AUTHENTIK_REDIS__PASSWORD: ${REDIS_PASS}
+    volumes:
+      - ./auth/media:/media
+      - ./auth/custom-templates:/templates
+      - ./auth/geoip:/geoip
+    env_file:
+      - .env
+    ports:
+      - "0.0.0.0:${AUTHENTIK_PORT_HTTP:-9000}:9000"
+      - "0.0.0.0:${AUTHENTIK_PORT_HTTPS:-9443}:9443"
+    networks:
+        freenet:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.auth.entryPoints: https
+      traefik.http.routers.auth.rule: Host(`${AUTH_URL}`) || HostRegexp(`{subdomain:[a-z0-9]+}.domain.com`) && PathPrefix(`/outpost.goauthentik.io/`)
+  auth-worker:
+    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-latest}
+    restart: always
+    container_name: auth-worker
+    command: worker
+    environment:
+      AUTHENTIK_REDIS__HOST: redis
+      AUTHENTIK_POSTGRESQL__HOST: postgresql
+      AUTHENTIK_POSTGRESQL__USER: ${PG_USER:-authentik}
+      AUTHENTIK_POSTGRESQL__NAME: ${PG_DB:-authentik}
+      AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS}
+      AUTHENTIK_REDIS__PASSWORD: ${REDIS_PASS}
+    user: root
+    volumes:
+      - ./auth/media:/media
+      - ./auth/certs:/certs
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./auth/custom-templates:/templates
+      - ./auth/geoip:/geoip
+    env_file:
+      - .env
+    networks:
+        freenet:
+
+  crowdsec:
+    image: crowdsecurity/crowdsec
+    container_name: crowdsec
+    expose:
+      - 8080
+    environment:
+      COLLECTIONS: "crowdsecurity/traefik crowdsecurity/http-cve LePresidente/authelia"
+    volumes:
+      - ./crowdsec/data:/var/lib/crowdsec/data
+      - ./crowdsec:/etc/crowdsec
+      - ./traefik/logs:/var/log/traefik
+    restart: always
+    networks:
+        freenet:
+
+  crowdsec-traefik:
+    image: fbonalair/traefik-crowdsec-bouncer
+    container_name: crowdsec-traefik
+    environment:
+      CROWDSEC_BOUNCER_API_KEY: ${CROWDSEC_TRAEFIK}
+      CROWDSEC_AGENT_HOST: crowdsec:8080
+      GIN_MODE: release
+    depends_on:
+      - crowdsec
+    restart: always
+    networks:
+        freenet:
+
+  crowdsec-cloudflare:
+    image: crowdsecurity/cloudflare-bouncer:latest
+    container_name: crowdsec-cloudflare
+    volumes:
+      - ./crowdsec:/etc/crowdsec
+    ports:
+      - 2112:2112
+    depends_on:
+      - crowdsec
+    restart: always
+    networks:
+        freenet:
+
+  traefik-logrotate:
+    image: vegardit/traefik-logrotate:latest
+    container_name: traefik-logrotate
+    volumes:
+      - ./traefik/logs:/var/log/traefik:rw
+      - /var/run/docker.sock:/var/run/docker.sock:rw # required to send USR1 signal to Traefik after log rotation
+    environment:
+      TZ: "America/New_York"
+      # all environment variables are optional and show the default values:
+      LOGROTATE_LOGS: "/var/log/traefik/*.log" # log files to rotate, directory must match volume mount
+      LOGROTATE_TRIGGER_INTERVAL: daily  # rotate daily, must be one of: daily, weekly, monthly, yearly
+      LOGROTATE_TRIGGER_SIZE: 50M        # rotate if log file size reaches 50MB
+      LOGROTATE_MAX_BACKUPS: 7          # keep 14 backup copies per rotated log file
+      LOGROTATE_START_INDEX: 1           # first rotated file is called access.1.log
+      CRON_SCHEDULE: "* * * * *"
+      CRON_LOG_LEVEL: 8                  # see https://unix.stackexchange.com/a/414010/378036
+      # command to determine the id of the container running Traefik:
+      TRAEFIK_CONTAINER_ID_COMMAND: docker ps --no-trunc --quiet --filter label=org.opencontainers.image.title=Traefik
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    ports:
+      - 19443:9443
+    volumes:
+      - ./portainer:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+        freenet:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.portainer.entryPoints: https
+      traefik.http.routers.portainer.middlewares: auth@file
+      traefik.http.services.portainer.loadbalancer.server.port: 9443
+      traefik.http.services.portainer.loadbalancer.server.scheme: https
+    restart: unless-stopped
