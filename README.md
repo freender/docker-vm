@@ -59,11 +59,8 @@ docker-compose up -d
 ```
 sudo raspi-config
 ```
-2. Choose  **"5 Localisation Options**" option
-3. Select **"L2 Timezone"** 
-3. Select **"America"**
-4. Select = **"New York"**
-5. Reboot
+2. Choose  **"5 Localisation Options**" ->  **"L2 Timezone"** ->  **"America"** ->  **"New York"**
+3. Reboot
 ```
 sudo reboot
 ```
