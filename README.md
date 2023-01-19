@@ -54,6 +54,19 @@ git clone git clone https://github.com/freender/docker-vm.git
 docker-compose pull
 docker-compose up -d
 ```
+## Change timezone
+1. Run raspi-config
+```
+sudo raspi-config
+```
+2. Choose  "5 Localisation Options" option
+3. Select "L2 Timezone" 
+3. Select "America"
+4. Choose Timezone = "New_York"
+5. Reboot
+```
+sudo reboot
+```
 
 ## Gerenic Linux Toolset
 1. Install packages
