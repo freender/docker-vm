@@ -307,7 +307,7 @@ services:
     container_name: watchtower
     restart: always
     environment:
-      WATCHTOWER_SCHEDULE: 0 9 * * *
+      WATCHTOWER_SCHEDULE: 0 0 9 * * ?
       TZ: "America/New_York"
       WATCHTOWER_CLEANUP: "true"
       WATCHTOWER_DEBUG: "true"
