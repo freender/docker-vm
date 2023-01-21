@@ -68,8 +68,9 @@ sudo reboot
 # Install Portainer
 1. Go to home
 
-cd ~/docker
+```cd ~/docker```
 
+2. Run
 ```
 docker compose -f portainer-docker-compose.yml up -d
 ```
