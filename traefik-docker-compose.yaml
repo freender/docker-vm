@@ -303,3 +303,14 @@ services:
       CRON_LOG_LEVEL: 8                  # see https://unix.stackexchange.com/a/414010/378036
       # command to determine the id of the container running Traefik:
       TRAEFIK_CONTAINER_ID_COMMAND: docker ps --no-trunc --quiet --filter label=org.opencontainers.image.title=Traefik
+  watchtower:
+    container_name: watchtower
+    restart: always
+    environment:
+      WATCHTOWER_SCHEDULE: 0 9 * * *
+      TZ: "America/New_York"
+      WATCHTOWER_CLEANUP: "true"
+      WATCHTOWER_DEBUG: "true"
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
