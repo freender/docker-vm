@@ -186,8 +186,8 @@ services:
       - POSTGRES_PASSWORD=${PG_PASS}
       - POSTGRES_USER=${PG_USER:-authentik}
       - POSTGRES_DB=${PG_DB:-authentik}
-    env_file:
-      - .env
+   # env_file:
+   #   - .env
     networks:
         freenet:
 
@@ -207,8 +207,8 @@ services:
       - /home/pi/docker/auth/media:/media
       - /home/pi/docker/auth/custom-templates:/templates
       - /home/pi/docker/auth/geoip:/geoip
-    env_file:
-      - .env
+    #env_file:
+    #  - .env
     ports:
       - "0.0.0.0:${AUTHENTIK_PORT_HTTP:-9000}:9000"
       - "0.0.0.0:${AUTHENTIK_PORT_HTTPS:-9443}:9443"
@@ -237,8 +237,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /home/pi/docker/auth/custom-templates:/templates
       - /home/pi/docker/auth/geoip:/geoip
-    env_file:
-      - .env
+    #env_file:
+    #  - .env
     networks:
         freenet:
 
