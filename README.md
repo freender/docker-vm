@@ -51,7 +51,7 @@ git clone https://github.com/freender/docker-vm.git
 ```
 9. Pull docker-compose images and start containers
 ```
-docker compose pull
+docker compose -f portainer-docker-compose.yml pull
 docker compose -f portainer-docker-compose.yml up -d
 ```
 ## Change timezone
