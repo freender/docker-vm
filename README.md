@@ -66,15 +66,12 @@ sudo reboot
 ```
 
 # Install Portainer
-1. Run
+1. Go to home
+
+cd ~/docker
 
 ```
 docker compose -f portainer-docker-compose.yml up -d
-```
-
-```
-docker run -d -p 19443:9443 --network freenet --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /home/pi/docker/portainer:/data --label=traefik.enable=true --label=traefik.http.routers.portainer.entryPoints=https --label=traefik.http.routers.portainer.middlewares=auth@file --label=traefik.http.services.portainer.loadbalancer.server.port=9443 --label=traefik.http.services.portainer.loadbalancer.server.scheme=https  portainer/portainer-ce:latest 
-
 ```
 
 ## Gerenic Linux Toolset
