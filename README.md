@@ -35,15 +35,12 @@ docker run hello-world
 sudo apt-get install -y libffi-dev libssl-dev
 sudo apt-get install -y python3 python3-pip
 ```
-6. Install Docker Compose
 ```
-sudo pip3 -v install docker-compose
-```
-7. If you not using Pi4 GUI - Remove udisks2 - it causes memory leaks
+6. If you not using Pi4 GUI - Remove udisks2 - it causes memory leaks
 ```
 sudo apt remove udisks2 & sudo apt -y autoremove
 ```
-8. Clone docker-compose.yaml
+7. Clone docker-compose.yaml
 ```
 mkdir ~/docker
 cd ~/docker
@@ -51,8 +48,8 @@ git clone git clone https://github.com/freender/docker-vm.git
 ```
 9. Pull docker-compose images and start containers
 ```
-docker-compose pull
-docker-compose up -d
+docker compose pull
+docker compose -f portainer-docker-compose.yml up -d
 ```
 ## Change timezone
 1. Run raspi-config
@@ -63,16 +60,6 @@ sudo raspi-config
 3. Reboot
 ```
 sudo reboot
-```
-
-# Install Portainer
-1. Go to home
-
-```cd ~/docker```
-
-2. Run
-```
-docker compose -f portainer-docker-compose.yml up -d
 ```
 
 ## Gerenic Linux Toolset
