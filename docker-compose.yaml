@@ -38,8 +38,8 @@ services:
       - /sys:/rootfs/sys
       - /etc:/rootfs/etc  
       - /proc:/rootfs/proc
-      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf 
-      - ./telegraf/scripts:/scripts
+      - /home/pi/docker/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf 
+      - /home/pi/docker/telegraf/scripts:/scripts
       - /run/udev:/run/udev
     user: telegraf:995
       # In bash run
@@ -72,8 +72,8 @@ services:
       - ServerIPv6=${PIHOLE_IPV6}
       - INTERFACE=eth0 
     volumes:
-      - './pi-hole/etc-pihole/:/etc/pihole/'
-      - './pi-hole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
+      - '/home/pi/docker/pi-hole/etc-pihole/:/etc/pihole/'
+      - '/home/pi/docker/pi-hole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
     cap_add:
       - NET_ADMIN
     restart: always
@@ -92,7 +92,7 @@ services:
       traefik.http.routers.uptime.middlewares: auth@file
       traefik.http.services.uptime.loadbalancer.server.port: 3001
     volumes:
-      - ./uptime:/app/data
+      - /home/pi/docker/uptime:/app/data
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - 3001:3001  # <Host Port>:<Container Port>
@@ -106,7 +106,7 @@ services:
     expose:
       - 6379
     volumes:
-      - ./redis:/usr/local/etc/redis
+      - /home/pi/docker/redis:/usr/local/etc/redis
     command: /bin/sh -c "redis-server --requirepass ${REDIS_PASS}"
     restart: always
 
@@ -118,7 +118,7 @@ services:
       - 443:443
     #  - 8080:8080 # Dashboard port
     volumes:
-      - ./traefik/:/etc/traefik/
+      - /home/pi/docker/traefik/:/etc/traefik/
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
         freenet:
@@ -156,17 +156,17 @@ services:
     networks:
       - freenet
     volumes:
-      - ./cloudflared:/etc/cloudflared
+      - /home/pi/docker/cloudflared:/etc/cloudflared
     command: tunnel run ${CLOUDFLARE_TUNNEL_ID}
 
   promtail:
     container_name: promtail
     image: grafana/promtail:latest
     volumes:
-      - ./promtail/:/etc/promtail/
-      - ./promtail/positions:/positions
+      - /home/pi/docker/promtail/:/etc/promtail/
+      - /home/pi/docker/promtail/positions:/positions
       - /var/log:/var/log
-      - ./traefik/logs:/traefik/logs
+      - /home/pi/docker/traefik/logs:/traefik/logs
     networks:
         freenet:
 
@@ -181,7 +181,7 @@ services:
       retries: 5
       timeout: 5s
     volumes:
-      - ./postresql:/var/lib/postgresql/data
+      - /home/pi/docker/postresql:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=${PG_PASS}
       - POSTGRES_USER=${PG_USER:-authentik}
@@ -204,9 +204,9 @@ services:
       AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS}
       AUTHENTIK_REDIS__PASSWORD: ${REDIS_PASS}
     volumes:
-      - ./auth/media:/media
-      - ./auth/custom-templates:/templates
-      - ./auth/geoip:/geoip
+      - /home/pi/docker/auth/media:/media
+      - /home/pi/docker/auth/custom-templates:/templates
+      - /home/pi/docker/auth/geoip:/geoip
     env_file:
       - .env
     ports:
@@ -232,11 +232,11 @@ services:
       AUTHENTIK_REDIS__PASSWORD: ${REDIS_PASS}
     user: root
     volumes:
-      - ./auth/media:/media
-      - ./auth/certs:/certs
+      - /home/pi/docker/auth/media:/media
+      - /home/pi/docker/auth/certs:/certs
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./auth/custom-templates:/templates
-      - ./auth/geoip:/geoip
+      - /home/pi/docker/auth/custom-templates:/templates
+      - /home/pi/docker/auth/geoip:/geoip
     env_file:
       - .env
     networks:
@@ -250,9 +250,9 @@ services:
     environment:
       COLLECTIONS: "crowdsecurity/traefik crowdsecurity/http-cve LePresidente/authelia"
     volumes:
-      - ./crowdsec/data:/var/lib/crowdsec/data
-      - ./crowdsec:/etc/crowdsec
-      - ./traefik/logs:/var/log/traefik
+      - /home/pi/docker/crowdsec/data:/var/lib/crowdsec/data
+      - /home/pi/docker/crowdsec:/etc/crowdsec
+      - /home/pi/docker/traefik/logs:/var/log/traefik
     restart: always
     networks:
         freenet:
@@ -274,7 +274,7 @@ services:
     image: crowdsecurity/cloudflare-bouncer:latest
     container_name: crowdsec-cloudflare
     volumes:
-      - ./crowdsec:/etc/crowdsec
+      - /home/pi/docker/crowdsec:/etc/crowdsec
     ports:
       - 2112:2112
     depends_on:
@@ -287,7 +287,7 @@ services:
     image: vegardit/traefik-logrotate:latest
     container_name: traefik-logrotate
     volumes:
-      - ./traefik/logs:/var/log/traefik:rw
+      - /home/pi/docker/traefik/logs:/var/log/traefik:rw
       - /var/run/docker.sock:/var/run/docker.sock:rw # required to send USR1 signal to Traefik after log rotation
     environment:
       TZ: "America/New_York"
@@ -308,7 +308,7 @@ services:
 #    ports:
 #      - 19443:9443
 #    volumes:
-#      - ./portainer:/data
+#      - /home/pi/docker/portainer:/data
 #      - /var/run/docker.sock:/var/run/docker.sock
 #    networks:
 #        freenet:
