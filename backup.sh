@@ -6,7 +6,7 @@
 
 # Backup rsyslog config
 # sudo apt install rsyslog
-cp /etc/rsyslog.conf /home/pi/backup/rsyslog.conf
+#cp /etc/rsyslog.conf /home/pi/backup/rsyslog.conf
 
 
 #Delete old backup files and create new backup
@@ -15,7 +15,9 @@ cd /home/pi/docker
 mkdir -p /home/pi/backup/
 rm -f /home/pi/backup/*
 cp -u /home/pi/backup.sh /home/pi/backup/backup.sh
-docker-compose stop
+#docker-compose stop
+docker stop $(docker ps -a -q)
+
 
 #Delete Nginx logs after backup
 #sudo zip -oqrm /home/pi/backup/nginx_logs_pi_$now.zip /home/pi/docker/nginx_proxy_manager/data/logs
@@ -31,6 +33,7 @@ sudo zip -oqr /home/pi/backup/docker_backup_pi_$now.zip /home/pi/docker
 
 
 #Update and cleanup docker
-docker-compose pull
-docker-compose up -d
+#docker-compose pull
+#docker-compose up -d
+docker start $(docker ps -a -q -f status=exited)
 docker system prune -f
