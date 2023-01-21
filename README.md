@@ -47,7 +47,7 @@ sudo apt install git
 ```
 mkdir ~/docker
 cd ~/docker
-git clone git clone https://github.com/freender/docker-vm.git
+git clone https://github.com/freender/docker-vm.git
 ```
 9. Pull docker-compose images and start containers
 ```
