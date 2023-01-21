@@ -39,7 +39,11 @@ sudo apt-get install -y python3 python3-pip
 ```
 sudo apt remove udisks2 & sudo apt -y autoremove
 ```
-7. Clone docker-compose.yaml
+7. Install Git
+```
+sudo apt install git
+```
+8. Clone docker-compose.yaml
 ```
 mkdir ~/docker
 cd ~/docker
