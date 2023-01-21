@@ -35,7 +35,6 @@ docker run hello-world
 sudo apt-get install -y libffi-dev libssl-dev
 sudo apt-get install -y python3 python3-pip
 ```
-```
 6. If you not using Pi4 GUI - Remove udisks2 - it causes memory leaks
 ```
 sudo apt remove udisks2 & sudo apt -y autoremove
