@@ -1,0 +1,40 @@
+version: '3.7'
+networks:
+  macvlan_eth0:
+    driver: macvlan
+    enable_ipv6: true
+    driver_opts:
+      parent: eth0
+    ipam:
+      config:
+        # bogus ipv6 subnet here. The container should use SLAAC to acquire a real ipv6 addr from your router
+        - subnet: 2001::0/64
+        # 172.25.0.64/27 = 64-95. Don't let your DHCP server assign IP's from this range.
+        - subnet: 192.168.86.0/24
+          gateway: 192.168.86.1
+          ip_range: 192.168.86.64/27
+  freenet:
+    name: freenet
+    ipam:
+      config:
+        - gateway: 10.10.0.1
+          subnet: 10.10.0.0/24
+
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    ports:
+      - 19443:9443
+    volumes:
+      - /home/pi/docker/portainer:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+        freenet:
+    labels:
+      traefik.enable: true
+      traefik.http.routers.portainer.entryPoints: https
+      traefik.http.routers.portainer.middlewares: auth@file
+      traefik.http.services.portainer.loadbalancer.server.port: 9443
+      traefik.http.services.portainer.loadbalancer.server.scheme: https
+    restart: unless-stopped
