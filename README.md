@@ -46,8 +46,10 @@ sudo apt install git
 8. Clone docker-compose.yaml
 ```
 mkdir ~/docker
-cd ~/docker
+cd ~
 git clone https://github.com/freender/docker-vm.git
+cp ~/docker-vm/portainer-docker-compose.yml ~/docker/portainer-docker-compose.yml 
+cd ~/docker
 ```
 9. Pull docker-compose images and start containers
 ```
