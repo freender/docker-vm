@@ -53,8 +53,8 @@ cd ~/docker
 ```
 9. Pull docker-compose images and start containers
 ```
-docker compose -f portainer-docker-compose.yml pull
-docker compose -f portainer-docker-compose.yml up -d
+docker compose pull
+docker compose up -d
 ```
 ## Change timezone
 1. Run raspi-config
