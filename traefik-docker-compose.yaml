@@ -245,7 +245,7 @@ services:
         freenet:
 
   crowdsec:
-    image: crowdsecurity/crowdsec
+    image: crowdsecurity/crowdsec:v1.4.5
     container_name: crowdsec
     expose:
       - 8080
