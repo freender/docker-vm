@@ -330,7 +330,6 @@ services:
       #- DEVICE=${DEVICE} # Default value is <blank>
       #- NETSERVER=${NETSERVER} # Default value is on
       #- NISIP=${NISIP} # Default value is 0.0.0.0
-      - TZ=${TZ} # Default value is Europe/London
       TZ: "America/New_York" # Default value is Europe/London
     volumes:
       - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
