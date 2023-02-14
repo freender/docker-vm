@@ -317,6 +317,8 @@ services:
   apcupsd:
     image: gregewing/apcupsd:latest
     container_name: apcupsd
+    networks:
+        freenet:    
     devices:
       - /dev/usb/hiddev0
     ports:
