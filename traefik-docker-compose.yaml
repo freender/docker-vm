@@ -324,8 +324,15 @@ services:
     ports:
       - 13551:3551
     environment: # Delete or comment out any environment variables you don't wish to change
+      #- UPSNAME=${UPSNAME} # This value will display in apcupsd-cgi details.
+      #- UPSCABLE=${UPSCABLE} # Default value is usb
+      #- UPSTYPE=${UPSTYPE} # Default value is usb
+      #- DEVICE=${DEVICE} # Default value is <blank>
+      #- NETSERVER=${NETSERVER} # Default value is on
+      #- NISIP=${NISIP} # Default value is 0.0.0.0
+      - TZ=${TZ} # Default value is Europe/London
       TZ: "America/New_York" # Default value is Europe/London
     volumes:
       - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
-      - /home/pi/docker/apcupsd:/etc/apcupsd
+      - /etc/apcupsd
     restart: always
