@@ -244,35 +244,6 @@ static routers=192.168.86.1
 static domain_name_servers=8.8.4.4 8.8.8.8 2001:4860:4860::8888
 ```
 
-## APC UPS ##
-1. Install apcupsd
-```
-sudo apt install apcupsd
-```
-2. In /etc/default/apcupsd chane 'ISCONFIGURED=no' to 'ISCONFIGURED=yes'
-```
-sudo vim /etc/default/apcupsd
-```
-3. Edit /etc/apcupsd/apcupsd.conf
-```
-sudo vim /etc/apcupsd/apcupsd.conf
-```
-Change the values as below,
-
-```
-UPSNAME myups
-UPSCABLE usb
-UPSTYPE usb
-```
-4. Restart apcupsd
-```
-sudo apcupsd restart
-```
-5. Check UPS status,
-```
-apcaccess status
-```
-
 ## SSH add public key
 1. Edit authorized_keys
 ```
