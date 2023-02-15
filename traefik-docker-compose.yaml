@@ -323,10 +323,10 @@ services:
       - /dev/usb/hiddev0
     ports:
       - 13551:3551
-    command: /bin/sh -c 'apt-get update && apt-get -y upgrade && apt-get install -y curl && /sbin/apcupsd'
+    command: /bin/sh -c 'apt-get update && apt-get -y upgrade && apt-get install -y curl' && /sbin/apcupsd -b
     environment: # Delete or comment out any environment variables you don't wish to change
       TZ: "America/New_York" # Default value is Europe/London
     volumes:
       - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
       - /home/pi/docker/apcupsd:/etc/apcupsd
-    restart: always
+   # restart: always
