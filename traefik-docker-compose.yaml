@@ -323,6 +323,7 @@ services:
       - /dev/usb/hiddev0
     ports:
       - 13551:3551
+    command: /bin/sh -c 'apt update && apt install curl'
     environment: # Delete or comment out any environment variables you don't wish to change
       TZ: "America/New_York" # Default value is Europe/London
     volumes:
