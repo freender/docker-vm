@@ -333,5 +333,6 @@ services:
       TZ: "America/New_York" # Default value is Europe/London
     volumes:
       - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
-      - /etc/apcupsd
+      # - /etc/apcupsd
+      - /home/pi/docker/apcupsd:/etc/apcupsd
     restart: always
