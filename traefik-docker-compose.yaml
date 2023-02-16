@@ -315,7 +315,9 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock      
   apcupsd:
-    image: gregewing/apcupsd:latest
+    build: 
+      context: .
+      dockerfile: Dockerfile
     container_name: apcupsd
     networks:
         freenet:    
