@@ -316,6 +316,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock      
   apcupsd:
     build: ./build
+    pull_policy: build
     container_name: apcupsd
     networks:
         freenet:    
@@ -323,7 +324,6 @@ services:
       - /dev/usb/hiddev0
     ports:
       - 13551:3551
-    command: /bin/sh -c 'apt-get update && apt-get -y upgrade && apt-get install -y curl && apcupsd'
     environment: # Delete or comment out any environment variables you don't wish to change
       TZ: "America/New_York" # Default value is Europe/London
     volumes:
