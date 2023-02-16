@@ -317,6 +317,7 @@ services:
   apcupsd:
     build: ./build
     pull_policy: build
+    hostname: Pi-PW
     container_name: apcupsd
     networks:
         freenet:    
