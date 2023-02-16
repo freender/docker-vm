@@ -315,9 +315,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock      
   apcupsd:
-    build: 
-      context: .
-      dockerfile: Dockerfile
+    build: /home/pi/docker/apcupsd/build
     container_name: apcupsd
     networks:
         freenet:    
