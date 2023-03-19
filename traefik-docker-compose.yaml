@@ -330,4 +330,5 @@ services:
     volumes:
       - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
       - /home/pi/docker/apcupsd:/etc/apcupsd
+      - /home/pi/docker/apcupsd/telegram:/etc/telegram
    # restart: always
