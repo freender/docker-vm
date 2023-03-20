@@ -13,6 +13,15 @@ RUN echo Starting. \
  && mv /usr/local/bin/apcupsd.conf    /etc/apcupsd/apcupsd.conf \
  && mv /usr/local/bin/hosts.conf      /etc/apcupsd/hosts.conf \
  && mv /usr/local/bin/doshutdown      /etc/apcupsd/doshutdown \
+ && mv /usr/local/bin/apccontrol      /etc/apcupsd/apccontrol \
+ && mv /usr/local/bin/apcupsd.notify  /etc/apcupsd/apcupsd.notify \
+ && mv /usr/local/bin/changeme        /etc/apcupsd/changeme \
+ && mv /usr/local/bin/commfailure     /etc/apcupsd/commfailure \
+ && mv /usr/local/bin/commok          /etc/apcupsd/commok \
+ && mv /usr/local/bin/offbattery      /etc/apcupsd/offbattery \
+ && mv /usr/local/bin/onbattery       /etc/apcupsd/onbattery \
+ && mkdir -p /etc/apcupsd/telegram \
+ && mv /usr/local/bin/telegram/telegram.sh /etc/apcupsd/telegram/telegram.sh \
  && echo Finished.
 
 CMD ["/sbin/apcupsd", "-b"]
