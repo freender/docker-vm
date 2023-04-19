@@ -268,3 +268,8 @@ SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/snap/bin
 0 9 * * 1,4 /home/pi/backup.sh > /home/pi/backup.txt 2>&1
 ```
+
+## Install rsync for Pi-KVM backups
+```
+pacman -Syu rsync
+```
