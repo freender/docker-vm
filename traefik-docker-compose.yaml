@@ -82,7 +82,7 @@ services:
         freenet:
         macvlan_eth0:
           ipv4_address: 192.168.86.18
-    image: louislam/uptime-kuma:beta
+    image: louislam/uptime-kuma:latest
     environment:
       TZ: 'America/New_York'
     container_name: uptime
