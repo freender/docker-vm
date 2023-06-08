@@ -30,20 +30,47 @@ sudo reboot now
 ```
 docker run hello-world
 ```
-5. IMPORTANT! Install proper dependencies
+6. IMPORTANT! Install proper dependencies
 ```
 sudo apt-get install -y libffi-dev libssl-dev
 sudo apt-get install -y python3 python3-pip
 ```
-6. If you not using Pi4 GUI - Remove udisks2 - it causes memory leaks
+7. Install Doker Loki Driver
+```
+docker plugin install grafana/loki-docker-driver:arm-v7 --alias loki --grant-all-permissions
+```
+8. Add docker loggin config
+```
+sudo vim /etc/docker/daemon.json
+```
+Paste following config:
+```
+{
+    "debug" : true,
+    "log-driver": "loki",
+    "log-opts": {
+        "loki-url": "http://localhost:3100/loki/api/v1/push",
+        "loki-batch-size": "400",
+        "loki-timeout": "10s",
+        "loki-retries": "1"
+    }
+}
+```
+9. Restart Docker
+```
+systemctl restart docker.service
+```
+
+
+10. If you not using Pi4 GUI - Remove udisks2 - it causes memory leaks
 ```
 sudo apt remove udisks2 & sudo apt -y autoremove
 ```
-7. Install Git
+11. Install Git
 ```
 sudo apt install git
 ```
-8. Clone docker-compose.yaml
+12. Clone docker-compose.yaml
 ```
 mkdir ~/docker
 cd ~
@@ -51,7 +78,7 @@ git clone https://github.com/freender/docker-vm.git
 cp ~/docker-vm/docker-compose.yml ~/docker/docker-compose.yml
 cd ~/docker
 ```
-9. Pull docker-compose images and start containers
+13. Pull docker-compose images and start containers
 ```
 docker compose pull
 docker compose up -d
