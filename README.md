@@ -58,7 +58,7 @@ Paste following config:
 ```
 9. Restart Docker
 ```
-systemctl restart docker.service
+sudo systemctl restart docker.service
 ```
 
 
