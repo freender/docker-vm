@@ -49,7 +49,7 @@ Paste following config:
     "debug" : true,
     "log-driver": "loki",
     "log-opts": {
-        "loki-url": "http://localhost:3100/loki/api/v1/push",
+        "loki-url": "http://192.168.86.173:3100/loki/api/v1/push",
         "loki-batch-size": "400",
         "loki-timeout": "10s",
         "loki-retries": "1"
