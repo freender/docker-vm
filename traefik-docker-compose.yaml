@@ -204,6 +204,8 @@ services:
       AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS}
       AUTHENTIK_REDIS__PASSWORD: ${REDIS_PASS}
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
+      GEOIPUPDATE_LICENSE_KEY: ${GEOIPUPDATE_LICENSE_KEY}
+      AUTHENTIK_AUTHENTIK__GEOIP: "/geoip/GeoLite2-City.mmdb"
     volumes:
       - /home/pi/docker/auth/media:/media
       - /home/pi/docker/auth/custom-templates:/templates
