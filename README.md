@@ -187,6 +187,17 @@ Please provide fan speeds for the following temperatures:
 Configuration updated.
 ```
 
+## Reduce /var/log/journal log size
+1. Edit config
+```
+sudo vim /etc/systemd/journald.conf
+```
+2. Add following line
+```
+SystemMaxUse=100M
+```
+
+
 ## Enable FSTRIM
 https://www.jeffgeerling.com/blog/2020/enabling-trim-on-external-ssd-on-raspberry-pi
 
