@@ -52,7 +52,9 @@ Paste following config:
         "loki-url": "http://192.168.86.173:3100/loki/api/v1/push",
         "loki-batch-size": "400",
         "loki-timeout": "10s",
-        "loki-retries": "1"
+        "loki-retries": "1",
+        "max-size": "10m",
+        "max-file": "1"
     }
 }
 ```
