@@ -206,6 +206,7 @@ services:
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
       GEOIPUPDATE_LICENSE_KEY: ${GEOIPUPDATE_LICENSE_KEY}
       AUTHENTIK_AUTHENTIK__GEOIP: "/geoip/GeoLite2-City.mmdb"
+      GEOIPUPDATE_ACCOUNT_ID: ${GEOIPUPDATE_ACCOUNT_ID}
     volumes:
       - /home/pi/docker/auth/media:/media
       - /home/pi/docker/auth/custom-templates:/templates
