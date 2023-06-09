@@ -112,6 +112,22 @@ vim ~/.profile
 alias mc='source /usr/lib/mc/mc-wrapper.sh'
 ```
 
+## Reduce /var/log/journal log size
+1. Edit config
+```
+sudo vim /etc/systemd/journald.conf
+```
+2. Add following line
+```
+SystemMaxUse=100M
+```
+3. Restart systemd-journald
+```
+sudo service systemd-journald restart
+
+```
+
+
 ## Unattended updates:
 1. Install unattended-upgrades package
 ```
@@ -185,16 +201,6 @@ Please provide fan speeds for the following temperatures:
 60C (0-100 only):40
 65C (0-100 only):100
 Configuration updated.
-```
-
-## Reduce /var/log/journal log size
-1. Edit config
-```
-sudo vim /etc/systemd/journald.conf
-```
-2. Add following line
-```
-SystemMaxUse=100M
 ```
 
 
