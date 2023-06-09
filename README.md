@@ -46,7 +46,7 @@ sudo vim /etc/docker/daemon.json
 Paste following config:
 ```
 {
-    "debug" : true,
+    "debug" : false,
     "log-driver": "loki",
     "log-opts": {
         "loki-url": "http://192.168.86.173:3100/loki/api/v1/push",
