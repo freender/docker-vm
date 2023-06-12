@@ -100,7 +100,7 @@ services:
 
   redis:
     container_name: redis
-    image: redis:alpine
+    image: redis:7.0-alpine
     networks:
         freenet:
     expose:
