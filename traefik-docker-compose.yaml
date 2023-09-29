@@ -47,36 +47,6 @@ services:
       #user: telegraf:995
     restart: always
     
-  pi-hole:
-    container_name: pi-hole
-    hostname: pi-hole2 
-    networks:    
-        freenet:
-        macvlan_eth0:
-          ipv4_address: 192.168.86.17
-    image: pihole/pihole:latest
-    #ports:
-    #  - 53:53
-    #  - 380:380
-    labels:
-      traefik.enable: true
-      traefik.http.routers.pi-hole.entryPoints: https
-      traefik.http.routers.pi-hole.middlewares: auth@file
-      traefik.http.services.pi-hole.loadbalancer.server.port: 380 
-    environment:
-      - TZ=America/New_York
-      - WEB_PORT=380
-      - DNSMASQ_LISTENING=single
-      - IPv6=true
-      - ServerIP=192.168.86.17
-      - ServerIPv6=${PIHOLE_IPV6}
-      - INTERFACE=eth0 
-    volumes:
-      - '/home/pi/docker/pi-hole/etc-pihole/:/etc/pihole/'
-      - '/home/pi/docker/pi-hole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
-    cap_add:
-      - NET_ADMIN
-    restart: always
   uptime:
     networks:
         freenet:
