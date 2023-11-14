@@ -97,6 +97,7 @@ services:
       traefik.enable: true   # Enable Traefik reverse proxy for the Traefik dashboard.
       traefik.http.routers.api.middlewares: auth@file
     environment:
+      TZ: 'America/New_York'
       CF_DNS_API_TOKEN: ${TRAEFIK_DNS_API}
     restart: always 
     depends_on:
@@ -221,6 +222,7 @@ services:
     expose:
       - 8080
     environment:
+      TZ: 'America/New_York'
       COLLECTIONS: "crowdsecurity/traefik crowdsecurity/http-cve firix/authentik"
     volumes:
       - /home/pi/docker/crowdsec/data:/var/lib/crowdsec/data
@@ -234,6 +236,7 @@ services:
     image: fbonalair/traefik-crowdsec-bouncer
     container_name: crowdsec-traefik
     environment:
+      TZ: 'America/New_York'
       CROWDSEC_BOUNCER_API_KEY: ${CROWDSEC_TRAEFIK}
       CROWDSEC_AGENT_HOST: crowdsec:8080
       GIN_MODE: release
@@ -250,6 +253,8 @@ services:
       - /home/pi/docker/crowdsec:/etc/crowdsec
     ports:
       - 2112:2112
+    environment:
+      TZ: 'America/New_York'
     depends_on:
       - crowdsec
     restart: always
