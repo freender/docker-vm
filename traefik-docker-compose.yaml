@@ -245,22 +245,7 @@ services:
     restart: always
     networks:
         freenet:
-
-  crowdsec-cloudflare:
-    image: crowdsecurity/cloudflare-bouncer:latest
-    container_name: crowdsec-cloudflare
-    volumes:
-      - /home/pi/docker/crowdsec:/etc/crowdsec
-    ports:
-      - 2112:2112
-    environment:
-      TZ: 'America/New_York'
-    depends_on:
-      - crowdsec
-    restart: always
-    networks:
-        freenet:
-
+        
   traefik-logrotate:
     image: vegardit/traefik-logrotate:latest
     container_name: traefik-logrotate
