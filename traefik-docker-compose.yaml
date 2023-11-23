@@ -90,6 +90,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
         freenet:
+        macvlan_eth0:
+          ipv4_address: 192.168.86.16
     labels:
       traefik.http.routers.api.rule: Host(`${TRAEFIK_URL}`)    # Define the subdomain for the traefik dashboard.
       traefik.http.routers.api.entryPoints: https    # Set the Traefik entry point.
