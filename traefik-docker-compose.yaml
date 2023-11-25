@@ -84,6 +84,7 @@ services:
     ports:
       - 80:80
       - 443:443
+      - 8183:8183
     #  - 8080:8080 # Dashboard port
     volumes:
       - /home/pi/docker/traefik/:/etc/traefik/
@@ -97,6 +98,7 @@ services:
       traefik.http.routers.api.entryPoints: https    # Set the Traefik entry point.
       traefik.http.routers.api.service: api@internal    # Enable Traefik API.
       traefik.enable: true   # Enable Traefik reverse proxy for the Traefik dashboard.
+      traefik.http.services.api.loadbalancer.server.port: 8183
       traefik.http.routers.api.middlewares: auth@file,local-ipwhitelist@file
     environment:
       TZ: 'America/New_York'
