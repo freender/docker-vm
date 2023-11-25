@@ -97,7 +97,7 @@ services:
       traefik.http.routers.api.entryPoints: https    # Set the Traefik entry point.
       traefik.http.routers.api.service: api@internal    # Enable Traefik API.
       traefik.enable: true   # Enable Traefik reverse proxy for the Traefik dashboard.
-      traefik.http.routers.api.middlewares: auth@file, local-ipwhitelist@file
+      traefik.http.routers.api.middlewares: auth@file
     environment:
       TZ: 'America/New_York'
       CF_DNS_API_TOKEN: ${TRAEFIK_DNS_API}
