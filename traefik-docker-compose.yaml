@@ -17,8 +17,8 @@ networks:
     name: freenet
     ipam: 
       config: 
-        - gateway: 10.10.0.1
-          subnet: 10.10.0.0/24
+        - gateway: 172.16.0.1
+          subnet: 172.16.0.0/12
 
 services:
   telegraf:
