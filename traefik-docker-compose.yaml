@@ -192,7 +192,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.auth.entryPoints: https
-      #traefik.http.routers.auth.middlewares: local-ipwhitelist@file
+      traefik.http.routers.auth.middlewares: local-ipwhitelist@file
       traefik.http.routers.auth.rule: Host(`${AUTH_URL}`) || HostRegexp(`{subdomain:[a-z0-9]+}.domain.com`) && PathPrefix(`/outpost.goauthentik.io/`)
   auth-worker:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-latest}
