@@ -308,6 +308,6 @@ services:
       - 'GEOIPUPDATE_EDITION_IDS=GeoLite2-ASN GeoLite2-City GeoLite2-Country'
       - GEOIPUPDATE_FREQUENCY=72
     networks:
-      - geoipupdate
+        freenet:
     volumes:
       - /home/pi/docker/geoipupdate:/usr/share/GeoIP
