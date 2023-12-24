@@ -281,7 +281,9 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock      
   apcupsd:
-    image: ghcr.io/freender/apcupsd:main
+    #image: ghcr.io/freender/apcupsd:main
+    build: ./build
+    pull_policy: build
     hostname: Network
     container_name: apcupsd
     networks:
@@ -295,7 +297,7 @@ services:
     volumes:
       - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
       - /home/pi/docker/apcupsd/credentials:/etc/telegram
-   # restart: always
+    #restart: always
 
   geoipupdate:
     container_name: geoipupdate
