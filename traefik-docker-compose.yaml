@@ -140,6 +140,7 @@ services:
       - /home/pi/docker/promtail/positions:/positions
       - /var/log:/var/log
       - /home/pi/docker/traefik/logs:/traefik/logs
+      - /home/pi/docker/geoipupdate:/etc/promtail/geoip
     networks:
         freenet:
 
@@ -183,7 +184,7 @@ services:
     volumes:
       - /home/pi/docker/auth/media:/media
       - /home/pi/docker/auth/custom-templates:/templates
-      - /home/pi/docker/auth/geoip:/geoip
+      - /home/pi/docker/geoipupdate:/geoip
     #env_file:
     #  - .env
     ports:
@@ -215,7 +216,6 @@ services:
       - /home/pi/docker/auth/certs:/certs
       - /var/run/docker.sock:/var/run/docker.sock
       - /home/pi/docker/auth/custom-templates:/templates
-      - /home/pi/docker/auth/geoip:/geoip
     #env_file:
     #  - .env
     networks:
