@@ -281,8 +281,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock      
   apcupsd:
-    build: ./build
-    pull_policy: build
+    image: ghcr.io/freender/apcupsd:main
     hostname: Network
     container_name: apcupsd
     networks:
