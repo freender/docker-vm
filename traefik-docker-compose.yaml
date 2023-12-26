@@ -299,8 +299,7 @@ services:
       TELEGRAM_CHATID: ${TELEGRAM_CHATID} # Telegram CHATID
     volumes:
       - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
-      - /home/pi/docker/apcupsd/credentials:/etc/telegram
-    #restart: always
+    restart: always
 
   geoipupdate:
     container_name: geoipupdate
