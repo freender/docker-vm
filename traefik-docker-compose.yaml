@@ -282,7 +282,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock      
   apcupsd:
     #image: ghcr.io/freender/apcupsd:main
-    build: ./build
+    #build: ./build
+    build: https://github.com/freender/apcupsd.git
     pull_policy: build
     hostname: Network
     container_name: apcupsd
