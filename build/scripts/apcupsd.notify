@@ -1,6 +1,0 @@
-#
-# Send system notify message from apcupsd
-#
-read MESSAGE
-[[ "$MESSAGE" == *restored* || "$MESSAGE" == *returned* ]] && LEVEL=normal || LEVEL=alert
-/etc/apcupsd/telegram/telegram.sh -s "UPS Alert" -d "$MESSAGE"
