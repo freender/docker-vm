@@ -13,8 +13,11 @@ RUN echo Starting. \
  && mv /usr/local/bin/apcupsd.conf    /etc/apcupsd/apcupsd.conf \
  && mv /usr/local/bin/hosts.conf      /etc/apcupsd/hosts.conf \
  && mv /usr/local/bin/doshutdown      /etc/apcupsd/doshutdown \
+ && chmod +x /etc/apcupsd/doshutdown \
  && mv /usr/local/bin/apccontrol      /etc/apcupsd/apccontrol \
+ && chmod +x /etc/apcupsd/apccontrol \
  && mv /usr/local/bin/apcupsd.notify  /etc/apcupsd/apcupsd.notify \
+ && chmod +x /etc/apcupsd/apcupsd.notify \
  && mv /usr/local/bin/changeme        /etc/apcupsd/changeme \
  && mv /usr/local/bin/commfailure     /etc/apcupsd/commfailure \
  && mv /usr/local/bin/commok          /etc/apcupsd/commok \
