@@ -22,6 +22,7 @@ RUN echo Starting. \
  && mv /usr/local/bin/onbattery       /etc/apcupsd/onbattery \
  && mkdir -p /etc/apcupsd/telegram \
  && mv /usr/local/bin/telegram/telegram.sh /etc/apcupsd/telegram/telegram.sh \
+ && chmod +x /etc/apcupsd/telegram/telegram.sh \
  && echo Finished.
 
 CMD ["/sbin/apcupsd", "-b"]
