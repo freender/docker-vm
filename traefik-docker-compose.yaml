@@ -295,6 +295,8 @@ services:
       - 13551:3551
     environment: # Delete or comment out any environment variables you don't wish to change
       TZ: "America/New_York" # Default value is Europe/London
+      TELEGRAM_TOKEN: ${TELEGRAM_TOKEN} # Telegram BOT token
+      TELEGRAM_CHATID: ${TELEGRAM_CHATID} # Telegram CHATID
     volumes:
       - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
       - /home/pi/docker/apcupsd/credentials:/etc/telegram
