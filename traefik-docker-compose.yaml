@@ -73,8 +73,6 @@ services:
         freenet:
     expose:
       - 6379
-    volumes:
-      - /home/pi/docker/auth-redis:/usr/local/etc/redis
     command: /bin/sh -c "redis-server --requirepass ${REDIS_PASS}"
     restart: always
 
