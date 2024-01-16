@@ -66,16 +66,6 @@ services:
       - 3001:3001  # <Host Port>:<Container Port>
     restart: always
 
-  auth-redis:
-    container_name: auth-redis
-    image: redis:7.0.12-alpine
-    networks:
-        freenet:
-    expose:
-      - 6379
-    command: /bin/sh -c "redis-server --requirepass ${REDIS_PASS}"
-    restart: always
-
   traefik:
     container_name: traefik
     image: traefik:latest
@@ -163,6 +153,16 @@ services:
     networks:
         freenet:
 
+  auth-redis:
+    container_name: auth-redis
+    image: redis:7.0.12-alpine
+    networks:
+        freenet:
+    expose:
+      - 6379
+    command: /bin/sh -c "redis-server --requirepass ${REDIS_PASS}"
+    restart: always
+
   auth:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-latest}
     restart: always
@@ -195,6 +195,7 @@ services:
       traefik.http.routers.auth.entryPoints: https
       traefik.http.routers.auth.middlewares: local-ipwhitelist@file
       traefik.http.routers.auth.rule: Host(`${AUTH_URL}`) || HostRegexp(`{subdomain:[a-z0-9]+}.domain.com`) && PathPrefix(`/outpost.goauthentik.io/`)
+  
   auth-worker:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-latest}
     restart: always
@@ -267,6 +268,7 @@ services:
       CRON_LOG_LEVEL: 8                  # see https://unix.stackexchange.com/a/414010/378036
       # command to determine the id of the container running Traefik:
       TRAEFIK_CONTAINER_ID_COMMAND: docker ps --no-trunc --quiet --filter label=org.opencontainers.image.title=Traefik
+      
   watchtower:
     container_name: watchtower
     restart: always
@@ -277,7 +279,8 @@ services:
       WATCHTOWER_DEBUG: "true"
     image: containrrr/watchtower
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock      
+      - /var/run/docker.sock:/var/run/docker.sock
+      
   apcupsd:
     #image: ghcr.io/freender/apcupsd:main
     build: https://github.com/freender/apcupsd.git
