@@ -80,7 +80,7 @@ services:
     networks:
         freenet:
         macvlan_eth0:
-          ipv4_address: 192.168.86.16
+          ipv4_address: 10.0.40.50
     labels:
       traefik.http.routers.api.rule: Host(`${TRAEFIK_URL}`)    # Define the subdomain for the traefik dashboard.
       traefik.http.routers.api.entryPoints: https    # Set the Traefik entry point.
