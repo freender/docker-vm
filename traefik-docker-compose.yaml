@@ -10,9 +10,9 @@ networks:
         # bogus ipv6 subnet here. The container should use SLAAC to acquire a real ipv6 addr from your router
         - subnet: 2001::0/64
         # 172.25.0.64/27 = 64-95. Don't let your DHCP server assign IP's from this range.
-        - subnet: 192.168.86.0/24
-          gateway: 192.168.86.1
-          ip_range: 192.168.86.64/27
+        - subnet: 10.0.40.0/24
+          gateway: 10.0.40.1
+          ip_range: 10.0.40.10/27
   freenet: 
     name: freenet
     ipam: 
