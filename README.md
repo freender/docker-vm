@@ -285,10 +285,10 @@ slaac hwaddr
 
 # Example static IP configuration:
 interface eth0
-static ip_address=192.168.86.10/24
+#static ip_address=10.0.40.40/24
 #static ip6_address=fd51:42f8:caae:d92e::ff/64
-static routers=192.168.86.1
-static domain_name_servers=192.168.86.1
+#static routers=10.0.40.1
+#static domain_name_servers=10.0.40.1
 ```
 
 ## SSH add public key
