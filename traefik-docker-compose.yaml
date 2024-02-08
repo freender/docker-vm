@@ -342,7 +342,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
     restart: always
-    privileged: true
     networks:
         freenet:
         macvlan_eth0:
