@@ -328,3 +328,22 @@ services:
       - CHAT_ID=${TELEGRAM_CHATID} # Set telegram chat id
     networks:
         freenet:
+
+  homeassistant:
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    labels:
+      traefik.enable: true
+      traefik.http.routers.homeassistant.entryPoints: https
+      traefik.http.routers.homeassistant.middlewares: auth@file,local-ipwhitelist@file
+      traefik.http.services.homeassistant.loadbalancer.server.port: 8123
+    volumes:
+      - /home/pi/docker/homeassistant:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    restart: always
+    privileged: true
+    networks:
+        freenet:
+        macvlan_eth0:
+          ipv4_address: 10.0.40.46
