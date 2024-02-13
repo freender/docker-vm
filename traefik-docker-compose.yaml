@@ -57,7 +57,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.uptime.entryPoints: https
-      traefik.http.routers.uptime.middlewares: auth@file,local-ipwhitelist@file
+      traefik.http.routers.uptime.middlewares: auth@file,local-ipallowlist@file
       traefik.http.services.uptime.loadbalancer.server.port: 3001
     volumes:
       - /home/pi/docker/uptime:/app/data
@@ -87,7 +87,7 @@ services:
       traefik.http.routers.api.service: api@internal    # Enable Traefik API.
       traefik.enable: true   # Enable Traefik reverse proxy for the Traefik dashboard.
       traefik.http.services.api.loadbalancer.server.port: 8183
-      traefik.http.routers.api.middlewares: auth@file,local-ipwhitelist@file
+      traefik.http.routers.api.middlewares: auth@file,local-ipallowlist@file
     environment:
       TZ: 'America/New_York'
       CF_DNS_API_TOKEN: ${TRAEFIK_DNS_API}
@@ -193,7 +193,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.auth.entryPoints: https
-      traefik.http.routers.auth.middlewares: local-ipwhitelist@file
+      traefik.http.routers.auth.middlewares: local-ipallowlist@file
       traefik.http.routers.auth.rule: Host(`${AUTH_URL}`) || HostRegexp(`{subdomain:[a-z0-9]+}.domain.com`) && PathPrefix(`/outpost.goauthentik.io/`)
   
   auth-worker:
@@ -335,7 +335,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.homeassistant.entryPoints: https
-      traefik.http.routers.homeassistant.middlewares: auth@file,local-ipwhitelist@file
+      traefik.http.routers.homeassistant.middlewares: auth@file,local-ipallowlist@file
       traefik.http.services.homeassistant.loadbalancer.server.port: 8123
     volumes:
       - /home/pi/docker/homeassistant:/config
