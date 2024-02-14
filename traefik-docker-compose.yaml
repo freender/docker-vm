@@ -335,7 +335,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.homeassistant.entryPoints: https
-      traefik.http.routers.homeassistant.middlewares: auth@file,local-ipallowlist@file
+      traefik.http.routers.homeassistant.middlewares: local-ipallowlist@file
       traefik.http.services.homeassistant.loadbalancer.server.port: 8123
     volumes:
       - /home/pi/docker/homeassistant:/config
