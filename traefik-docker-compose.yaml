@@ -353,7 +353,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.scrypted.entryPoints: https
-      traefik.http.routers.scrypted.middlewares: auth,local-ipallowlist@file
+      traefik.http.routers.scrypted.middlewares: auth@file,local-ipallowlist@file
       traefik.http.services.scrypted.loadbalancer.server.port: 11080  
     volumes:   
       - /home/pi/docker/scrypted:/server/volume
