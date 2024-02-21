@@ -346,3 +346,15 @@ services:
         freenet:
         macvlan_eth0:
           ipv4_address: 10.0.40.46
+
+  scrypted:
+    container_name: scrypted
+    image: ghcr.io/koush/scrypted
+    labels:
+      traefik.enable: true
+      traefik.http.routers.scrypted.entryPoints: https
+      traefik.http.routers.scrypted.middlewares: auth,local-ipallowlist@file
+      traefik.http.services.scrypted.loadbalancer.server.port: 11080  
+    volumes:   
+      - /home/pi/docker/scrypted:/server/volume
+    restart: unless-stopped
