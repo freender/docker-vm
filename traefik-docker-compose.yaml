@@ -358,3 +358,7 @@ services:
     volumes:   
       - /home/pi/docker/scrypted:/server/volume
     restart: unless-stopped
+    networks:
+        freenet:
+        macvlan_eth0:
+          ipv4_address: 10.0.40.47
