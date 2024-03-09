@@ -24,8 +24,7 @@ services:
   telegraf:
     container_name: telegraf      
     image: telegraf:latest
-    networks:
-        freenet:
+    network_mode: host
     environment:
       - TZ=America/New_York
       - HOST_PROC=/rootfs/proc
