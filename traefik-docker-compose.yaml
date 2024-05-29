@@ -332,6 +332,9 @@ services:
     restart: always
     networks:
         freenet:
+    # temp volume for debug
+    volumes:
+      - /home/pi/docker/mwbot/MWBot:/code
 
   homeassistant:
     container_name: homeassistant
