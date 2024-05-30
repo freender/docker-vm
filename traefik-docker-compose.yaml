@@ -334,7 +334,7 @@ services:
         freenet:
     # temp volume for debug
     volumes:
-      - /home/pi/docker/mwbot/MWBot:/code
+      - /home/pi/docker/mwbot/MWBot:/vscode
 
   homeassistant:
     container_name: homeassistant
