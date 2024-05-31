@@ -330,6 +330,8 @@ services:
       - CHAT_ID=${TELEGRAM_CHATID} # Set telegram chat id
       - OWNER=${TELEGRAM_OWNER} # Set user id
       - TOKEN_STAGING=${TELEGRAM_TOKEN_STAGING} # Debug - Set telegram bot token
+      - WAF_TOKEN=${WAF_TOKEN} # Debug - WAF token
+      - WAF_ZONE=${WAF_ZONE} # Debug - WAF zone
     restart: always
     networks:
         freenet:
