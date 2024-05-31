@@ -329,12 +329,13 @@ services:
       - KUMA_MW_ID=3 # ID of MW you would like to start
       - CHAT_ID=${TELEGRAM_CHATID} # Set telegram chat id
       - OWNER=${TELEGRAM_OWNER} # Set user id
+      - TOKEN_STAGING=${TELEGRAM_TOKEN_STAGING} # Debug - Set telegram bot token
     restart: always
     networks:
         freenet:
     # temp volume for debug
     volumes:
-      - /home/pi/docker/mwbot/MWBot:/vscode
+      - /home/pi/docker/mwbot/MWBot:/code
 
   homeassistant:
     container_name: homeassistant
