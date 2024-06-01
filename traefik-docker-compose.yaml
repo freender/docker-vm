@@ -334,6 +334,7 @@ services:
       - WAF_ZONE=${WAF_ZONE} # Debug - WAF zone
       - WAF_RULESET=${WAF_RULESET} # Debug - WAF ruleset
       - WAF_RULEID=${WAF_RULEID} # Debug - WAF ruleid
+      - CDN_URL=${CDN_URL} # Debug - CDN URL
     restart: always
     networks:
         freenet:
