@@ -332,6 +332,8 @@ services:
       - TOKEN_STAGING=${TELEGRAM_TOKEN_STAGING} # Debug - Set telegram bot token
       - WAF_TOKEN=${WAF_TOKEN} # Debug - WAF token
       - WAF_ZONE=${WAF_ZONE} # Debug - WAF zone
+      - WAF_RULESET=${WAF_RULESET} # Debug - WAF ruleset
+      - WAF_RULEID=${WAF_RULEID} # Debug - WAF ruleid
     restart: always
     networks:
         freenet:
