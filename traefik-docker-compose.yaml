@@ -335,6 +335,7 @@ services:
       - WAF_RULESET=${WAF_RULESET} # Debug - WAF ruleset
       - WAF_RULEID=${WAF_RULEID} # Debug - WAF ruleid
       - CDN_URL=${CDN_URL} # Debug - CDN URL
+      - TELEGRAM_AUTH_USERS=${TELEGRAM_AUTH_USERS} # Debug - TELEGRAM_AUTH_USERS
     restart: always
     networks:
         freenet:
