@@ -312,6 +312,11 @@ chmod 600 ~/.ssh/id_rsa
 ```
 vim ~/.ssh/id_rsa
 ```
+3. Start ssh-agent and add new key
+```
+eval `ssh-agent -s`
+ssh-add ~/.ssh/id_rsa
+```
 
 ## Enable backups
 1. Copy backup.sh from this repository to ~/
