@@ -309,7 +309,9 @@ touch ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
 ```
 2. Insert UNRAID SSH private key from 1Password
+```
 vim ~/.ssh/id_rsa
+```
 
 ## Enable backups
 1. Copy backup.sh from this repository to ~/
