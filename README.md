@@ -302,6 +302,14 @@ vim ~/.ssh/authorized_keys
 chown pi:pi ~/.ssh/authorized_keys
 chmod 644 ~/.ssh/authorized_keys
 ```
+## SSH add private key
+1. Create public key
+```
+touch ~/.ssh/id_rsa
+chmod 600 ~/.ssh/id_rsa
+```
+2. Insert UNRAID SSH private key from 1Password
+vim ~/.ssh/id_rsa
 
 ## Enable backups
 1. Copy backup.sh from this repository to ~/
