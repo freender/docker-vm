@@ -343,6 +343,19 @@ services:
     volumes:
       - /home/pi/docker/mwbot/MWBot:/code/staging
 
+  cloudfirewall:
+    #image: ghcr.io/freender/cloudfirewall:main
+    build: https://github.com/freender/cloudfirewall.git
+    container_name: cloudfirewall
+    environment:
+      - WAF_TOKEN=${WAF_TOKEN} # Cloudflare WAF token
+      - WAF_ZONE=${WAF_ZONE} # Cloudflare WAF zone
+      - WAF_RULESET=${WAF_RULESET} # Cloudflare WAF ruleset
+      - WAF_RULEID=${WAF_RULEID} # Cloudflare WAF rule id
+    restart: always
+    networks:
+        freenet:
+        
   homeassistant:
     container_name: homeassistant
     image: "ghcr.io/home-assistant/home-assistant:stable"
