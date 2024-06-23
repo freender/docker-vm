@@ -15,6 +15,7 @@ networks:
           ip_range: 10.0.40.10/27
   freenet: 
     name: freenet
+    external: true
     ipam: 
       config: 
         - gateway: 10.10.0.1
