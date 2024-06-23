@@ -344,8 +344,8 @@ services:
       - /home/pi/docker/mwbot/MWBot:/code/staging
 
   cloudfirewall:
-    #image: ghcr.io/freender/cloudfirewall:main
-    build: https://github.com/freender/cloudfirewall.git
+    image: ghcr.io/freender/cloudfirewall:main
+    #build: https://github.com/freender/cloudfirewall.git
     container_name: cloudfirewall
     environment:
       - WAF_TOKEN=${WAF_TOKEN} # Cloudflare WAF token
