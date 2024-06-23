@@ -12,7 +12,7 @@ networks:
         # 172.25.0.64/27 = 64-95. Don't let your DHCP server assign IP's from this range.
         - subnet: 10.0.40.0/24
           gateway: 10.0.40.1
-          ip_range: 10.0.40.10/27
+          ip_range: 10.0.40.0/27
   freenet: 
     name: freenet
     external: true
