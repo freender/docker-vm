@@ -286,7 +286,7 @@ services:
   apcupsd:
     image: ghcr.io/freender/apcupsd:main
     #build: https://github.com/freender/apcupsd.git
-    pull_policy: build
+    #pull_policy: build
     hostname: Network
     container_name: apcupsd
     networks:
