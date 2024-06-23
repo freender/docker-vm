@@ -318,8 +318,8 @@ services:
       - /home/pi/docker/geoipupdate:/usr/share/GeoIP
 
   mwbot:
-    #image: ghcr.io/freender/mwbot:main
-    build: https://github.com/freender/MWBot.git
+    image: ghcr.io/freender/mwbot:main
+    #build: https://github.com/freender/MWBot.git
     container_name: mwbot
     environment:
       - TOKEN=${TELEGRAM_TOKEN} # Set telegram bot token
