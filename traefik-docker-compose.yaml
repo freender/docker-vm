@@ -331,10 +331,10 @@ services:
       - CHAT_ID=${TELEGRAM_CHATID} # Set telegram chat id
       - OWNER=${TELEGRAM_OWNER} # Set user id
       - TOKEN_STAGING=${TELEGRAM_TOKEN_STAGING} # Debug - Set telegram bot token
-      - WAF_TOKEN=${WAF_TOKEN} # Debug - WAF token
-      - WAF_ZONE=${WAF_ZONE} # Debug - WAF zone
-      - WAF_RULESET=${WAF_RULESET} # Debug - WAF ruleset
-      - WAF_RULEID=${WAF_RULEID} # Debug - WAF ruleid
+      - WAF_TOKEN=${MW_BOT_WAF_TOKEN} # Debug - WAF token
+      - WAF_ZONE=${MW_BOT_WAF_ZONE} # Debug - WAF zone
+      - WAF_RULESET=${MW_BOT_WAF_RULESET} # Debug - WAF ruleset
+      - WAF_RULEID=${MW_BOT_WAF_RULEID} # Debug - WAF ruleid
       - CDN_URL=${CDN_URL} # Debug - CDN URL
       - TELEGRAM_AUTH_USERS=${TELEGRAM_AUTH_USERS} # Debug - TELEGRAM_AUTH_USERS
     restart: always
@@ -349,10 +349,10 @@ services:
     #build: https://github.com/freender/cloudfirewall.git
     container_name: cloudfirewall
     environment:
-      - WAF_TOKEN=${WAF_TOKEN} # Cloudflare WAF token
-      - WAF_ZONE=${WAF_ZONE} # Cloudflare WAF zone
-      - WAF_RULESET=${WAF_RULESET} # Cloudflare WAF ruleset
-      - WAF_RULEID=${WAF_RULEID} # Cloudflare WAF rule id
+      - WAF_TOKEN=${CF_BOT_WAF_TOKEN} # Cloudflare WAF token
+      - WAF_ZONE=${CF_BOT_WAF_ZONE} # Cloudflare WAF zone
+      - WAF_RULESET=${CF_BOT_WAF_RULESET} # Cloudflare WAF ruleset
+      - WAF_RULEID=${CF_BOT_WAF_RULEID} # Cloudflare WAF rule id
     restart: always
     networks:
         freenet:
