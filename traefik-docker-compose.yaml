@@ -230,6 +230,7 @@ services:
     environment:
       TZ: 'America/New_York'
       COLLECTIONS: "crowdsecurity/traefik crowdsecurity/http-cve firix/authentik"
+      POSTOVERFLOWS: "crowdsecurity/rdns"
     volumes:
       - /home/pi/docker/crowdsec/data:/var/lib/crowdsec/data
       - /home/pi/docker/crowdsec:/etc/crowdsec
