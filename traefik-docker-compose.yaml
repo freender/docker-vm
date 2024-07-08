@@ -238,20 +238,6 @@ services:
     restart: always
     networks:
         freenet:
-
-  crowdsec-traefik:
-    image: fbonalair/traefik-crowdsec-bouncer
-    container_name: crowdsec-traefik
-    environment:
-      TZ: 'America/New_York'
-      CROWDSEC_BOUNCER_API_KEY: ${CROWDSEC_TRAEFIK}
-      CROWDSEC_AGENT_HOST: crowdsec:8080
-      GIN_MODE: release
-    depends_on:
-      - crowdsec
-    restart: always
-    networks:
-        freenet:
         
   traefik-logrotate:
     image: vegardit/traefik-logrotate:latest
