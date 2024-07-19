@@ -4,13 +4,11 @@
 # crontab -e
 #0 9 * * 1,4 /home/pi/backup.sh > /home/pi/backup.txt 2>&1
 
-#Delete old backup files and create new backup
+# Create new backup directory
 now=$(date +"%m%d%Y")
 cd /home/pi/docker
 mkdir -p /home/pi/backup/pi-docker
-rm -f /home/pi/backup/pi-docker/*
-
-#cp -u /home/pi/pi-docker/backup.sh /home/pi/backup/backup.sh
+mkdir -p /home/pi/backup/pi-docker/$now
 
 # stop portainer
 docker compose stop
@@ -19,6 +17,11 @@ docker stop $(docker ps -a -q)
 
 #Backup docker appdata
 sudo zip -oqr /home/pi/backup/pi-docker/$now/docker_backup_pi_$now.zip /home/pi/docker
+
+#Delete empty dirs
+find /home/pi/backup/pi-docker/ -empty -type d -delete
+#Delete old backups
+rm -r `ls /home/pi/backup/pi-docker -t | awk 'NR>1'`
 
 #Update portainer
 docker compose pull
