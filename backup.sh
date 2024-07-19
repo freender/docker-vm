@@ -21,7 +21,7 @@ sudo zip -oqr /home/pi/backup/pi-docker/$now/docker_backup_pi_$now.zip /home/pi/
 #Delete empty dirs
 find /home/pi/backup/pi-docker/ -empty -type d -delete
 #Delete old backups
-rm -r `ls /home/pi/backup/pi-docker -t | awk 'NR>1'`
+rm -rf `ls /home/pi/backup/pi-docker/ -t | awk 'NR>1'`
 
 #Update portainer
 docker compose pull
