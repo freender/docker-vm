@@ -7,16 +7,18 @@
 #Delete old backup files and create new backup
 now=$(date +"%m%d%Y")
 cd /home/pi/docker
-mkdir -p /home/pi/backup/
-rm -f /home/pi/backup/*
-cp -u /home/pi/backup.sh /home/pi/backup/backup.sh
+mkdir -p /home/pi/backup/pi-docker
+rm -f /home/pi/backup/pi-docker/*
+
+#cp -u /home/pi/pi-docker/backup.sh /home/pi/backup/backup.sh
+
 # stop portainer
 docker compose stop
 # stop continers spawned by portainer
 docker stop $(docker ps -a -q)
 
 #Backup docker appdata
-sudo zip -oqr /home/pi/backup/docker_backup_pi_$now.zip /home/pi/docker
+sudo zip -oqr /home/pi/backup/pi-docker/$now/docker_backup_pi_$now.zip /home/pi/docker
 
 #Update portainer
 docker compose pull
