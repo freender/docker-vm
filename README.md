@@ -73,7 +73,11 @@ sudo apt remove udisks2 & sudo apt -y autoremove
 ```
 sudo apt install git
 ```
-12. Clone docker-compose.yaml
+12. Install zstd
+```
+sudo apt install zstd
+```
+13. Clone docker-compose.yaml
 ```
 mkdir ~/docker
 cd ~
@@ -81,7 +85,7 @@ git clone https://github.com/freender/docker-vm.git
 cp ~/docker-vm/docker-compose.yml ~/docker/docker-compose.yml
 cd ~/docker
 ```
-13. Pull docker-compose images and start containers
+14. Pull docker-compose images and start containers
 ```
 docker compose pull
 docker compose up -d
