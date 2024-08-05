@@ -26,6 +26,9 @@ docker compose up -d
 #Start docker containers
 docker start $(docker ps -a -q -f status=exited)
 
+# Wait 2 minutes to start dockers
+wait 2m
+
 #Delete old backups
 sudo rm -rf `ls /home/pi/backup/pi-docker/ -t | awk 'NR>1'`
 
