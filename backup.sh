@@ -16,7 +16,8 @@ docker compose stop
 docker stop $(docker ps -a -q)
 
 #Backup docker appdata
-sudo zip -oqr /home/pi/backup/pi-docker/$now/docker_backup_pi_$now.zip /home/pi/docker
+#sudo zip -oqr /home/pi/backup/pi-docker/$now/docker_backup_pi_$now.zip /home/pi/docker
+sudo tar -I 'zstdmt' -cvf /home/pi/backup/pi-docker/$now/docker_backup_pi_$now.tar.zst /home/pi/docker
 
 #Update portainer
 docker compose pull
@@ -26,7 +27,7 @@ docker compose up -d
 docker start $(docker ps -a -q -f status=exited)
 
 #Delete old backups
-rm -rf `ls /home/pi/backup/pi-docker/ -t | awk 'NR>1'`
+sudo rm -rf `ls /home/pi/backup/pi-docker/ -t | awk 'NR>1'`
 
 #Clean-up
 docker system prune -f
