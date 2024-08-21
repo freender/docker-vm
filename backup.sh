@@ -30,7 +30,8 @@ docker start $(docker ps -a -q -f status=exited)
 sleep 1m
 
 #Delete old backups
-sudo rm -rf `ls /home/pi/backup/pi-docker/ -t | awk 'NR>1'`
+cd /home/pi/backup/pi-docker
+sudo rm -rf $(ls /home/pi/backup/pi-docker/ -t | awk 'NR>1')
 
 #Clean-up
 docker system prune -f
