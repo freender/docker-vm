@@ -292,7 +292,7 @@ interface eth0
 static ip_address=10.0.40.40/24
 #static ip6_address=fd51:42f8:caae:d92e::ff/64
 static routers=10.0.40.1
-static domain_name_servers=10.0.40.1
+static domain_name_servers=1.1.1.1
 ```
 
 ## SSH add public key
