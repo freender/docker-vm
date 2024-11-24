@@ -339,3 +339,15 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/snap/bin
 ```
 pacman -Syu rsync
 ```
+
+## Extend swap size
+1. Edit config
+```
+sudo vim  /etc/dphys-swapfile
+```
+2. Change CONF_SWAPSIZE to 1500
+3. Apply changes
+```
+sudo dphys-swapfile setup
+```
+
