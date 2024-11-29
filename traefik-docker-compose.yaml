@@ -322,6 +322,7 @@ services:
       - WAF_ZONE=${MW_BOT_WAF_ZONE} # Debug - WAF zone
       - WAF_RULESET=${MW_BOT_WAF_RULESET} # Debug - WAF ruleset
       - WAF_RULEID=${MW_BOT_WAF_RULEID} # Debug - WAF ruleid
+      - MW_BOT_ASN_DEFAULT=${MW_BOT_ASN_DEFAULT} # Debug - WAF ruleid
       - CDN_URL=${CDN_URL} # Debug - CDN URL
       - TELEGRAM_AUTH_USERS=${TELEGRAM_AUTH_USERS} # Debug - TELEGRAM_AUTH_USERS
     restart: always
