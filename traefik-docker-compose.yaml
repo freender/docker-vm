@@ -401,3 +401,25 @@ services:
     restart: always
     networks:
         freenet:
+
+  adguard-sync:
+    image: lscr.io/linuxserver/adguardhome-sync:latest
+    container_name: adguard-sync
+    labels:
+      traefik.enable: true
+      traefik.http.routers.adguard-sync.entryPoints: https
+      traefik.http.routers.adguard-sync.middlewares: auth@file,local-ipallowlist@file
+      traefik.http.services.adguard-sync.loadbalancer.server.port: 8080
+    ports:    
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - CONFIGFILE=/config/adguardhome-sync.yaml #optional
+    volumes:
+      - /home/pi/docker/adguard-sync/config:/config
+    restart: always
+    networks:
+        freenet:
+        macvlan_eth0:
+          ipv4_address: 10.0.40.41
