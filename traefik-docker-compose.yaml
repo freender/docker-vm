@@ -410,7 +410,6 @@ services:
       traefik.http.routers.adguard-sync.entryPoints: https
       traefik.http.routers.adguard-sync.middlewares: auth@file,local-ipallowlist@file
       traefik.http.services.adguard-sync.loadbalancer.server.port: 8080
-    ports:    
     environment:
       - PUID=1000
       - PGID=1000
