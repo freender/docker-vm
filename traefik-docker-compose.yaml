@@ -422,7 +422,7 @@ services:
         freenet:
 
   adguard:
-    image: adguard/adguardhome:latest
+    image: adguard/adguardhome
     container_name: adguard
     labels:
       traefik.enable: true
@@ -430,8 +430,8 @@ services:
       traefik.http.routers.adguard.middlewares: auth@file,local-ipallowlist@file
       traefik.http.services.adguard.loadbalancer.server.port: 3000    
     volumes:
-      - home/pi/docker/adguard/config:/opt/adguardhome/conf # app configuration
-      - home/pi/docker/adguard/work:/opt/adguardhome/work # app working directory                
+      - /home/pi/docker/adguard/config:/opt/adguardhome/conf # app configuration
+      - /home/pi/docker/adguard/work:/opt/adguardhome/work # app working directory                
     networks:
         freenet:     
         macvlan_eth0:
