@@ -422,7 +422,8 @@ services:
         freenet:
 
   adguard:
-    image: adguard/adguardhome
+    image: adguard/adguardhome:latest
+    container_name: adguard
     labels:
       traefik.enable: true
       traefik.http.routers.adguard.entryPoints: https
