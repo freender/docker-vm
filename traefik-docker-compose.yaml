@@ -58,7 +58,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.uptime.entryPoints: https
-      traefik.http.routers.uptime.middlewares: auth@file,local-ipallowlist@file
+      traefik.http.routers.uptime.middlewares: auth@file,allow-cdn-and-local@file
       traefik.http.services.uptime.loadbalancer.server.port: 3001
     volumes:
       - /home/pi/docker/uptime:/app/data
@@ -88,7 +88,7 @@ services:
       traefik.http.routers.api.service: api@internal    # Enable Traefik API.
       traefik.enable: true   # Enable Traefik reverse proxy for the Traefik dashboard.
       traefik.http.services.api.loadbalancer.server.port: 8183
-      traefik.http.routers.api.middlewares: auth@file,local-ipallowlist@file
+      traefik.http.routers.api.middlewares: auth@file,allow-cdn-and-local@file
     environment:
       TZ: 'America/New_York'
       CF_DNS_API_TOKEN: ${TRAEFIK_DNS_API}
@@ -195,7 +195,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.auth.entryPoints: https
-      traefik.http.routers.auth.middlewares: local-ipallowlist@file
+      traefik.http.routers.auth.middlewares: allow-cdn-and-local@file
       traefik.http.routers.auth.rule: Host(`${AUTH_URL}`) || HostRegexp(`{subdomain:[a-z0-9]+}.domain.com`) && PathPrefix(`/outpost.goauthentik.io/`)
   
   auth-worker:
@@ -351,7 +351,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.homeassistant.entryPoints: https
-      traefik.http.routers.homeassistant.middlewares: local-ipallowlist@file
+      traefik.http.routers.homeassistant.middlewares: allow-cdn-and-local@file
       traefik.http.services.homeassistant.loadbalancer.server.port: 8123
     volumes:
       - /home/pi/docker/homeassistant:/config
@@ -370,7 +370,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.syncthing.entryPoints: https
-      traefik.http.routers.syncthing.middlewares: auth@file,local-ipallowlist@file
+      traefik.http.routers.syncthing.middlewares: auth@file,allow-cdn-and-local@file
       traefik.http.services.syncthing.loadbalancer.server.port: 8384
     ports:
       - 8384:8384
@@ -392,7 +392,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.adguard-sync.entryPoints: https
-      traefik.http.routers.adguard-sync.middlewares: auth@file,local-ipallowlist@file
+      traefik.http.routers.adguard-sync.middlewares: auth@file,allow-cdn-and-local@file
       traefik.http.services.adguard-sync.loadbalancer.server.port: 8080
     environment:
       - PUID=1000
@@ -411,7 +411,7 @@ services:
     labels:
       traefik.enable: true
       traefik.http.routers.adguard.entryPoints: https
-      traefik.http.routers.adguard.middlewares: auth@file,local-ipallowlist@file
+      traefik.http.routers.adguard.middlewares: auth@file,allow-cdn-and-local@file
       traefik.http.services.adguard.loadbalancer.server.port: 80    
     volumes:
       - /home/pi/docker/adguard/config:/opt/adguardhome/conf # app configuration
