@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.8'
 networks:
   macvlan_eth0:
     driver: macvlan
@@ -82,6 +82,7 @@ services:
         freenet:
         macvlan_eth0:
           ipv4_address: 10.0.40.45
+          mac-address: "c6:b4:04:97:8e:ab"
           
     labels:
       traefik.http.routers.api.rule: Host(`${TRAEFIK_URL}`)    # Define the subdomain for the traefik dashboard.
@@ -363,6 +364,7 @@ services:
         freenet:
         macvlan_eth0:
           ipv4_address: 10.0.40.46
+          mac-address: "62:b9:fc:4b:1d:25"
 
   syncthing:
     container_name: syncthing
@@ -421,3 +423,4 @@ services:
         freenet:     
         macvlan_eth0:
           ipv4_address: 10.0.40.41
+          mac-address: "02:42:0a:00:28:29"
