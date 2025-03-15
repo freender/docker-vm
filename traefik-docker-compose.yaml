@@ -95,7 +95,7 @@ services:
         freenet:
         macvlan_eth0:
           ipv4_address: 10.0.40.45
-          mac_address: "c6:b4:04:97:8e:ab"
+          mac_address: "02:42:0a:00:28:2d"
 
   docker-socket-proxy:
     container_name: docker-socket-proxy
@@ -363,7 +363,7 @@ services:
         freenet:
         macvlan_eth0:
           ipv4_address: 10.0.40.46
-          mac_address: "62:b9:fc:4b:1d:25"
+          mac_address: "02:42:0a:00:28:2e"
 
   syncthing:
     container_name: syncthing
