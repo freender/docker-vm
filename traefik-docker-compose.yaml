@@ -132,6 +132,7 @@ services:
       - /var/log:/var/log
       - /home/pi/docker/traefik/logs:/traefik/logs
       - /home/pi/docker/geoipupdate:/etc/promtail/geoip
+      - /var/lib/docker/:/var/lib/docker:ro
     networks:
         freenet:
 
