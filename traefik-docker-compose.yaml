@@ -419,6 +419,7 @@ services:
     volumes:
       - /home/pi/docker/adguard/config:/opt/adguardhome/conf # app configuration
       - /home/pi/docker/adguard/work:/opt/adguardhome/work # app working directory                
+    restart: always    
     networks:
         freenet:     
         macvlan_eth0:
@@ -426,8 +427,10 @@ services:
           mac_address: "02:42:0a:00:28:29"
   alloy:
     image: grafana/alloy:latest
+    container_name: alloy
     networks:
         freenet:
+    restart: always
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "/home/pi/docker/alloy/config.alloy:/etc/alloy/config.alloy"
