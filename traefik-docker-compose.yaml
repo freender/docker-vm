@@ -432,6 +432,9 @@ services:
         freenet:
     restart: always
     volumes:
+      - "/var/log:/var/log"
+      - "/home/pi/docker/traefik/logs:/traefik/logs"
+      - "/home/pi/docker/geoipupdate:/etc/alloy/geoip"
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "/home/pi/docker/alloy/config.alloy:/etc/alloy/config.alloy"
       - "/home/pi/docker/alloy/endpoints.json:/etc/alloy/endpoints.json"
