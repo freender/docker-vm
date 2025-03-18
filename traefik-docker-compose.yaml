@@ -424,3 +424,15 @@ services:
         macvlan_eth0:
           ipv4_address: 10.0.40.41
           mac_address: "02:42:0a:00:28:29"
+  alloy:
+    image: grafana/alloy:latest
+    networks:
+        freenet:
+    volumes:
+      - "/home/pi/docker/alloy/config.alloy:/etc/alloy/config.alloy"
+      - "/home/pi/docker/alloy/endpoints.json:/etc/alloy/endpoints.json"
+    command: [
+      "run",
+      "--server.http.listen-addr=0.0.0.0:12345",
+      "/etc/alloy/config.alloy",
+    ]
