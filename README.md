@@ -35,49 +35,20 @@ docker run hello-world
 sudo apt-get install -y libffi-dev libssl-dev
 sudo apt-get install -y python3 python3-pip
 ```
-7. Install Doker Loki Driver
-```
-docker plugin install grafana/loki-docker-driver:arm-v7 --alias loki --grant-all-permissions
-```
-8. Add docker loggin config
-```
-sudo vim /etc/docker/daemon.json
-```
-Paste following config:
-```
-{
-    "debug" : false,
-    "log-level": "fatal",
-    "log-driver": "loki",
-    "log-opts": {
-        "loki-url": "http://10.0.40.18:3100/loki/api/v1/push",
-        "loki-batch-size": "400",
-        "loki-timeout": "10s",
-        "loki-retries": "1",
-        "max-size": "10m",
-        "max-file": "1"
-    }
-}
-```
-9. Restart Docker
-```
-sudo systemctl restart docker.service
-```
 
-
-10. If you not using Pi4 GUI - Remove udisks2 - it causes memory leaks
+7. If you not using Pi4 GUI - Remove udisks2 - it causes memory leaks
 ```
 sudo apt remove udisks2 & sudo apt -y autoremove
 ```
-11. Install Git
+8. Install Git
 ```
 sudo apt install git
 ```
-12. Install zstd
+9. Install zstd
 ```
 sudo apt install zstd
 ```
-13. Clone docker-compose.yaml
+10. Clone docker-compose.yaml
 ```
 mkdir ~/docker
 cd ~
@@ -85,10 +56,14 @@ git clone https://github.com/freender/docker-vm.git
 cp ~/docker-vm/docker-compose.yml ~/docker/docker-compose.yml
 cd ~/docker
 ```
-14. Pull docker-compose images and start containers
+11. Pull docker-compose images and start containers
 ```
 docker compose pull
 docker compose up -d
+```
+12. Remove docker compose for portainer
+```
+rm ~/docker/docker-compose.yml
 ```
 ## Change timezone
 1. Run raspi-config
