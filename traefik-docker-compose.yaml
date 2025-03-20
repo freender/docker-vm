@@ -13,8 +13,8 @@ networks:
         - subnet: 10.0.40.0/24
           gateway: 10.0.40.1
           ip_range: 10.0.40.0/27
-  freenet: 
-    name: freenet
+  pw.internal: 
+    name: pw.internal
     external: true
     ipam: 
       config: 
@@ -50,7 +50,7 @@ services:
     
   uptime:
     networks:
-        freenet:
+        pw.internal:
     image: louislam/uptime-kuma:latest
     environment:
       TZ: 'America/New_York'
@@ -92,7 +92,7 @@ services:
     depends_on:
       - docker-socket-proxy
     networks:
-        freenet:
+        pw.internal:
         macvlan_eth0:
           ipv4_address: 10.0.40.45
           mac_address: "02:42:0a:00:28:2d"
@@ -105,7 +105,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
-      - freenet
+      - pw.internal
     environment:
       CONTAINERS: 1
       POST: 0
@@ -117,7 +117,7 @@ services:
     container_name: cloudflared
     restart: always
     networks:
-      - freenet
+      - pw.internal
     volumes:
       - /home/pi/docker/cloudflared:/etc/cloudflared
     command: tunnel run ${CLOUDFLARE_TUNNEL_ID}
@@ -141,13 +141,13 @@ services:
    # env_file:
    #   - .env
     networks:
-        freenet:
+        pw.internal:
 
   auth-redis:
     container_name: auth-redis
     image: redis:7.0.12-alpine
     networks:
-        freenet:
+        pw.internal:
     expose:
       - 6379
     command: /bin/sh -c "redis-server --requirepass ${REDIS_PASS}"
@@ -179,7 +179,7 @@ services:
       - "0.0.0.0:${COMPOSE_PORT_HTTP:-9000}:9000"
       - "0.0.0.0:${COMPOSE_PORT_HTTPS:-9443}:9443"
     networks:
-        freenet:
+        pw.internal:
     labels:
       traefik.enable: true
       traefik.http.routers.auth.entryPoints: https
@@ -208,7 +208,7 @@ services:
     #env_file:
     #  - .env
     networks:
-        freenet:
+        pw.internal:
 
   crowdsec:
     image: crowdsecurity/crowdsec:latest
@@ -225,7 +225,7 @@ services:
       - /home/pi/docker/traefik/logs:/var/log/traefik
     restart: always
     networks:
-        freenet:
+        pw.internal:
         
   traefik-logrotate:
     image: vegardit/traefik-logrotate:latest
@@ -266,7 +266,7 @@ services:
     hostname: Network
     container_name: apcupsd
     networks:
-        freenet:    
+        pw.internal:    
     devices:
       - /dev/usb/hiddev0
     ports:
@@ -289,7 +289,7 @@ services:
       - 'GEOIPUPDATE_EDITION_IDS=GeoLite2-ASN GeoLite2-City GeoLite2-Country'
       - GEOIPUPDATE_FREQUENCY=72
     networks:
-        freenet:
+        pw.internal:
     volumes:
       - /home/pi/docker/geoipupdate:/usr/share/GeoIP
 
@@ -315,7 +315,7 @@ services:
       - TELEGRAM_AUTH_USERS=${TELEGRAM_AUTH_USERS} # Debug - TELEGRAM_AUTH_USERS
     restart: always
     networks:
-        freenet:
+        pw.internal:
     # temp volume for debug
     volumes:
       - /home/pi/docker/mwbot/MWBot:/code/staging
@@ -331,7 +331,7 @@ services:
       - WAF_RULEID=${CF_BOT_WAF_RULEID} # Cloudflare WAF rule id
     restart: always
     networks:
-        freenet:
+        pw.internal:
         
   homeassistant:
     container_name: homeassistant
@@ -347,7 +347,7 @@ services:
       - /run/dbus:/run/dbus:ro
     restart: always
     networks:
-        freenet:
+        pw.internal:
         macvlan_eth0:
           ipv4_address: 10.0.40.46
           mac_address: "02:42:0a:00:28:2e"
@@ -373,7 +373,7 @@ services:
       - /home/pi/backup:/backup
     restart: always
     networks:
-        freenet:
+        pw.internal:
 
   adguard-sync:
     image: lscr.io/linuxserver/adguardhome-sync:latest
@@ -392,7 +392,7 @@ services:
       - /home/pi/docker/adguard-sync/config:/config
     restart: always
     networks:
-        freenet:
+        pw.internal:
 
   adguard:
     image: adguard/adguardhome
@@ -407,7 +407,7 @@ services:
       - /home/pi/docker/adguard/work:/opt/adguardhome/work # app working directory                
     restart: always    
     networks:
-        freenet:     
+        pw.internal:     
         macvlan_eth0:
           ipv4_address: 10.0.40.41
           mac_address: "02:42:0a:00:28:29"
@@ -415,7 +415,7 @@ services:
     image: grafana/alloy:latest
     container_name: alloy
     networks:
-        freenet:
+        pw.internal:
     restart: always
     volumes:
       - "/var/log:/var/log"
