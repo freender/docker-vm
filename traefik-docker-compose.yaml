@@ -61,7 +61,6 @@ services:
       traefik.http.services.uptime.loadbalancer.server.port: 3001
     volumes:
       - /home/pi/docker/uptime:/app/data
-      - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - 3001:3001  # <Host Port>:<Container Port>
     restart: always
