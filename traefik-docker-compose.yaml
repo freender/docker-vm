@@ -1,4 +1,3 @@
-version: '3.8'
 networks:
   macvlan_eth0:
     driver: macvlan
