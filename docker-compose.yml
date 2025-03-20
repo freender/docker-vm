@@ -1,7 +1,7 @@
 version: '3.7'
 networks:
   freenet:
-    name: freenet
+    name: pw.internal
     ipam:
       config:
         - gateway: 10.10.0.1
@@ -17,7 +17,7 @@ services:
       - /home/pi/docker/portainer:/data
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
-        freenet:
+        pw.internal:
     labels:
       traefik.enable: true
       traefik.http.routers.portainer.entryPoints: https
