@@ -122,20 +122,6 @@ services:
       - /home/pi/docker/cloudflared:/etc/cloudflared
     command: tunnel run ${CLOUDFLARE_TUNNEL_ID}
 
-  promtail:
-    container_name: promtail
-    restart: always
-    image: grafana/promtail:latest
-    volumes:
-      - /home/pi/docker/promtail/:/etc/promtail/
-      - /home/pi/docker/promtail/positions:/positions
-      - /var/log:/var/log
-      - /home/pi/docker/traefik/logs:/traefik/logs
-      - /home/pi/docker/geoipupdate:/etc/promtail/geoip
-     # - /var/lib/docker/:/var/lib/docker:ro
-    networks:
-        freenet:
-
   auth-postgresql:
     image: postgres:12
     restart: always
