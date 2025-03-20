@@ -75,7 +75,6 @@ services:
     #  - 8080:8080 # Dashboard port
     volumes:
       - /home/pi/docker/traefik/:/etc/traefik/
-      - /var/run/docker.sock:/var/run/docker.sock        
     labels:
       traefik.http.routers.api.rule: Host(`${TRAEFIK_URL}`)    # Define the subdomain for the traefik dashboard.
       traefik.http.routers.api.entryPoints: https    # Set the Traefik entry point.
@@ -201,7 +200,6 @@ services:
     volumes:
       - /home/pi/docker/auth/media:/media
       - /home/pi/docker/auth/certs:/certs
-      - /var/run/docker.sock:/var/run/docker.sock
       - /home/pi/docker/auth/custom-templates:/templates
     #env_file:
     #  - .env
