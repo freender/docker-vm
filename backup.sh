@@ -19,7 +19,7 @@ docker stop $(docker ps -a -q)
 
 #Backup docker appdata
 echo "Starting rsync backup..."
-rsync -avh --progress --delete "$SRC" "$DEST"
+sudo rsync -avh --progress --delete "$SRC" "$DEST"
 
 #Start docker containers
 docker start $(docker ps -a -q -f status=exited)
