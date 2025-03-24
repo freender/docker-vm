@@ -362,8 +362,10 @@ services:
       - 22000:22000
       - 21027:21027
     environment:
-      - PUID=1000
-      - PGID=1000
+      #- PUID=1000
+      #- PGID=1000      
+      - PUID=0
+      - PGID=0
     volumes:
       - /home/pi/docker/syncthing:/config
       - /home/pi/backup:/backup
