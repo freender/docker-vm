@@ -326,3 +326,13 @@ sudo vim  /etc/dphys-swapfile
 sudo dphys-swapfile setup
 ```
 
+## Adjust hostname:
+1. For pi-kvm:
+```
+sudo hostnamectl set-hostname pi-kvm
+```
+2. For pi-pw:
+```
+sudo hostnamectl set-hostname pi-pw
+```
+
