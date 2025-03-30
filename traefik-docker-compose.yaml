@@ -1,7 +1,7 @@
 networks:
   macvlan_eth0:
     driver: macvlan
-    enable_ipv6: true
+    #enable_ipv6: true
     driver_opts:
       parent: eth0
     ipam:
