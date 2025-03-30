@@ -104,6 +104,7 @@ services:
     networks:
       - pw.internal
     environment:
+      TZ: 'America/New_York'
       CONTAINERS: 1
       POST: 0
     privileged: true
@@ -113,6 +114,8 @@ services:
     image: erisamoe/cloudflared
     container_name: cloudflared
     restart: always
+    environment:
+      TZ: 'America/New_York'    
     networks:
       - pw.internal
     volumes:
@@ -132,9 +135,10 @@ services:
     volumes:
       - /home/pi/docker/auth-postgresql:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=${PG_PASS}
-      - POSTGRES_USER=${PG_USER:-authentik}
-      - POSTGRES_DB=${PG_DB:-authentik}
+      TZ: 'America/New_York'    
+      POSTGRES_PASSWORD: ${PG_PASS}
+      POSTGRES_USER: ${PG_USER:-authentik}
+      POSTGRES_DB: ${PG_DB:-authentik}
    # env_file:
    #   - .env
     networks:
@@ -142,7 +146,9 @@ services:
 
   auth-redis:
     container_name: auth-redis
-    image: redis:7.0.12-alpine
+    image: redis:7.0.12-alpine    
+    environment:
+      TZ: 'America/New_York' 
     networks:
         pw.internal:
     expose:
@@ -156,6 +162,7 @@ services:
     container_name: auth
     command: server
     environment:
+      TZ: 'America/New_York'        
       AUTHENTIK_REDIS__HOST: auth-redis
       AUTHENTIK_POSTGRESQL__HOST: auth-postgresql
       AUTHENTIK_POSTGRESQL__USER: ${PG_USER:-authentik}
@@ -189,6 +196,7 @@ services:
     container_name: auth-worker
     command: worker
     environment:
+      TZ: 'America/New_York'    
       AUTHENTIK_REDIS__HOST: auth-redis
       AUTHENTIK_POSTGRESQL__HOST: auth-postgresql
       AUTHENTIK_POSTGRESQL__USER: ${PG_USER:-authentik}
@@ -280,10 +288,11 @@ services:
     image: ghcr.io/maxmind/geoipupdate
     restart: always
     environment:
-      - GEOIPUPDATE_ACCOUNT_ID=${GEOIPUPDATE_ACCOUNT_ID}
-      - GEOIPUPDATE_LICENSE_KEY=${GEOIPUPDATE_LICENSE_KEY}
-      - 'GEOIPUPDATE_EDITION_IDS=GeoLite2-ASN GeoLite2-City GeoLite2-Country'
-      - GEOIPUPDATE_FREQUENCY=72
+      TZ: 'America/New_York' 
+      GEOIPUPDATE_ACCOUNT_ID: ${GEOIPUPDATE_ACCOUNT_ID}
+      GEOIPUPDATE_LICENSE_KEY: ${GEOIPUPDATE_LICENSE_KEY}
+      GEOIPUPDATE_EDITION_IDS: 'GeoLite2-ASN GeoLite2-City GeoLite2-Country'
+      GEOIPUPDATE_FREQUENCY: '72'
     networks:
         pw.internal:
     volumes:
@@ -294,6 +303,7 @@ services:
     #build: https://github.com/freender/MWBot.git
     container_name: mwbot
     environment:
+      - TZ=America/New_York
       - TOKEN=${TELEGRAM_TOKEN} # Set telegram bot token
       - KUMA_HOST=${UPTIME_HOST} # UptimeKuma IP address and port
       - KUMA_LOGIN=${UPTIME_LOGIN} # UptimeKuma Login
@@ -321,6 +331,7 @@ services:
     #build: https://github.com/freender/cloudfirewall.git
     container_name: cloudfirewall
     environment:
+      - TZ=America/New_York
       - WAF_TOKEN=${CF_BOT_WAF_TOKEN} # Cloudflare WAF token
       - WAF_ZONE=${CF_BOT_WAF_ZONE} # Cloudflare WAF zone
       - WAF_RULESET=${CF_BOT_WAF_RULESET} # Cloudflare WAF ruleset
@@ -331,7 +342,9 @@ services:
         
   homeassistant:
     container_name: homeassistant
-    image: "ghcr.io/home-assistant/home-assistant:stable"
+    image: "ghcr.io/home-assistant/home-assistant:stable"    
+    environment:
+      TZ: 'America/New_York' 
     labels:
       traefik.enable: true
       traefik.http.routers.homeassistant.entryPoints: https
@@ -363,7 +376,8 @@ services:
       - 21027:21027
     environment:
       #- PUID=1000
-      #- PGID=1000      
+      #- PGID=1000
+      - TZ=America/New_York
       - PUID=0
       - PGID=0
     volumes:
@@ -384,7 +398,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Etc/UTC
+      - TZ=America/New_York
       - CONFIGFILE=/config/adguardhome-sync.yaml #optional
     volumes:
       - /home/pi/docker/adguard-sync/config:/config
@@ -400,6 +414,8 @@ services:
       traefik.http.routers.adguard.entryPoints: https
       traefik.http.routers.adguard.middlewares: auth@file,allow-cdn-and-local@file
       traefik.http.services.adguard.loadbalancer.server.port: 80    
+    environment:      
+      TZ: 'America/New_York' 
     volumes:
       - /home/pi/docker/adguard/config:/opt/adguardhome/conf # app configuration
       - /home/pi/docker/adguard/work:/opt/adguardhome/work # app working directory                
@@ -415,6 +431,8 @@ services:
     networks:
         pw.internal:
     restart: always
+    environment:      
+      TZ: 'America/New_York'     
     volumes:
       - "/var/log:/var/log"
       - "/home/pi/docker/traefik/logs:/traefik/logs"
