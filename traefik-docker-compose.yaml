@@ -325,6 +325,7 @@ services:
     # temp volume for debug
     volumes:
       - /home/pi/docker/mwbot/MWBot:/code/staging
+      - /home/pi/docker/mwbot/config:/config
 
   cloudfirewall:
     image: ghcr.io/freender/cloudfirewall:main
