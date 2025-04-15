@@ -259,7 +259,7 @@ services:
       TZ: "America/New_York"
       WATCHTOWER_CLEANUP: "true"
       WATCHTOWER_DEBUG: "true"
-    image: containrrr/watchtower
+    image: ghcr.io/nicholas-fedor/watchtower:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       
