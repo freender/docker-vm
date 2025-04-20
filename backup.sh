@@ -2,7 +2,7 @@
 
 # Add this script to cron
 # crontab -e
-#0 4 * * * /home/pi/backup.sh > /home/pi/backup.txt 2>&1
+#40 3 * * * /home/pi/backup.sh > /home/pi/backup.txt 2>&1
 
 # Define source and destination directories
 SRC="/home/pi/docker/"
