@@ -258,7 +258,7 @@ services:
       WATCHTOWER_SCHEDULE: 0 0 9 * * ?
       TZ: "America/New_York"
       WATCHTOWER_CLEANUP: "true"
-      WATCHTOWER_DEBUG: "true"
+      WATCHTOWER_DEBUG: "false"
     image: ghcr.io/nicholas-fedor/watchtower:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
