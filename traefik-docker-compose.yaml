@@ -124,7 +124,7 @@ services:
 
 
   auth-postgresql:
-    image: docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:739cdd626151ff1f796dc95a6591b55a714f341c737e27f045019ceabf8e8c52
+    image: ghcr.io/tensorchord/pgvecto-rs:pg14-v0.2.1-rootless
     restart: always
     container_name: auth-postgresql
     healthcheck:
@@ -133,6 +133,7 @@ services:
       interval: 30s
       retries: 5
       timeout: 5s
+    user: 1000:1000
     volumes:
       - /home/pi/docker/auth-postgresql:/var/lib/postgresql/data
     environment:
