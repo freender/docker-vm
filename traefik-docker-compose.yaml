@@ -158,7 +158,7 @@ services:
     restart: always
 
   auth:
-    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2025.2}
+    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2025.4}
     restart: always
     container_name: auth
     command: server
@@ -192,7 +192,7 @@ services:
       traefik.http.routers.auth.rule: Host(`${AUTH_URL}`) || HostRegexp(`{subdomain:[a-z0-9]+}.domain.com`) && PathPrefix(`/outpost.goauthentik.io/`)
   
   auth-worker:
-    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2025.2}
+    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2025.4}
     restart: always
     container_name: auth-worker
     command: worker
