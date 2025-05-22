@@ -124,7 +124,7 @@ services:
 
 
   auth-postgresql:
-    image: ghcr.io/tensorchord/pgvecto-rs:pg14-v0.2.1-rootless
+    image: ghcr.io/immich-app/postgres:14-vectorchord0.3.0-pgvectors0.2.0
     restart: always
     container_name: auth-postgresql
     healthcheck:
@@ -141,6 +141,7 @@ services:
       POSTGRES_PASSWORD: ${PG_PASS}
       POSTGRES_USER: ${PG_USER:-authentik}
       POSTGRES_DB: ${PG_DB:-authentik}
+      POSTGRES_INITDB_ARGS: '--data-checksums'
    # env_file:
    #   - .env
     networks:
