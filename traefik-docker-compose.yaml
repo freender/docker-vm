@@ -126,13 +126,7 @@ services:
   auth-postgresql:
     image: ghcr.io/immich-app/postgres:14-vectorchord0.3.0-pgvectors0.2.0
     restart: always
-    container_name: auth-postgresql
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -d authentik -U authentik"]
-      start_period: 20s
-      interval: 30s
-      retries: 5
-      timeout: 5s
+    container_name: auth-postgresql   
     user: 1000:1000
     volumes:
       - /home/pi/docker/auth-postgresql:/var/lib/postgresql/data
