@@ -149,7 +149,7 @@ services:
 
   auth-redis:
     container_name: auth-redis
-    image: redis:7.0.12-alpine    
+    image: redis:alpine  
     environment:
       TZ: 'America/New_York' 
     networks:
