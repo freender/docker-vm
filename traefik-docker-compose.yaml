@@ -376,8 +376,8 @@ services:
       #- PUID=1000
       #- PGID=1000
       - TZ=America/New_York
-      - PUID=0
-      - PGID=0
+      - PUID=1000
+      - PGID=1000
     volumes:
       - /home/pi/docker/syncthing:/config
       - /home/pi/backup:/backup
