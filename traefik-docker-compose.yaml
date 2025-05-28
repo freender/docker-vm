@@ -131,7 +131,7 @@ services:
     image: ghcr.io/immich-app/postgres:17-vectorchord0.3.0
     restart: always
     container_name: auth-postgresql  
-    #user: 1000:1000
+    user: 1000:1000
     volumes:
       - /home/pi/docker/auth-postgresql:/var/lib/postgresql/data
     environment:
