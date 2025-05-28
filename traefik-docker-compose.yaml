@@ -51,9 +51,10 @@ services:
     networks:
         pw.internal:
     image: louislam/uptime-kuma:latest
-    user: 1000:1000
     environment:
       TZ: 'America/New_York'
+      PUID: 1000
+      PGID: 1000
     container_name: uptime
     labels:
       traefik.enable: true
