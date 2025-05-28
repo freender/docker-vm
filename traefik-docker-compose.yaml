@@ -127,13 +127,13 @@ services:
     command: tunnel run ${CLOUDFLARE_TUNNEL_ID}
 
 
-  auth-postgresql17:
+  auth-postgresql:
     image: ghcr.io/immich-app/postgres:17-vectorchord0.3.0
     restart: always
-    container_name: auth-postgresql17  
+    container_name: auth-postgresql  
     #user: 1000:1000
     volumes:
-      - /home/pi/docker/auth-postgresql17:/var/lib/postgresql/data
+      - /home/pi/docker/auth-postgresql:/var/lib/postgresql/data
     environment:
       TZ: 'America/New_York'    
       POSTGRES_PASSWORD: ${PG_PASS}
