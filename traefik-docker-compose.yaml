@@ -38,8 +38,8 @@ services:
       - /sys:/rootfs/sys
       - /etc:/rootfs/etc  
       - /proc:/rootfs/proc
-      - /home/pi/docker/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf 
-      - /home/pi/docker/telegraf/scripts:/scripts
+      - /mnt/ssdpool/appdata/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf 
+      - /mnt/ssdpool/appdata/telegraf/scripts:/scripts
       - /run/udev:/run/udev
     user: telegraf:995
       # In bash run
@@ -62,7 +62,7 @@ services:
       traefik.http.routers.uptime.middlewares: auth@file,allow-cdn-and-local@file
       traefik.http.services.uptime.loadbalancer.server.port: 3001
     volumes:
-      - /home/pi/docker/uptime:/app/data
+      - /mnt/ssdpool/appdata/uptime:/app/data
     ports:
       - 3001:3001  # <Host Port>:<Container Port>
     restart: always
@@ -72,8 +72,8 @@ services:
     image: traefik:latest
     user: 1000:1000
     volumes:
-      - /home/pi/docker/traefik/:/etc/traefik/
-      - /home/pi/docker/traefik/plugins-storage:/plugins-storage
+      - /mnt/ssdpool/appdata/traefik/:/etc/traefik/
+      - /mnt/ssdpool/appdata/traefik/plugins-storage:/plugins-storage
     labels:
       traefik.http.routers.api.rule: Host(`${TRAEFIK_URL}`)    # Define the subdomain for the traefik dashboard.
       traefik.http.routers.api.entryPoints: https    # Set the Traefik entry point.
@@ -118,7 +118,7 @@ services:
     networks:
       - pw.internal
     volumes:
-      - /home/pi/docker/cloudflared:/etc/cloudflared
+      - /mnt/ssdpool/appdata/cloudflared:/etc/cloudflared
     command: tunnel run ${CLOUDFLARE_TUNNEL_ID}
 
 
@@ -128,7 +128,7 @@ services:
     container_name: auth-postgresql  
     user: 1000:1000
     volumes:
-      - /home/pi/docker/auth-postgresql:/var/lib/postgresql/data
+      - /mnt/ssdpool/appdata/auth-postgresql:/var/lib/postgresql/data
     environment:
       TZ: 'America/New_York'    
       POSTGRES_PASSWORD: ${PG_PASS}
@@ -171,9 +171,9 @@ services:
       AUTHENTIK_AUTHENTIK__GEOIP: "/geoip/GeoLite2-City.mmdb"
       GEOIPUPDATE_ACCOUNT_ID: ${GEOIPUPDATE_ACCOUNT_ID}
     volumes:
-      - /home/pi/docker/auth/media:/media
-      - /home/pi/docker/auth/custom-templates:/templates
-      - /home/pi/docker/geoipupdate:/geoip
+      - /mnt/ssdpool/appdata/auth/media:/media
+      - /mnt/ssdpool/appdata/auth/custom-templates:/templates
+      - /mnt/ssdpool/appdata/geoipupdate:/geoip
     #env_file:
     #  - .env
     ports:
@@ -203,9 +203,9 @@ services:
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
     user: 1000:1000
     volumes:
-      - /home/pi/docker/auth/media:/media
-      - /home/pi/docker/auth/certs:/certs
-      - /home/pi/docker/auth/custom-templates:/templates
+      - /mnt/ssdpool/appdata/auth/media:/media
+      - /mnt/ssdpool/appdata/auth/certs:/certs
+      - /mnt/ssdpool/appdata/auth/custom-templates:/templates
     #env_file:
     #  - .env
     networks:
@@ -222,9 +222,9 @@ services:
       POSTOVERFLOWS: "crowdsecurity/rdns"
       GID: 1000
     volumes:
-      - /home/pi/docker/crowdsec/data:/var/lib/crowdsec/data
-      - /home/pi/docker/crowdsec:/etc/crowdsec
-      - /home/pi/docker/traefik/logs:/var/log/traefik
+      - /mnt/ssdpool/appdata/crowdsec/data:/var/lib/crowdsec/data
+      - /mnt/ssdpool/appdata/crowdsec:/etc/crowdsec
+      - /mnt/ssdpool/appdata/traefik/logs:/var/log/traefik
     restart: always
     networks:
         pw.internal:
@@ -234,7 +234,7 @@ services:
     container_name: traefik-logrotate
     restart: always
     volumes:
-      - /home/pi/docker/traefik/logs:/var/log/traefik:rw
+      - /mnt/ssdpool/appdata/traefik/logs:/var/log/traefik:rw
       - /var/run/docker.sock:/var/run/docker.sock:rw # required to send USR1 signal to Traefik after log rotation
     environment:
       TZ: "America/New_York"
@@ -297,7 +297,7 @@ services:
     networks:
         pw.internal:
     volumes:
-      - /home/pi/docker/geoipupdate:/usr/share/GeoIP
+      - /mnt/ssdpool/appdata/geoipupdate:/usr/share/GeoIP
 
   mwbot:
     image: ghcr.io/freender/mwbot:main
@@ -326,8 +326,8 @@ services:
         pw.internal:
     # temp volume for debug
     volumes:
-      - /home/pi/docker/mwbot/MWBot:/code/staging
-      - /home/pi/docker/mwbot/config:/config
+      - /mnt/ssdpool/appdata/mwbot/MWBot:/code/staging
+      - /mnt/ssdpool/appdata/mwbot/config:/config
 
   cloudfirewall:
     image: ghcr.io/freender/cloudfirewall:main
@@ -356,7 +356,7 @@ services:
       traefik.http.routers.homeassistant.middlewares: allow-cdn-and-local@file
       traefik.http.services.homeassistant.loadbalancer.server.port: 8123
     volumes:
-      - /home/pi/docker/homeassistant:/config
+      - /mnt/ssdpool/appdata/homeassistant:/config
       #- /etc/localtime:/etc/localtime:ro
       #- /run/dbus:/run/dbus:ro
     restart: always
@@ -384,8 +384,8 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - /home/pi/docker/syncthing:/config
-      - /home/pi/backup:/backup
+      - /mnt/ssdpool/appdata/syncthing:/config
+      - /mnt/ssdpool/backup:/backup
       - /mnt/ssdpool/pictures:/pictures
     restart: always
     networks:
@@ -405,7 +405,7 @@ services:
       - TZ=America/New_York
       - CONFIGFILE=/config/adguardhome-sync.yaml #optional
     volumes:
-      - /home/pi/docker/adguard-sync/config:/config
+      - /mnt/ssdpool/appdata/adguard-sync/config:/config
     restart: always
     networks:
         pw.internal:
@@ -422,8 +422,8 @@ services:
     environment:      
       TZ: 'America/New_York' 
     volumes:
-      - /home/pi/docker/adguard/config:/opt/adguardhome/conf # app configuration
-      - /home/pi/docker/adguard/work:/opt/adguardhome/work # app working directory                
+      - /mnt/ssdpool/appdata/adguard/config:/opt/adguardhome/conf # app configuration
+      - /mnt/ssdpool/appdata/adguard/work:/opt/adguardhome/work # app working directory                
     restart: always    
     networks:
         pw.internal:     
@@ -440,11 +440,11 @@ services:
       TZ: 'America/New_York'     
     volumes:
       - "/var/log:/var/log"
-      - "/home/pi/docker/traefik/logs:/traefik/logs"
-      - "/home/pi/docker/geoipupdate:/etc/alloy/geoip"
+      - "/mnt/ssdpool/appdata/traefik/logs:/traefik/logs"
+      - "/mnt/ssdpool/appdata/geoipupdate:/etc/alloy/geoip"
       - "/var/run/docker.sock:/var/run/docker.sock"
-      - "/home/pi/docker/alloy/config.alloy:/etc/alloy/config.alloy"
-      - "/home/pi/docker/alloy/endpoints.json:/etc/alloy/endpoints.json"
+      - "/mnt/ssdpool/appdata/alloy/config.alloy:/etc/alloy/config.alloy"
+      - "/mnt/ssdpool/appdata/alloy/endpoints.json:/etc/alloy/endpoints.json"
     command: [
       "run",
       "--server.http.listen-addr=0.0.0.0:12345",
