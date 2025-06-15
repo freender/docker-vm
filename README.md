@@ -360,6 +360,7 @@ sudo wipefs -a /dev/sdb
 5. Create zpool
 ```
 sudo zpool create -m /mnt/ssdpool ssdpool /dev/sdb
+sudo zfs set compression=lz4 ssdpool
 ```
 6. Set permissions
 ```
