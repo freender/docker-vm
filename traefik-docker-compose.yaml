@@ -386,6 +386,7 @@ services:
     volumes:
       - /home/pi/docker/syncthing:/config
       - /home/pi/backup:/backup
+      - /mnt/ssdpool/pictures:/pictures
     restart: always
     networks:
         pw.internal:
