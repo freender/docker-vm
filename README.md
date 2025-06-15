@@ -376,3 +376,16 @@ sudo zpool set autotrim=on ssdpool
 sudo zfs create -p ssdpool/appdata
 sudo zfs create -p ssdpool/backup
 ```
+9. Snapshots and replication
+```
+sudo mkdir -p /root/zfs-scripts
+```
+```
+sudo crontab -e
+# Add the following lines:
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+00 4 * * * /root/zfs-scripts/zfs_snapshots.sh > /root/zfs-scripts/zfs_snapshots.txt 2>&1
+40 3 * * * /root/zfs-scripts/zfs_auto_dataset_create.sh > /root/zfs-scripts/zfs_auto_dataset_create.txt 2>&1
+45 3 * * * /root/zfs-scripts/zfs_replication_appdata.sh > /root/zfs-scripts/zfs_replication_appdata.txt 2>&1
+```
