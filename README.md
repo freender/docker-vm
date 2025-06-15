@@ -336,3 +336,16 @@ sudo hostnamectl set-hostname pi-kvm
 sudo hostnamectl set-hostname pi-pw
 ```
 
+## Enable ZFS:
+
+1. Install kernel headers and zfsutils
+```
+sudo apt update
+sudo apt install raspberrypi-kernel-headers zfs-dkms zfsutils-linux -y
+sudo apt full-upgrade -y
+sudo reboot
+```
+2. Once rebooted
+```
+sudo apt autoremove && sudo apt clean
+```
