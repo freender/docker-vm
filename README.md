@@ -361,3 +361,8 @@ sudo wipefs -a /dev/sdb
 ```
 sudo zpool create -m /mnt/ssdpool ssdpool /dev/sdb
 ```
+6. Set permissions
+```
+sudo chown -R pi:pi /mnt/ssdpool
+sudo chmod -R 0775 /mnt/ssdpool
+```
