@@ -371,3 +371,8 @@ sudo chmod -R 0775 /mnt/ssdpool
 ```
 sudo zpool set autotrim=on ssdpool
 ```
+8. Create datasets
+```
+sudo zfs create -p ssdpool/appdata
+sudo zfs create -p ssdpool/backup
+```
