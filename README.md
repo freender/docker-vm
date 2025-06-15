@@ -349,3 +349,15 @@ sudo reboot
 ```
 sudo apt autoremove && sudo apt clean
 ```
+3. Find SSD to wipe
+```
+lsblk -o NAME,SIZE,TYPE,MOUNTPOINT
+```
+4. Clean SSD
+```
+sudo wipefs -a /dev/sdb
+```
+5. Create zpool
+```
+sudo zpool create -m /mnt/ssdpool ssdpool /dev/sdb
+```
