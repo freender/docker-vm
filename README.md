@@ -366,3 +366,7 @@ sudo zpool create -m /mnt/ssdpool ssdpool /dev/sdb
 sudo chown -R pi:pi /mnt/ssdpool
 sudo chmod -R 0775 /mnt/ssdpool
 ```
+7. Enable Trim
+```
+sudo zpool set autotrim=on ssdpool
+```
