@@ -13,7 +13,7 @@ services:
     ports:
       - 19443:9443
     volumes:
-      - /home/pi/docker/portainer:/data
+      - /mnt/ssdpool/appdata/portainer:/data
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
         pw.internal:
