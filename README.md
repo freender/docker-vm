@@ -375,6 +375,7 @@ sudo zpool set autotrim=on ssdpool
 ```
 sudo zfs create -p ssdpool/appdata
 sudo zfs create -p ssdpool/backup
+sudo zfs create -p ssdpool/unraid
 ```
 9. Snapshots and replication
 ```
