@@ -389,3 +389,15 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 40 3 * * * /root/zfs-scripts/zfs_auto_dataset_create.sh > /root/zfs-scripts/zfs_auto_dataset_create.txt 2>&1
 45 3 * * * /root/zfs-scripts/zfs_replication_appdata.sh > /root/zfs-scripts/zfs_replication_appdata.txt 2>&1
 ```
+10. WA for sanoid
+```
+sudo apt update
+sudo apt install -y git build-essential perl libconfig-inifiles-perl \
+  libsys-filesystem-perl libcapture-tiny-perl libgetopt-long-descriptive-perl \
+  libboolean-perl libmojolicious-perl
+git clone https://github.com/jimsalterjrs/sanoid.git
+cd sanoid
+sudo cp syncoid /usr/sbin/
+sudo chmod +x /usr/sbin/syncoid
+syncoid --version
+```
