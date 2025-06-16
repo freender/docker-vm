@@ -386,6 +386,7 @@ services:
     volumes:
       - /mnt/ssdpool/appdata/syncthing:/config
       - /mnt/ssdpool/backup:/backup
+      - /mnt/ssdpool/unraid:/unraid
       - /mnt/ssdpool/pictures:/pictures
     restart: always
     networks:
