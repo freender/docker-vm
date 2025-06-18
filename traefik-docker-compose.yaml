@@ -41,10 +41,10 @@ services:
       - /mnt/ssdpool/appdata/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf 
       - /mnt/ssdpool/appdata/telegraf/scripts:/scripts
       - /run/udev:/run/udev
-    user: telegraf:995
+    user: telegraf:999
       # In bash run
       # echo $(stat -c '%g' /var/run/docker.sock)
-      #user: telegraf:995
+      #user: telegraf:999
     restart: always
     
   uptime:
