@@ -23,7 +23,7 @@ networks:
 services:
   telegraf:
     container_name: telegraf      
-    image: telegraf:latest
+    image: golift/telegraf
     network_mode: host
     environment:
       - TZ=America/New_York
