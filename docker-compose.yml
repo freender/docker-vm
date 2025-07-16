@@ -1,6 +1,7 @@
 networks:
   pw.internal:
     name: pw.internal
+    external: true
     ipam:
       config:
         - gateway: 10.10.0.1
