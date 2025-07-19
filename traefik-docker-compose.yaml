@@ -77,7 +77,25 @@ services:
       # echo $(stat -c '%g' /var/run/docker.sock)
       #user: telegraf:999
     restart: always
-    
+  grafana:
+    networks:
+        pw.internal:
+    image: grafana/grafana:latest
+    environment:
+      TZ: 'America/New_York'
+      PUID: 1000
+      PGID: 1000
+      GF_SERVER_ROOT_URL: ${GRAFANA_URL}
+    container_name: grafana
+    labels:
+      traefik.enable: true
+      traefik.http.routers.grafana.entryPoints: https
+      traefik.http.routers.grafana.middlewares: auth@file,allow-cdn-and-local@file
+      traefik.http.services.grafana.loadbalancer.server.port: 3000
+    volumes:
+      - /mnt/ssdpool/appdata/grafana:/var/lib/grafana
+      - /mnt/ssdpool/appdata/grafana:/etc/grafana
+    restart: always   
   uptime:
     networks:
         pw.internal:
