@@ -29,8 +29,8 @@ services:
       - /mnt/ssdpool/appdata/victoria-metrics:/victoria-metrics-data
     ports:
       - 8428:8428
-    environment:
-      - retentionPeriod=1y
+    command:
+      - "-retentionPeriod=1y"  
     networks:
         pw.internal:
         macvlan_eth0:
