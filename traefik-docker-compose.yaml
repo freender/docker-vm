@@ -22,6 +22,7 @@ networks:
 
 services:
   loki:
+    container_name: loki 
     image: grafana/loki:latest
     user: 1000:1000
     volumes:
