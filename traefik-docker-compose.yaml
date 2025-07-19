@@ -36,6 +36,34 @@ services:
         macvlan_eth0:
           ipv4_address: 10.0.40.20
           mac_address: "02:42:0a:00:28:14"        
+  vmagent:
+    container_name: vmagent
+    user: 1000:1000
+    image: victoriametrics/vmagent:v1.96.0
+    ports:
+      - 8429:8429
+    volumes:
+      - /mnt/ssdpool/appdata/vmagent/vmagentdata:/vmagentdata
+      - /mnt/ssdpool/appdata/vmagent/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - "--promscrape.config=/etc/prometheus/prometheus.yml"
+      - "--remoteWrite.url=http://victoriametrics:8428/api/v1/write"
+    networks:
+        pw.internal:
+    restart: always
+  victorialogs:
+    container_name: victorialogs
+    user: 1000:1000
+    image: docker.io/victoriametrics/victoria-logs:v0.4.2-victorialogs
+    command:
+      - "--storageDataPath=/vlogs"
+      - "--httpListenAddr=:9428"
+    volumes:
+      - /mnt/ssdpool/appdata/victorialogs:/vlogs
+    ports:
+      - "9428:9428"
+    networks:
+        pw.internal:
   loki:
     container_name: loki 
     image: grafana/loki:latest
