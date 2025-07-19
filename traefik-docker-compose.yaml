@@ -21,6 +21,21 @@ networks:
           subnet: 10.10.0.0/24
 
 services:
+  victoria-metrics:
+    container_name: victoria-metrics
+    image: victoriametrics/victoria-metrics:v1.117.1
+    user: 1000:1000
+    volumes:
+      - /mnt/user/appdata/victoria-metrics:/victoria-metrics-data
+    ports:
+      - 8428:8428
+    environment:
+      - retentionPeriod=1y
+    networks:
+        pw.internal:
+        macvlan_eth0:
+          ipv4_address: 10.0.40.20
+          mac_address: "02:42:0a:00:28:14"        
   loki:
     container_name: loki 
     image: grafana/loki:latest
