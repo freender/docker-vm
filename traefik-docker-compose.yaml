@@ -21,6 +21,19 @@ networks:
           subnet: 10.10.0.0/24
 
 services:
+  loki:
+    image: grafana/loki:latest
+    user: 1000:1000
+    volumes:
+      - /mnt/ssdpool/appdata/loki/conf/:/etc/loki
+      - /mnt/ssdpool/appdata/loki/:/loki
+    ports:
+      - "3100:3100"
+    networks:
+        pw.internal:
+        macvlan_eth0:
+          ipv4_address: 10.0.40.18
+          mac_address: "02:42:0a:00:28:12"
   telegraf:
     container_name: telegraf      
     image: golift/telegraf
