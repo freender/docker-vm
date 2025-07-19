@@ -94,7 +94,7 @@ services:
       traefik.http.services.grafana.loadbalancer.server.port: 3000
     volumes:
       - /mnt/ssdpool/appdata/grafana:/var/lib/grafana
-      - /mnt/ssdpool/appdata/grafana:/etc/grafana
+      - /mnt/ssdpool/appdata/grafana/config:/etc/grafana
     restart: always   
   uptime:
     networks:
