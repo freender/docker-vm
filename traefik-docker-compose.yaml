@@ -38,7 +38,7 @@ services:
           mac_address: "02:42:0a:00:28:14"        
   vmagent:
     container_name: vmagent
-    user: 1000:1000
+    #user: 1000:1000
     image: victoriametrics/vmagent:v1.96.0
     ports:
       - 8429:8429
