@@ -64,6 +64,14 @@ services:
       - "9428:9428"
     networks:
         pw.internal:
+  node-exporter:
+    #user: 1000:1000
+    container_name: node-exporter
+    image: quay.io/prometheus/node-exporter:latest
+    ports:
+      - 9100:9100
+    networks:
+        pw.internal:      
   loki:
     container_name: loki 
     image: grafana/loki:latest
