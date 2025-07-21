@@ -32,10 +32,7 @@ services:
     command:
       - "-retentionPeriod=1y"  
     networks:
-        pw.internal:
-        macvlan_eth0:
-          ipv4_address: 10.0.40.20
-          mac_address: "02:42:0a:00:28:14"        
+        pw.internal:    
 #  vmagent:
     #container_name: vmagent
     #user: 1000:1000
