@@ -90,7 +90,7 @@ services:
   telegraf:
     container_name: telegraf      
     image: golift/telegraf
-    #network_mode: host
+    network_mode: host
     environment:
       - TZ=America/New_York
       - HOST_PROC=/rootfs/proc
@@ -107,8 +107,6 @@ services:
       - /mnt/ssdpool/appdata/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf 
       - /mnt/ssdpool/appdata/telegraf/scripts:/scripts
       - /run/udev:/run/udev
-    networks:
-        pw.internal:
     user: telegraf:999
       # In bash run
       # echo $(stat -c '%g' /var/run/docker.sock)
