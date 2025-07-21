@@ -54,7 +54,7 @@ services:
     image: docker.io/victoriametrics/victoria-logs:v0.4.2-victorialogs
     command:
       - "--storageDataPath=/vlogs"
-      - "--httpListenAddr=:9428"
+      - "--lokiListenAddr=:9428"
       - "--retentionPeriod=90d"
     volumes:
       - /mnt/ssdpool/appdata/victorialogs:/vlogs
