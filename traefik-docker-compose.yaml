@@ -33,43 +33,6 @@ services:
       - "-retentionPeriod=1y"  
     networks:
         pw.internal:    
-#  vmagent:
-    #container_name: vmagent
-    #user: 1000:1000
-#    image: victoriametrics/vmagent:v1.96.0
-    #ports:
-      #- 8429:8429
-    #volumes:
-      #- /mnt/ssdpool/appdata/vmagent/vmagentdata:/vmagentdata
-      #- /mnt/ssdpool/appdata/vmagent/prometheus.yml:/etc/prometheus/prometheus.yml
-    #command:
-      #- "--promscrape.config=/etc/prometheus/prometheus.yml"
-      #- "--remoteWrite.url=http://victoria-metrics:8428/api/v1/write"
-    #networks:
-        #pw.internal:
-    #restart: always
-  victorialogs:
-    container_name: victorialogs
-    user: 1000:1000
-    image: docker.io/victoriametrics/victoria-logs:v0.4.2-victorialogs
-    command:
-      - "--storageDataPath=/vlogs"
-      - "--httpListenAddr=:9428"
-      - "--retentionPeriod=90d"
-    volumes:
-      - /mnt/ssdpool/appdata/victorialogs:/vlogs
-    ports:
-      - "9428:9428"
-    networks:
-        pw.internal:
-#  node-exporter:
-    #user: 1000:1000
-    #container_name: node-exporter
-    #image: quay.io/prometheus/node-exporter:latest
-    #ports:
-      #- 9100:9100
-    #networks:
-        #pw.internal:      
   loki:
     container_name: loki 
     image: grafana/loki:latest
