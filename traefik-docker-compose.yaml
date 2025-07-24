@@ -1,7 +1,7 @@
 networks:
   macvlan_eth0:
     name: macvlan_eth0
-    external: true
+    #external: true
     driver: macvlan
     driver_opts:
       parent: enp1s0
