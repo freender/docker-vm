@@ -1,26 +1,10 @@
 networks:
   macvlan_eth0:
-    name: macvlan_eth0
-    #external: true
-    driver: macvlan
-    driver_opts:
-      parent: enp1s0
-    ipam:
-      config:
-        # bogus ipv6 subnet here. The container should use SLAAC to acquire a real ipv6 addr from your router
-        - subnet: 2001::0/64
-        # 172.25.0.64/27 = 64-95. Don't let your DHCP server assign IP's from this range.
-        - subnet: 10.0.40.0/24
-          gateway: 10.0.40.1
-          ip_range: 10.0.40.0/27
+    external: true
   pw.internal: 
     name: pw.internal
     external: true
-    ipam: 
-      config: 
-        - gateway: 10.10.0.1
-          subnet: 10.10.0.0/24
-
+    
 services:
   telegraf:
     container_name: telegraf      
