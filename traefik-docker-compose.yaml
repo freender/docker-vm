@@ -22,17 +22,6 @@ networks:
           subnet: 10.10.0.0/24
 
 services:
-  loki:
-    container_name: loki 
-    image: grafana/loki:latest
-    user: 1000:1000
-    volumes:
-      - /mnt/ssdpool/appdata/loki/conf/:/etc/loki
-      - /mnt/ssdpool/appdata/loki/:/loki
-    ports:
-      - "3100:3100"
-    networks:
-        pw.internal:
   telegraf:
     container_name: telegraf      
     image: golift/telegraf
