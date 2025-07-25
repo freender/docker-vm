@@ -409,23 +409,3 @@ services:
         macvlan_eth0:
           ipv4_address: 10.0.40.41
           mac_address: "02:42:0a:00:28:29"
-  alloy:
-    image: grafana/alloy:latest
-    container_name: alloy
-    networks:
-        pw.internal:
-    restart: always
-    environment:      
-      TZ: 'America/New_York'     
-    volumes:
-      - "/var/log:/var/log"
-      - "/mnt/ssdpool/appdata/traefik/logs:/traefik/logs"
-      - "/mnt/ssdpool/appdata/geoipupdate:/etc/alloy/geoip"
-      - "/var/run/docker.sock:/var/run/docker.sock"
-      - "/mnt/ssdpool/appdata/alloy/config.alloy:/etc/alloy/config.alloy"
-      - "/mnt/ssdpool/appdata/alloy/endpoints.json:/etc/alloy/endpoints.json"
-    command: [
-      "run",
-      "--server.http.listen-addr=0.0.0.0:12345",
-      "/etc/alloy/config.alloy",
-    ]
