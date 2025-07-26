@@ -321,29 +321,6 @@ services:
     restart: always
     networks:
         pw.internal:
-        
-  homeassistant:
-    container_name: homeassistant
-    image: "lscr.io/linuxserver/homeassistant:latest"    
-    environment:
-      TZ: 'America/New_York'
-      PUID: 1000
-      PGID: 1000
-    labels:
-      traefik.enable: true
-      traefik.http.routers.homeassistant.entryPoints: https
-      traefik.http.routers.homeassistant.middlewares: allow-cdn-and-local@file
-      traefik.http.services.homeassistant.loadbalancer.server.port: 8123
-    volumes:
-      - /mnt/ssdpool/appdata/homeassistant:/config
-      #- /etc/localtime:/etc/localtime:ro
-      #- /run/dbus:/run/dbus:ro
-    restart: always
-    networks:
-        pw.internal:
-        macvlan_eth0:
-          ipv4_address: 10.0.40.46
-          mac_address: "02:42:0a:00:28:2e"
 
   syncthing:
     container_name: syncthing
