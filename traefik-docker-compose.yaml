@@ -99,24 +99,6 @@ services:
     volumes:
       - /mnt/ssdpool/appdata/cloudflared:/etc/cloudflared
     command: tunnel run ${CLOUDFLARE_TUNNEL_ID}
-
-  crowdsec:
-    image: crowdsecurity/crowdsec:latest
-    container_name: crowdsec
-    expose:
-      - 8080
-    environment:
-      TZ: 'America/New_York'
-      COLLECTIONS: "crowdsecurity/traefik crowdsecurity/http-cve firix/authentik"
-      POSTOVERFLOWS: "crowdsecurity/rdns"
-      GID: 1000
-    volumes:
-      - /mnt/ssdpool/appdata/crowdsec/data:/var/lib/crowdsec/data
-      - /mnt/ssdpool/appdata/crowdsec:/etc/crowdsec
-      - /mnt/ssdpool/appdata/traefik/logs:/var/log/traefik
-    restart: always
-    networks:
-        pw.internal:
         
   traefik-logrotate:
     image: vegardit/traefik-logrotate:latest
