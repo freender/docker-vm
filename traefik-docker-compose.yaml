@@ -162,6 +162,26 @@ services:
     networks:
         pw.internal:
 
+  apcupsd:
+    image: ghcr.io/freender/apcupsd:main
+    #build: https://github.com/freender/apcupsd.git
+    #pull_policy: build
+    hostname: Network
+    container_name: apcupsd
+    networks:
+        pw.internal:    
+    devices:
+      - /dev/usb/hiddev0
+    ports:
+      - 13551:3551
+    environment: # Delete or comment out any environment variables you don't wish to change
+      TZ: "America/New_York" # Default value is Europe/London
+      TELEGRAM_TOKEN: ${TELEGRAM_TOKEN} # Telegram BOT token
+      TELEGRAM_CHATID: ${TELEGRAM_CHATID} # Telegram CHATID
+    volumes:
+      - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
+    restart: always
+
   adguard:
     image: adguard/adguardhome
     container_name: adguard
