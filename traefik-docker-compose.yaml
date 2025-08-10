@@ -5,27 +5,7 @@ networks:
     name: pw.internal
     external: true
     
-services:  
-  uptime:
-    networks:
-        pw.internal:
-    image: louislam/uptime-kuma:latest
-    environment:
-      TZ: 'America/New_York'
-      PUID: 1000
-      PGID: 1000
-    container_name: uptime
-    labels:
-      traefik.enable: true
-      traefik.http.routers.uptime.entryPoints: https
-      traefik.http.routers.uptime.middlewares: auth@file,allow-cdn-and-local@file
-      traefik.http.services.uptime.loadbalancer.server.port: 3001
-    volumes:
-      - /mnt/ssdpool/appdata/uptime:/app/data
-    ports:
-      - 3001:3001  # <Host Port>:<Container Port>
-    restart: always
-      
+services:        
   watchtower:
     container_name: watchtower
     restart: always
