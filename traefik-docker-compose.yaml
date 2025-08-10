@@ -78,31 +78,6 @@ services:
     networks:
         pw.internal:
 
-  syncthing:
-    container_name: syncthing
-    image: lscr.io/linuxserver/syncthing    
-    hostname: pi-docker
-    labels:
-      traefik.enable: true
-      traefik.http.routers.syncthing.entryPoints: https
-      traefik.http.routers.syncthing.middlewares: auth@file,allow-cdn-and-local@file
-      traefik.http.services.syncthing.loadbalancer.server.port: 8384
-    ports:
-      - 8384:8384
-      - 22000:22000
-      - 21027:21027
-    environment:
-      - TZ=America/New_York
-      - PUID=1000
-      - PGID=1000
-    volumes:
-      - /mnt/ssdpool/appdata/syncthing:/config
-      - /mnt/ssdpool/backup:/backup
-      - /mnt/ssdpool/unraid:/unraid
-    restart: always
-    networks:
-        pw.internal:
-
   adguard-sync:
     image: lscr.io/linuxserver/adguardhome-sync:latest
     container_name: adguard-sync
