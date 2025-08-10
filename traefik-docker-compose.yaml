@@ -35,17 +35,5 @@ services:
     volumes:
       - /mnt/ssdpool/appdata/mwbot/MWBot:/code/staging
       - /mnt/ssdpool/appdata/mwbot/config:/config
-
-  cloudfirewall:
-    image: ghcr.io/freender/cloudfirewall:main
-    #build: https://github.com/freender/cloudfirewall.git
-    container_name: cloudfirewall
-    environment:
-      - TZ=America/New_York
-      - WAF_TOKEN=${CF_BOT_WAF_TOKEN} # Cloudflare WAF token
-      - WAF_ZONE=${CF_BOT_WAF_ZONE} # Cloudflare WAF zone
-      - WAF_RULESET=${CF_BOT_WAF_RULESET} # Cloudflare WAF ruleset
-      - WAF_RULEID=${CF_BOT_WAF_RULEID} # Cloudflare WAF rule id
-    restart: always
     networks:
         pw.internal:
