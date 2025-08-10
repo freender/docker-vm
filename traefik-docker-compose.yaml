@@ -5,35 +5,4 @@ networks:
     name: pw.internal
     external: true
     
-services:        
-  mwbot:
-    image: ghcr.io/freender/mwbot:main
-    user: 1000:1000
-    #build: https://github.com/freender/MWBot.git
-    container_name: mwbot
-    environment:
-      - TZ=America/New_York
-      - TOKEN=${TELEGRAM_TOKEN} # Set telegram bot token
-      - KUMA_HOST=${UPTIME_HOST} # UptimeKuma IP address and port
-      - KUMA_LOGIN=${UPTIME_LOGIN} # UptimeKuma Login
-      - KUMA_PASSWORD=${UPTIME_PASSWORD} # UptimeKuma Password
-      - KUMA_MW_ID=3 # ID of MW you would like to start
-      - CHAT_ID=${TELEGRAM_CHATID} # Set telegram chat id
-      - OWNER=${TELEGRAM_OWNER} # Set user id
-      - TOKEN_STAGING=${TELEGRAM_TOKEN_STAGING} # Debug - Set telegram bot token
-      - WAF_TOKEN=${MW_BOT_WAF_TOKEN} # Debug - WAF token
-      - WAF_ZONE=${MW_BOT_WAF_ZONE} # Debug - WAF zone
-      - WAF_RULESET=${MW_BOT_WAF_RULESET} # Debug - WAF ruleset
-      - WAF_RULEID=${MW_BOT_WAF_RULEID} # Debug - WAF ruleid
-      - MW_BOT_ASN_DEFAULT=${MW_BOT_ASN_DEFAULT} # Debug - WAF ruleid
-      - CDN_URL=${CDN_URL} # Debug - CDN URL
-      - TELEGRAM_AUTH_USERS=${TELEGRAM_AUTH_USERS} # Debug - TELEGRAM_AUTH_USERS
-    restart: always
-    networks:
-        pw.internal:
-    # temp volume for debug
-    volumes:
-      - /mnt/ssdpool/appdata/mwbot/MWBot:/code/staging
-      - /mnt/ssdpool/appdata/mwbot/config:/config
-    networks:
-        pw.internal:
+services:
