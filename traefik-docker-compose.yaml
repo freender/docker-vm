@@ -5,27 +5,7 @@ networks:
     name: pw.internal
     external: true
     
-services:
-  grafana:
-    networks:
-        pw.internal:
-    image: grafana/grafana:latest
-    environment:
-      TZ: 'America/New_York'
-      PUID: 1000
-      PGID: 1000
-      GF_SERVER_ROOT_URL: ${GRAFANA_URL}
-      #GF_INSTALL_PLUGINS: victoriametrics-logs-datasource
-    container_name: grafana
-    labels:
-      traefik.enable: true
-      traefik.http.routers.grafana.entryPoints: https
-      traefik.http.routers.grafana.middlewares: auth@file,allow-cdn-and-local@file
-      traefik.http.services.grafana.loadbalancer.server.port: 3000
-    volumes:
-      - /mnt/ssdpool/appdata/grafana:/var/lib/grafana
-      - /mnt/ssdpool/appdata/grafana/config:/etc/grafana
-    restart: always   
+services:  
   uptime:
     networks:
         pw.internal:
