@@ -2,7 +2,7 @@
 
 # Add this script to cron
 # crontab -e
-#40 3 * * * /mnt/ssdpool/backup/backup.sh > /mnt/ssdpool/backup/backup.txt 2>&1
+#40 2 * * * /mnt/ssdpool/backup/backup.sh > /mnt/ssdpool/backup/backup.txt 2>&1
 
 # Define source and destination directories
 SRC="/mnt/ssdpool/appdata/"
