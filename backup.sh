@@ -2,6 +2,7 @@
 
 # Add this script to cron
 # crontab -e
+#PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 #40 2 * * * /mnt/ssdpool/backup/backup.sh > /mnt/ssdpool/backup/backup.txt 2>&1
 
 # Define source and destination directories
