@@ -2,11 +2,11 @@
 
 # Add this script to cron
 # crontab -e
-#40 3 * * * /home/pi/backup.sh > /home/pi/backup.txt 2>&1
+#40 3 * * * /mnt/ssdpool/backup/backup.sh > /mnt/ssdpool/backup/backup.txt 2>&1
 
 # Define source and destination directories
-SRC="/home/pi/docker/"
-DEST="/home/pi/backup/pi-docker/"
+SRC="/mnt/ssdpool/appdata/"
+DEST="/mnt/ssdpool/backup/appdata/"
 
 echo "===== Starting Docker Backup: $(date) ====="
 
