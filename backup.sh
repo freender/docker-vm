@@ -12,6 +12,8 @@ DEST="/mnt/ssdpool/backup/docker-vm/appdata/"
 
 # Define containers that should NEVER be stopped during backup
 # These are critical infrastructure containers that need to stay running
+# Note: traefik2, socket-proxy2, crowdsec, traefik-redis2, traefik-kop2, and traefik-logrotate
+# are all managed by the traefik2 compose file, so listing any of them protects all
 NEVER_STOP_CONTAINERS=(
   "traefik2"
   "traefik-redis2"
