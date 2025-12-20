@@ -18,6 +18,7 @@ NEVER_STOP_CONTAINERS=(
   "traefik-kop2"
   "traefik-logrotate"
   "socket-proxy2"
+  "crowdsec"
 )
 
 echo "===== Starting Docker Backup: $(date) ====="
