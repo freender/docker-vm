@@ -3,12 +3,12 @@
 # Enhanced backup script with never-stop container protection
 # Add this script to cron:
 # crontab -e
-# 5 9 * * * /mnt/ssdpool/backup/docker-vm/backup.sh > /mnt/ssdpool/backup/docker-vm/backup.txt 2>&1
+# 5 9 * * * /mnt/ssdpool/backup/helm/backup.sh > /mnt/ssdpool/backup/helm/backup.txt 2>&1
 # PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 
 # Define source and destination directories
 SRC="/mnt/ssdpool/appdata/"
-DEST="/mnt/ssdpool/backup/docker-vm/appdata/"
+DEST="/mnt/ssdpool/backup/helm/appdata/"
 
 # Define containers that should NEVER be stopped during backup
 # These are critical infrastructure containers that need to stay running
