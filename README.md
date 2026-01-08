@@ -359,13 +359,13 @@ sudo wipefs -a /dev/sdb
 ```
 5. Create zpool
 ```
-sudo zpool create -m /mnt/ssdpool ssdpool /dev/sdb
+sudo zpool create -m /mnt/cache ssdpool /dev/sdb
 sudo zfs set compression=lz4 ssdpool
 ```
 6. Set permissions
 ```
-sudo chown -R pi:pi /mnt/ssdpool
-sudo chmod -R 0775 /mnt/ssdpool
+sudo chown -R pi:pi /mnt/cache
+sudo chmod -R 0775 /mnt/cache
 ```
 7. Enable Trim
 ```

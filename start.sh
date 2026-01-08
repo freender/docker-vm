@@ -1,6 +1,6 @@
 #!/bin/bash
 # Runs `docker compose up -d` in each subdirectory beside this script.
-# Place this file in /mnt/ssdpool/appdata and execute it.
+# Place this file in /mnt/cache/appdata and execute it.
 # Supports custom startup order for dependencies.
 
 set -u
