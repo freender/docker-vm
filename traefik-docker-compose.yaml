@@ -1,8 +1,0 @@
-networks:
-  macvlan_eth0:
-    external: true
-  pw.internal: 
-    name: pw.internal
-    external: true
-    
-services:
