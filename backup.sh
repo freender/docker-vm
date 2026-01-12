@@ -91,7 +91,7 @@ fi
 # Update docker containers
 echo ""
 echo "Running start.sh to update containers..."
-./start.sh
+/mnt/cache/appdata/start.sh
 
 # Sleep 10 seconds to allow docker containers to start
 echo ""
